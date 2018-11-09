@@ -14,9 +14,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
-  <dependencies>
-
-  </dependencies>
   <modules>
     <module>biblio-ws-batch</module>
     <module>biblio-ws-webapp</module>
@@ -24,4 +21,40 @@
     <module>biblio-ws-consumer</module>
     <module>biblio-ws-model</module>
   </modules>
+
+  <!-- =============================================================== -->
+  <!-- Gestion des dépendances -->
+  <!-- =============================================================== -->
+  <dependencyManagement>
+    <dependencies>
+      <!-- ===== Modules ===== -->
+      <dependency>
+        <groupId>oc.projet.biblio</groupId>
+        <artifactId>biblio-ws-batch</artifactId>
+        <version>1.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>oc.projet.biblio</groupId>
+        <artifactId>biblio-ws-webapp</artifactId>
+        <version>1.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>oc.projet.biblio</groupId>
+        <artifactId>biblio-ws-business</artifactId>
+        <version>1.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>oc.projet.biblio</groupId>
+        <artifactId>biblio-ws-consumer</artifactId>
+        <version>1.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>oc.projet.biblio</groupId>
+        <artifactId>biblio-ws-model</artifactId>
+        <version>1.0-SNAPSHOT</version>
+      </dependency>
+
+      <!-- ===== Bibliothèques tierces ===== -->
+    </dependencies>
+  </dependencyManagement>
 </project>
