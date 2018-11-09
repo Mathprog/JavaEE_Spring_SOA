@@ -16,6 +16,14 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
+
+
+    <!-- ===== Modules ===== -->
+    <dependency>
+      <groupId>oc.projet.biblio</groupId>
+      <artifactId>biblio-ws-model</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
