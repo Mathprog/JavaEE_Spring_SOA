@@ -1,10 +1,13 @@
 package oc.projet.biblio.model;
 
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 /**
  * Hello world!
  *
  */
-public class App 
+@SpringBootApplication
+public class App_model
 {
     public static void main( String[] args )
     {
