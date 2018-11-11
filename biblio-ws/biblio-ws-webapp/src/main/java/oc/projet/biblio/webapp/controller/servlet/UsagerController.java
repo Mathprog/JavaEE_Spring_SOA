@@ -1,4 +1,4 @@
-package oc.projet.biblio.webapp.controller;
+package oc.projet.biblio.webapp.controller.servlet;
 
 
 import oc.projet.biblio.business.service.UsagerService;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping(path = "/demo")
-public class MainController {
+@RequestMapping(path = "/usager")
+public class UsagerController {
 
     @Autowired
     private UsagerService usagerRepository;
@@ -20,7 +20,7 @@ public class MainController {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
-        String response = this.usagerRepository.saveUsager("tartenpiondzqdzq");
-        return response;
+
+        return this.usagerRepository.saveUsager("tartenpiondzqdzq");
     }
 }
