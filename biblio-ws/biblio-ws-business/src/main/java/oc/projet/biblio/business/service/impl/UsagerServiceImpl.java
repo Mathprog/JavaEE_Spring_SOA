@@ -14,13 +14,10 @@ public class UsagerServiceImpl implements UsagerService {
     @Autowired
     private UsagerRepository usagerRepository;
 
-    @Autowired
-    private Usager newUsager;
-
-
     @Override
     public String saveUsager(String email){
-        this.newUsager.setEmail(email);
+       Usager newUsager = new Usager();
+        newUsager.setEmail(email);
         usagerRepository.save(newUsager);
         return "saved";
     }
