@@ -1,6 +1,7 @@
 package oc.projet.biblio.webapp.controller;
 
 
+import oc.projet.biblio.business.service.UsagerService;
 import oc.projet.biblio.model.entity.Usager;
 import oc.projet.biblio.consumer.repository.UsagerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,17 +15,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MainController {
 
     @Autowired
-    private UsagerRepository usagerRepository;
+    private UsagerService usagerRepository;
 
     @GetMapping(path="/add") // Map ONLY GET Requests
     public @ResponseBody String addNewUser () {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
-        Usager n = new Usager();
-        n.setEmail("tartenpion@email.com");
-
-        usagerRepository.save(n);
-        return "Saved";
+        String response = this.usagerRepository.saveUsager("tartenpiondzqdzq");
+        return response;
     }
 }

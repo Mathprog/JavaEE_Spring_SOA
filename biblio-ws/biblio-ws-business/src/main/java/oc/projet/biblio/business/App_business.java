@@ -1,4 +1,4 @@
-package oc.projet.biblio.consumer;
+package oc.projet.biblio.business;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication
-public class App 
+public class App_business
 {
     public static void main( String[] args )
     {
