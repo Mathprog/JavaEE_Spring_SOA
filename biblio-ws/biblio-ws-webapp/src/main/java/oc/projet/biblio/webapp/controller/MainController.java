@@ -2,8 +2,6 @@ package oc.projet.biblio.webapp.controller;
 
 
 import oc.projet.biblio.business.service.UsagerService;
-import oc.projet.biblio.model.entity.Usager;
-import oc.projet.biblio.consumer.repository.UsagerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

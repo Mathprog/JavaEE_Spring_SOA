@@ -28,14 +28,6 @@
       <groupId>oc.projet.biblio</groupId>
       <artifactId>biblio-ws-business</artifactId>
     </dependency>
-      <dependency>
-          <groupId>oc.projet.biblio</groupId>
-          <artifactId>biblio-ws-model</artifactId>
-      </dependency>
-      <dependency>
-          <groupId>oc.projet.biblio</groupId>
-          <artifactId>biblio-ws-consumer</artifactId>
-      </dependency>
 
 
 
