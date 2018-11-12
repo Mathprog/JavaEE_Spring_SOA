@@ -2,10 +2,8 @@ package oc.projet.biblio.model.entity;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Usager {
@@ -15,6 +13,9 @@ public class Usager {
     private Integer id;
 
     private String email;
+
+    @OneToMany(mappedBy = "usager")
+    private List<Pret> prets;
 
     public Integer getId() {
         return id;
@@ -30,5 +31,13 @@ public class Usager {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Pret> getPrets() {
+        return prets;
+    }
+
+    public void setPrets(List<Pret> prets) {
+        this.prets = prets;
     }
 }
