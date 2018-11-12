@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(path = "/ouvrage")
@@ -19,11 +20,12 @@ public class OuvrageController {
     private OuvrageService ouvrageService;
 
     @GetMapping(path="/all") // Map ONLY GET Requests
-    public @ResponseBody String addNewUser () {
+    public String addNewUser (Map<String, Object> model) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
         List<Ouvrage> ouvrages = this.ouvrageService.findAllOuvrage();
-        return "blabla";
+        model.put("ouvrages", ouvrages);
+        return "ouvrages";
     }
 }
