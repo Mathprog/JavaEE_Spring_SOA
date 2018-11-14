@@ -1,6 +1,9 @@
 package oc.projet.biblio.business.service.impl;
 
-import oc.projet.biblio.business.service.UsagerService;
+import oc.projet.biblio.business.service.*;
+import oc.projet.biblio.model.entity.Exemplaire;
+import oc.projet.biblio.model.entity.Ouvrage;
+import oc.projet.biblio.model.entity.Usager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +19,25 @@ public class ServiceImplTest {
     @Autowired
     private UsagerService usagerService;
 
+    @Autowired
+    private PretService pretService;
+
+    @Autowired
+    private ExemplaireService exemplaireService;
+
+    @Autowired
+    private OuvrageService ouvrageService;
+
+    @Autowired
+    private RelanceService relanceService;
+
     @Test
-    public void saveUsager() {
-        usagerService.createUsager("creerpartest");
+    public void populateBdd()
+    {
+        Usager usager = usagerService.createUsager("creerpartest");
+        Ouvrage ouvrage = ouvrageService.createOuvrate("Spring Framework");
+        Exemplaire exemplaire = exemplaireService.createSexemplaire(ouvrage);
+
     }
 
 
