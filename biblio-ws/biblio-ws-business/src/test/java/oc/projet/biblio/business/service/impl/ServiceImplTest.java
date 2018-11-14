@@ -8,19 +8,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @PropertySource("classpath*:application.properties")
 @SpringBootTest
-public class UsagerServiceImplTest {
+public class ServiceImplTest {
 
     @Autowired
     private UsagerService usagerService;
 
     @Test
     public void saveUsager() {
-        usagerService.saveUsager("creerpartest");
+        usagerService.createUsager("creerpartest");
     }
 
 

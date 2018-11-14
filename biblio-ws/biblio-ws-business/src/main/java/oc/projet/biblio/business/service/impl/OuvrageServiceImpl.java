@@ -18,4 +18,9 @@ public class OuvrageServiceImpl implements OuvrageService {
     public List<Ouvrage> findAllOuvrage() {
         return ouvrageRepository.findAll();
     }
+
+    @Override
+    public Ouvrage createOuvrate(String titre) {
+        return this.ouvrageRepository.create(titre);
+    }
 }

@@ -7,4 +7,6 @@ import java.util.List;
 public interface OuvrageService {
 
     List<Ouvrage> findAllOuvrage();
+
+    Ouvrage createOuvrate(String titre);
 }
