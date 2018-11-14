@@ -14,9 +14,9 @@ public class Pret {
     @JoinColumn(name="usager_id")
     private Usager usager;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="ouvrage_id")
-    private Ouvrage ouvrage;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "exemplaire_id", nullable = false)
+    private Exemplaire exemplaire;
 
     @Column(name = "date_pret")
     @Temporal(TemporalType.DATE)
@@ -42,14 +42,6 @@ public class Pret {
         this.usager = usager;
     }
 
-    public Ouvrage getOuvrage() {
-        return ouvrage;
-    }
-
-    public void setOuvrage(Ouvrage ouvrage) {
-        this.ouvrage = ouvrage;
-    }
-
     public Date getDatePret() {
         return datePret;
     }
@@ -64,5 +56,13 @@ public class Pret {
 
     public void setDateFin(Date dateFin) {
         this.dateFin = dateFin;
+    }
+
+    public Exemplaire getExemplaire() {
+        return exemplaire;
+    }
+
+    public void setExemplaire(Exemplaire exemplaire) {
+        this.exemplaire = exemplaire;
     }
 }

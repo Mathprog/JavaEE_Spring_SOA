@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  */
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages="oc.projet.biblio")
 public class App_business
 {
     public static void main( String[] args )

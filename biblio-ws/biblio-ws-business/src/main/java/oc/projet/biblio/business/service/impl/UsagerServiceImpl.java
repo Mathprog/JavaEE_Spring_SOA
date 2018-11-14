@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import oc.projet.biblio.model.entity.Usager;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 
 @Service
+@Transactional
 public class UsagerServiceImpl implements UsagerService {
 
 
@@ -15,10 +18,9 @@ public class UsagerServiceImpl implements UsagerService {
     private UsagerRepository usagerRepository;
 
     @Override
+    @Transactional
     public String saveUsager(String email){
-       Usager newUsager = new Usager();
-        newUsager.setEmail(email);
-        usagerRepository.save(newUsager);
+        usagerRepository.create(email);
         return "saved";
     }
 }

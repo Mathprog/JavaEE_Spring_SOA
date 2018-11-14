@@ -12,7 +12,7 @@ import java.util.List;
 public class OuvrageServiceImpl implements OuvrageService {
 
     @Autowired
-    OuvrageRepository ouvrageRepository;
+    private OuvrageRepository ouvrageRepository;
 
     @Override
     public List<Ouvrage> findAllOuvrage() {
