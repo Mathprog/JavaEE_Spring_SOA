@@ -20,6 +20,12 @@ public class UsagerServiceImpl implements UsagerService {
     @Override
     @Transactional
     public Usager createUsager(String email){
-        return usagerRepository.create(email);
+        return usagerRepository.createUsager(email);
+    }
+
+    @Override
+    @Transactional
+    public Usager findUsagerByEmail(String email) {
+        return usagerRepository.findUsagerByEmail(email);
     }
 }

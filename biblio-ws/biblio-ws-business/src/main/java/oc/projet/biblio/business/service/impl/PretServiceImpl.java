@@ -8,7 +8,7 @@ import oc.projet.biblio.model.entity.Usager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Service
 public class PretServiceImpl implements PretService {
@@ -17,7 +17,7 @@ public class PretServiceImpl implements PretService {
     private PretRepository pretRepository;
 
     @Override
-    public Pret createPret(Exemplaire exemplaire, Usager usager,  Date date_pret, Date date_fin) {
+    public Pret createPret(Exemplaire exemplaire, Usager usager, LocalDate date_pret, LocalDate date_fin) {
         return this.pretRepository.create(exemplaire, usager, date_pret, date_fin);
     }
 }

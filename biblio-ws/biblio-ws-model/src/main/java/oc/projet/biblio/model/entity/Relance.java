@@ -2,7 +2,7 @@ package oc.projet.biblio.model.entity;
 
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Relance {
@@ -12,10 +12,9 @@ public class Relance {
     private int id;
 
     @Column(name = "date_fin")
-    @Temporal(TemporalType.DATE)
-    private Date dateFin;
+    private LocalDate dateFin;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pret_id")
     private Pret pret;
 
@@ -27,11 +26,11 @@ public class Relance {
         this.id = id;
     }
 
-    public Date getDateFin() {
+    public LocalDate getDateFin() {
         return dateFin;
     }
 
-    public void setDateFin(Date dateFin) {
+    public void setDateFin(LocalDate dateFin) {
         this.dateFin = dateFin;
     }
 

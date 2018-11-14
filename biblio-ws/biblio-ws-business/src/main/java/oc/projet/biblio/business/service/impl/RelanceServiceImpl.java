@@ -7,7 +7,7 @@ import oc.projet.biblio.model.entity.Relance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Service
 public class RelanceServiceImpl implements RelanceService {
@@ -17,7 +17,7 @@ public class RelanceServiceImpl implements RelanceService {
     private RelanceRepository relanceRepository;
 
     @Override
-    public Relance createRelance(Pret pret, Date date_fin) {
+    public Relance createRelance(Pret pret, LocalDate date_fin) {
         return this.relanceRepository.create(pret, date_fin);
     }
 }

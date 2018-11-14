@@ -1,9 +1,12 @@
 package oc.projet.biblio.consumer.repository;
 
-import oc.projet.biblio.consumer.repository.custom.PretRepositoryCustom;
+import oc.projet.biblio.model.entity.Exemplaire;
 import oc.projet.biblio.model.entity.Pret;
-import org.springframework.data.repository.CrudRepository;
+import oc.projet.biblio.model.entity.Usager;
 
-public interface PretRepository extends CrudRepository<Pret, Integer>, PretRepositoryCustom {
+import java.time.LocalDate;
 
+public interface PretRepository {
+
+    Pret create(Exemplaire exemplaire, Usager usager, LocalDate date_pret, LocalDate date_fin);
 }

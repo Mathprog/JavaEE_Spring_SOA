@@ -5,4 +5,5 @@ import oc.projet.biblio.model.entity.Usager;
 public interface UsagerService {
 
     Usager createUsager(String email);
+    Usager findUsagerByEmail(String email);
 }

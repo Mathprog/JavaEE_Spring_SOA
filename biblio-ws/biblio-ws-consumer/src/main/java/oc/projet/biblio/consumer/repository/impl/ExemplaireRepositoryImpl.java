@@ -1,6 +1,6 @@
 package oc.projet.biblio.consumer.repository.impl;
 
-import oc.projet.biblio.consumer.repository.custom.ExemplaireRepositoryCustom;
+import oc.projet.biblio.consumer.repository.ExemplaireRepository;
 import oc.projet.biblio.model.entity.Exemplaire;
 import oc.projet.biblio.model.entity.Ouvrage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public class ExemplaireRepositoryImpl implements ExemplaireRepositoryCustom {
+public class ExemplaireRepositoryImpl implements ExemplaireRepository {
 
     @Autowired
     EntityManager entityManager;

@@ -19,7 +19,7 @@ public class OuvrageController {
     private OuvrageService ouvrageService;
 
     @GetMapping(path="/all") // Map ONLY GET Requests
-    public String addNewUser (Map<String, Object> model) {
+    public String showAllOuvrages(Map<String, Object> model) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 

@@ -2,7 +2,7 @@ package oc.projet.biblio.model.entity;
 
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Ouvrage {
@@ -16,7 +16,8 @@ public class Ouvrage {
     @Column(name = "nb_dispo")
     private int nbDispo;
 
-    @OneToMany
+    @OneToMany(mappedBy = "ouvrage", fetch = FetchType.LAZY)
+    private Set<Exemplaire> exemplaires;
 
     public Integer getId() {
         return id;
@@ -40,5 +41,13 @@ public class Ouvrage {
 
     public void setNbDispo(int nbDispo) {
         this.nbDispo = nbDispo;
+    }
+
+    public Set<Exemplaire> getExemplaires() {
+        return exemplaires;
+    }
+
+    public void setExemplaires(Set<Exemplaire> exemplaires) {
+        this.exemplaires = exemplaires;
     }
 }

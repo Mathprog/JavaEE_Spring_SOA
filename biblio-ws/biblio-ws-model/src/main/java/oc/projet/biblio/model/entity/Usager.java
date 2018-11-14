@@ -1,9 +1,8 @@
 package oc.projet.biblio.model.entity;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
+
 
 @Entity
 public class Usager {
@@ -14,8 +13,8 @@ public class Usager {
 
     private String email;
 
-    @OneToMany(mappedBy = "usager")
-    private List<Pret> prets;
+    @OneToMany(mappedBy = "usager", fetch = FetchType.LAZY)
+    private Set<Pret> prets;
 
     public Integer getId() {
         return id;
@@ -33,11 +32,11 @@ public class Usager {
         this.email = email;
     }
 
-    public List<Pret> getPrets() {
+    public Set<Pret> getPrets() {
         return prets;
     }
 
-    public void setPrets(List<Pret> prets) {
+    public void setPrets(Set<Pret> prets) {
         this.prets = prets;
     }
 }

@@ -1,7 +1,7 @@
 package oc.projet.biblio.model.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Pret {
@@ -10,8 +10,8 @@ public class Pret {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="usager_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="usager_id", nullable = false)
     private Usager usager;
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -19,12 +19,10 @@ public class Pret {
     private Exemplaire exemplaire;
 
     @Column(name = "date_pret")
-    @Temporal(TemporalType.DATE)
-    private Date datePret;
+    private LocalDate datePret;
 
     @Column(name ="date_fin")
-    @Temporal(TemporalType.DATE)
-    private Date dateFin;
+    private LocalDate dateFin;
 
     public int getId() {
         return id;
@@ -42,19 +40,19 @@ public class Pret {
         this.usager = usager;
     }
 
-    public Date getDatePret() {
+    public LocalDate getDatePret() {
         return datePret;
     }
 
-    public void setDatePret(Date datePret) {
+    public void setDatePret(LocalDate datePret) {
         this.datePret = datePret;
     }
 
-    public Date getDateFin() {
+    public LocalDate getDateFin() {
         return dateFin;
     }
 
-    public void setDateFin(Date dateFin) {
+    public void setDateFin(LocalDate dateFin) {
         this.dateFin = dateFin;
     }
 

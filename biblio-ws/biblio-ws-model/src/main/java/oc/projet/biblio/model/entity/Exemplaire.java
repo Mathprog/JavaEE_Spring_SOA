@@ -10,7 +10,7 @@ public class Exemplaire {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ouvrage_id")
     private Ouvrage ouvrage;
 

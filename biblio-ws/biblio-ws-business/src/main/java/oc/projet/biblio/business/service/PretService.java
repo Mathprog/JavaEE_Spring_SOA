@@ -4,9 +4,9 @@ import oc.projet.biblio.model.entity.Exemplaire;
 import oc.projet.biblio.model.entity.Pret;
 import oc.projet.biblio.model.entity.Usager;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public interface PretService {
 
-    Pret createPret(Exemplaire exemplaire, Usager usager, Date date_pret, Date date_fin);
+    Pret createPret(Exemplaire exemplaire, Usager usager, LocalDate date_pret, LocalDate date_fin);
 }
