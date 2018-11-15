@@ -8,11 +8,14 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(
                 name="Usager.findByEmail",
-                query="SELECT u FROM Usager u Where u.email = :email"
+                query="SELECT u FROM Usager u " +
+                        "Where u.email = :email"
         ),
         @NamedQuery(
                 name="Usager.findPrets",
-                query ="SELECT u FROM Usager u JOIN FETCH u.prets p WHERE u.email = :email"
+                query ="SELECT u FROM Usager u " +
+                        "JOIN FETCH u.prets p " +
+                        "WHERE u.email = :email"
         ),
         @NamedQuery(
                 name="Usager.findPretsDetails",

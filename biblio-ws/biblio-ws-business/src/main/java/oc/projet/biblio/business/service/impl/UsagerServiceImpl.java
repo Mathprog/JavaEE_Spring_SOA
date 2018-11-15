@@ -5,8 +5,7 @@ import oc.projet.biblio.consumer.repository.UsagerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import oc.projet.biblio.model.entity.Usager;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -24,19 +23,19 @@ public class UsagerServiceImpl implements UsagerService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Usager findUsagerByEmail(String email) {
         return usagerRepository.findUsagerByEmail(email);
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Usager findUsager_pretsByEmail(String email){
         return usagerRepository.findUsager_pretsByEmail(email);
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Usager findUsager_pretsDetailsByEmail(String email){
         return this.usagerRepository.findUsager_pretsDetailsByEmail(email);
     }

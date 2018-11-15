@@ -5,8 +5,8 @@ import oc.projet.biblio.consumer.repository.OuvrageRepository;
 import oc.projet.biblio.model.entity.Ouvrage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -17,7 +17,7 @@ public class OuvrageServiceImpl implements OuvrageService {
     private OuvrageRepository ouvrageRepository;
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<Ouvrage> findAllOuvrage() {
         return ouvrageRepository.findAll();
     }
@@ -26,5 +26,16 @@ public class OuvrageServiceImpl implements OuvrageService {
     @Transactional
     public Ouvrage createOuvrate(String titre) {
         return this.ouvrageRepository.create(titre);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Ouvrage> findAllWithDispo(){
+        List<Ouvrage> ouvrages = this.ouvrageRepository.findAllWithDispo();
+
+        for (Ouvrage ouvrage: ouvrages) {
+            ouvrage.setNbDispo(ouvrage.getExemplaires().size());
+        }
+        return ouvrages;
     }
 }

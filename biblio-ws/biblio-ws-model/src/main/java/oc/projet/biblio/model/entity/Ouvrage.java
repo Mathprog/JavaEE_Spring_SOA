@@ -5,6 +5,23 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(
+                name="Ouvrage.findAllWithDispo",
+                query="SELECT o FROM Ouvrage o " +
+                        "LEFT JOIN o.exemplaires e " +
+                        "LEFT JOIN e.pret p "+
+                        "WHERE p.exemplaire IS NULL"
+        ),
+        @NamedQuery(
+                name="Ouvrage.findAllWithNoDispo",
+                query="SELECT o FROM Ouvrage o " +
+                        "LEFT JOIN o.exemplaires e " +
+                        "LEFT JOIN e.pret p "+
+                        "WHERE p.exemplaire IS NOT NULL"
+        )
+
+})
 public class Ouvrage {
 
     @Id
@@ -13,7 +30,7 @@ public class Ouvrage {
 
     private String titre;
 
-    @Column(name = "nb_dispo")
+    @Transient
     private int nbDispo;
 
     @OneToMany(mappedBy = "ouvrage", fetch = FetchType.LAZY)

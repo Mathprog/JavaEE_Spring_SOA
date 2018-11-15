@@ -5,9 +5,9 @@ import oc.projet.biblio.business.service.UsagerService;
 import oc.projet.biblio.model.entity.Usager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import java.util.Map;
 
 @Controller

@@ -16,7 +16,7 @@
 
 <h2> Les ouvrages !! </h2>
 <c:forEach items="${ ouvrages }" var="ouvrage" varStatus="status">
-    <p>Ouvrage : <c:out value="${ status.count }" /> : <c:out value="${ ouvrage.titre }" /> !</p>
+    <p>Ouvrage : <c:out value="${ status.count }" /> : <c:out value="${ ouvrage.titre }" /> ! Exemplaires disponibles : <c:out value="${ ouvrage.nbDispo }" /></p>
 </c:forEach>
 </body>
 </html>

@@ -2,13 +2,12 @@ package oc.projet.biblio.consumer.repository.impl;
 
 import oc.projet.biblio.consumer.repository.OuvrageRepository;
 import oc.projet.biblio.model.entity.Ouvrage;
-import oc.projet.biblio.model.entity.Usager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
+
 import java.util.List;
 
 
@@ -20,6 +19,7 @@ public class OuvrageRepositoryImpl implements OuvrageRepository {
     EntityManager entityManager;
 
     @Override
+    @Transactional(readOnly = true)
     public List<Ouvrage> findAll() {
         return entityManager.createQuery("SELECT u FROM Ouvrage u", Ouvrage.class).getResultList();
 
@@ -32,5 +32,11 @@ public class OuvrageRepositoryImpl implements OuvrageRepository {
         ouvrage.setTitre(titre);
         entityManager.persist(ouvrage);
         return ouvrage;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Ouvrage> findAllWithDispo(){
+        return entityManager.createNamedQuery("Ouvrage.findAllWithDispo", Ouvrage.class).getResultList();
     }
 }

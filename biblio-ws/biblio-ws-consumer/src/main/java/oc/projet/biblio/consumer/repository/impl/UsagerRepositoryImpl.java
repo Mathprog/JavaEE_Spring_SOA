@@ -4,10 +4,10 @@ import oc.projet.biblio.consumer.repository.UsagerRepository;
 import oc.projet.biblio.model.entity.Usager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
+
 
 @Repository
 @Transactional
@@ -29,20 +29,20 @@ public class UsagerRepositoryImpl implements UsagerRepository {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Usager findUsagerByEmail(String email) {
         //return entityManager.createQuery("SELECT u FROM Usager u WHERE u.email = :email", Usager.class).setParameter("email", email).getSingleResult();
         return entityManager.createNamedQuery("Usager.findByEmail", Usager.class).setParameter("email", email).getSingleResult();
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Usager findUsager_pretsByEmail(String email){
         return entityManager.createNamedQuery("Usager.findPrets", Usager.class).setParameter("email", email).getSingleResult();
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Usager findUsager_pretsDetailsByEmail(String email){
         return entityManager.createNamedQuery("Usager.findPretsDetails", Usager.class).setParameter("email", email).getSingleResult();
     }

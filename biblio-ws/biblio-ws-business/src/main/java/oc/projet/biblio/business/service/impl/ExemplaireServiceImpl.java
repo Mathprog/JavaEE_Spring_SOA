@@ -7,8 +7,8 @@ import oc.projet.biblio.model.entity.Exemplaire;
 import oc.projet.biblio.model.entity.Ouvrage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -19,7 +19,7 @@ public class ExemplaireServiceImpl implements ExemplaireService {
     private ExemplaireRepository exemplaireRepository;
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<Exemplaire> findAllExemplaire() {
         return null;
     }
