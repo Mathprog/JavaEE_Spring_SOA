@@ -18,6 +18,10 @@ public class Pret {
     @JoinColumn(name = "exemplaire_id", nullable = false)
     private Exemplaire exemplaire;
 
+    @OneToOne(mappedBy = "pret",
+            fetch = FetchType.LAZY)
+    private Relance relance;
+
     @Column(name = "date_pret")
     private LocalDate datePret;
 
@@ -62,5 +66,13 @@ public class Pret {
 
     public void setExemplaire(Exemplaire exemplaire) {
         this.exemplaire = exemplaire;
+    }
+
+    public Relance getRelance() {
+        return relance;
+    }
+
+    public void setRelance(Relance relance) {
+        this.relance = relance;
     }
 }

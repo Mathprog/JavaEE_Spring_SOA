@@ -18,6 +18,7 @@ import java.util.Set;
                 name="Usager.findPretsDetails",
                 query ="SELECT u FROM Usager u " +
                         "JOIN FETCH u.prets p " +
+                        "JOIN FETCH p.relance r " +
                         "JOIN FETCH p.exemplaire e " +
                         "JOIN FETCH e.ouvrage o " +
                         "WHERE u.email = :email"

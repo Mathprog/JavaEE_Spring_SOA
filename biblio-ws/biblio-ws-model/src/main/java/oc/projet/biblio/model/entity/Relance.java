@@ -14,7 +14,7 @@ public class Relance {
     @Column(name = "date_fin")
     private LocalDate dateFin;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pret_id")
     private Pret pret;
 
