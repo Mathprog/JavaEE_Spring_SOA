@@ -13,6 +13,14 @@ import java.util.Set;
         @NamedQuery(
                 name="Usager.findPrets",
                 query ="SELECT u FROM Usager u JOIN FETCH u.prets p WHERE u.email = :email"
+        ),
+        @NamedQuery(
+                name="Usager.findPretsDetails",
+                query ="SELECT u FROM Usager u " +
+                        "JOIN FETCH u.prets p " +
+                        "JOIN FETCH p.exemplaire e " +
+                        "JOIN FETCH e.ouvrage o " +
+                        "WHERE u.email = :email"
         )
 
 })

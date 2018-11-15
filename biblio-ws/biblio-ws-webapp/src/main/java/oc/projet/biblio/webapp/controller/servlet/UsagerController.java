@@ -27,12 +27,26 @@ public class UsagerController {
         return "saved";
     }
 
-    @GetMapping(path="/pret/{email}")
+    @PostMapping(path="/pret")
     @Transactional
-    public String showAllPret(@PathVariable("email") String email, Map<String, Object> model){
+    public String showAllPret(@RequestParam("email") String email, Map<String, Object> model){
         Usager usager = this.usagerService.findUsager_pretsByEmail(email);
         model.put("usager", usager);
         return "pret";
+    }
+
+    @PostMapping(path="/pret/detail")
+    @Transactional
+    public String showAllPretDetails(@RequestParam("email") String email, Map<String, Object> model){
+        Usager usager = this.usagerService.findUsager_pretsDetailsByEmail(email);
+        model.put("usager", usager);
+        return "pretDetails";
+    }
+
+    @GetMapping(path="/prets")
+    @Transactional
+    public String showAllPrets(){
+        return "usagerOuvrages";
     }
 
     @GetMapping(path = "/{email}")

@@ -16,7 +16,7 @@
 <p><c:out value="${ usager.email }" /> !</p>
 
 <c:forEach items="${ usager.prets }" var="pret" varStatus="status">
-    <p>Ouvrage : <c:out value="${ status.count }" /> : <c:out value="${ pret.id }" /> ! date d'emprunt : <date:localDate date="${pret.datePret}"  pattern="dd/MM/yyyy"/>, date de fin : <date:localDate date="${pret.dateFin}" pattern="dd/MM/yyyy"/></p>
+    <p>Ouvrage : <c:out value="${ status.count }" /> : <c:out value="${ pret.exemplaire.ouvrage.titre }" /> ! date d'emprunt : <date:localDate date="${pret.datePret}"  pattern="dd/MM/yyyy"/>, date de fin : <date:localDate date="${pret.dateFin}" pattern="dd/MM/yyyy"/></p>
 </c:forEach>
 
 </body>

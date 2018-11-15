@@ -40,4 +40,10 @@ public class UsagerRepositoryImpl implements UsagerRepository {
     public Usager findUsager_pretsByEmail(String email){
         return entityManager.createNamedQuery("Usager.findPrets", Usager.class).setParameter("email", email).getSingleResult();
     }
+
+    @Override
+    @Transactional
+    public Usager findUsager_pretsDetailsByEmail(String email){
+        return entityManager.createNamedQuery("Usager.findPretsDetails", Usager.class).setParameter("email", email).getSingleResult();
+    }
 }

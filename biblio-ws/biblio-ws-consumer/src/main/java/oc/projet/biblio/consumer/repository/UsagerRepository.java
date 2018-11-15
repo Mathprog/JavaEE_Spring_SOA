@@ -8,7 +8,7 @@ public interface UsagerRepository {
 
    Usager findUsagerByEmail(String email);
    Usager createUsager(String email);
-
-    @Transactional
     Usager findUsager_pretsByEmail(String email);
+
+    Usager findUsager_pretsDetailsByEmail(String email);
 }
