@@ -30,7 +30,7 @@ public class UsagerController {
     @GetMapping(path="/pret/{email}")
     @Transactional
     public String showAllPret(@PathVariable("email") String email, Map<String, Object> model){
-        Usager usager = this.usagerService.findUsagerByEmail(email);
+        Usager usager = this.usagerService.findUsager_pretsByEmail(email);
         model.put("usager", usager);
         return "pret";
     }

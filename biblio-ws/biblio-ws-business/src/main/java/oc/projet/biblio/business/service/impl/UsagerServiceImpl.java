@@ -28,4 +28,10 @@ public class UsagerServiceImpl implements UsagerService {
     public Usager findUsagerByEmail(String email) {
         return usagerRepository.findUsagerByEmail(email);
     }
+
+    @Override
+    @Transactional
+    public Usager findUsager_pretsByEmail(String email){
+        return usagerRepository.findUsager_pretsByEmail(email);
+    }
 }

@@ -10,7 +10,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @PropertySource("classpath*:application.properties")

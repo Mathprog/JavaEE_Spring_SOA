@@ -15,7 +15,8 @@ public class UsagerRepositoryImpl implements UsagerRepository {
 
 
     @Autowired
-    private EntityManager em;
+    private EntityManager entityManager
+            ;
 
 
     @Override
@@ -23,14 +24,19 @@ public class UsagerRepositoryImpl implements UsagerRepository {
     public Usager createUsager(String email) {
         Usager usager = new Usager();
         usager.setEmail(email);
-        this.em.persist(usager);
+        this.entityManager.persist(usager);
         return usager;
     }
 
     @Override
+    @Transactional
     public Usager findUsagerByEmail(String email) {
-        TypedQuery<Usager> query =
-                em.createQuery("SELECT u FROM Usager u WHERE u.email = :email", Usager.class).setParameter("email", email);
-        return query.getSingleResult();
+        return entityManager.createQuery("SELECT u FROM Usager u WHERE u.email = :email", Usager.class).setParameter("email", email).getSingleResult();
+    }
+
+    @Override
+    @Transactional
+    public Usager findUsager_pretsByEmail(String email){
+        return entityManager.createQuery("SELECT u FROM Usager u JOIN FETCH u.prets p WHERE u.email = :email", Usager.class).setParameter("email", email).getSingleResult();
     }
 }

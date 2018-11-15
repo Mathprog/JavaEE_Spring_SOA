@@ -14,5 +14,10 @@
 </head>
 <body>
 <p><c:out value="${ usager.email }" /> !</p>
+
+<c:forEach items="${ usager.prets }" var="pret" varStatus="status">
+    <p>Ouvrage : <c:out value="${ status.count }" /> : <c:out value="${ pret.id }" /> !</p>
+</c:forEach>
+
 </body>
 </html>

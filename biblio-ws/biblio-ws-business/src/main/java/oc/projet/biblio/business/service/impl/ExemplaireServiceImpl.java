@@ -25,6 +25,7 @@ public class ExemplaireServiceImpl implements ExemplaireService {
     }
 
     @Override
+    @Transactional
     public Exemplaire createSexemplaire(Ouvrage ouvrage) {
         return this.exemplaireRepository.createExemplaire(ouvrage);
     }
