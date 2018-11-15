@@ -5,6 +5,17 @@ import java.util.Set;
 
 
 @Entity
+@NamedQueries({
+        @NamedQuery(
+                name="Usager.findByEmail",
+                query="SELECT u FROM Usager u Where u.email = :email"
+        ),
+        @NamedQuery(
+                name="Usager.findPrets",
+                query ="SELECT u FROM Usager u JOIN FETCH u.prets p WHERE u.email = :email"
+        )
+
+})
 public class Usager {
 
     @Id

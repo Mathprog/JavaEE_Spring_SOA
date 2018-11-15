@@ -31,12 +31,13 @@ public class UsagerRepositoryImpl implements UsagerRepository {
     @Override
     @Transactional
     public Usager findUsagerByEmail(String email) {
-        return entityManager.createQuery("SELECT u FROM Usager u WHERE u.email = :email", Usager.class).setParameter("email", email).getSingleResult();
+        //return entityManager.createQuery("SELECT u FROM Usager u WHERE u.email = :email", Usager.class).setParameter("email", email).getSingleResult();
+        return entityManager.createNamedQuery("Usager.findByEmail", Usager.class).setParameter("email", email).getSingleResult();
     }
 
     @Override
     @Transactional
     public Usager findUsager_pretsByEmail(String email){
-        return entityManager.createQuery("SELECT u FROM Usager u JOIN FETCH u.prets p WHERE u.email = :email", Usager.class).setParameter("email", email).getSingleResult();
+        return entityManager.createNamedQuery("Usager.findPrets", Usager.class).setParameter("email", email).getSingleResult();
     }
 }

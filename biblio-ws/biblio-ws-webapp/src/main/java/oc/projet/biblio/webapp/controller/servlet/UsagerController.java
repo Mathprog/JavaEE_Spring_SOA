@@ -34,4 +34,13 @@ public class UsagerController {
         model.put("usager", usager);
         return "pret";
     }
+
+    @GetMapping(path = "/{email}")
+    @Transactional
+    public String showUsagerDetails(@PathVariable("email") String email, Map<String, Object> model){
+
+        Usager usager = this.usagerService.findUsagerByEmail(email);
+        model.put("usager", usager);
+        return "usager";
+    }
 }
