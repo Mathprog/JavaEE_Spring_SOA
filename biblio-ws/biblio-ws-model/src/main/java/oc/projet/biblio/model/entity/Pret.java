@@ -1,79 +1,29 @@
 package oc.projet.biblio.model.entity;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
-@Table(name ="pret")
-public class Pret {
+public interface Pret {
+    int getId();
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    void setId(int id);
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="usager_id", nullable = false)
-    private Usager usager;
+    Usager getUsager();
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "exemplaire_id", nullable = false)
-    private Exemplaire exemplaire;
+    void setUsager(Usager usager);
 
-    @OneToOne(mappedBy = "pret",
-            fetch = FetchType.LAZY)
-    private Relance relance;
+    LocalDate getDatePret();
 
-    @Column(name = "date_pret")
-    private LocalDate datePret;
+    void setDatePret(LocalDate datePret);
 
-    @Column(name ="date_fin")
-    private LocalDate dateFin;
+    LocalDate getDateFin();
 
-    public int getId() {
-        return id;
-    }
+    void setDateFin(LocalDate dateFin);
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    Exemplaire getExemplaire();
 
-    public Usager getUsager() {
-        return usager;
-    }
+    void setExemplaire(Exemplaire exemplaire);
 
-    public void setUsager(Usager usager) {
-        this.usager = usager;
-    }
+    Relance getRelance();
 
-    public LocalDate getDatePret() {
-        return datePret;
-    }
-
-    public void setDatePret(LocalDate datePret) {
-        this.datePret = datePret;
-    }
-
-    public LocalDate getDateFin() {
-        return dateFin;
-    }
-
-    public void setDateFin(LocalDate dateFin) {
-        this.dateFin = dateFin;
-    }
-
-    public Exemplaire getExemplaire() {
-        return exemplaire;
-    }
-
-    public void setExemplaire(Exemplaire exemplaire) {
-        this.exemplaire = exemplaire;
-    }
-
-    public Relance getRelance() {
-        return relance;
-    }
-
-    public void setRelance(Relance relance) {
-        this.relance = relance;
-    }
+    void setRelance(Relance relance);
 }

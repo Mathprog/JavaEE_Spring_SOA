@@ -1,45 +1,17 @@
 package oc.projet.biblio.model.entity;
 
-
-import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
-@Table(name= "relance")
-public class Relance {
+public interface Relance {
+    int getId();
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    void setId(int id);
 
-    @Column(name = "date_fin")
-    private LocalDate dateFin;
+    LocalDate getDateFin();
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pret_id")
-    private Pret pret;
+    void setDateFin(LocalDate dateFin);
 
-    public int getId() {
-        return id;
-    }
+    Pret getPret();
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public LocalDate getDateFin() {
-        return dateFin;
-    }
-
-    public void setDateFin(LocalDate dateFin) {
-        this.dateFin = dateFin;
-    }
-
-    public Pret getPret() {
-        return pret;
-    }
-
-    public void setPret(Pret pret) {
-        this.pret = pret;
-    }
+    void setPret(Pret pret);
 }

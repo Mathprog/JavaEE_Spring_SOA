@@ -4,6 +4,7 @@ import oc.projet.biblio.consumer.repository.PretRepository;
 import oc.projet.biblio.model.entity.Exemplaire;
 import oc.projet.biblio.model.entity.Pret;
 import oc.projet.biblio.model.entity.Usager;
+import oc.projet.biblio.model.entity.impl.PretImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +24,7 @@ public class PretRepositoryImpl implements PretRepository {
     @Override
     @Transactional
     public Pret create(Exemplaire exemplaire, Usager usager, LocalDate date_pret, LocalDate date_fin) {
-        Pret pret = new Pret();
+        Pret pret = new PretImpl();
         pret.setExemplaire(exemplaire);
         pret.setUsager(usager);
         pret.setDatePret(date_pret);

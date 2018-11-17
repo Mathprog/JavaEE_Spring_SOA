@@ -1,44 +1,15 @@
 package oc.projet.biblio.model.entity;
 
+public interface Exemplaire {
+    Integer getId();
 
-import javax.persistence.*;
+    void setId(Integer id);
 
-@Entity
-@Table(name="exemplaire")
-public class Exemplaire {
+    Ouvrage getOuvrage();
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    void setOuvrage(Ouvrage ouvrage);
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ouvrage_id")
-    private Ouvrage ouvrage;
+    Pret getPret();
 
-     @OneToOne(fetch = FetchType.LAZY, mappedBy = "exemplaire", cascade = CascadeType.ALL)
-     private Pret pret;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Ouvrage getOuvrage() {
-        return ouvrage;
-    }
-
-    public void setOuvrage(Ouvrage ouvrage) {
-        this.ouvrage = ouvrage;
-    }
-
-    public Pret getPret() {
-        return pret;
-    }
-
-    public void setPret(Pret pret) {
-        this.pret = pret;
-    }
+    void setPret(Pret pret);
 }
