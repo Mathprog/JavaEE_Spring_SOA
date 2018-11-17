@@ -1,4 +1,4 @@
-package oc.projet.biblio.consumer.repository;
+package oc.projet.biblio.model.repository;
 
 import oc.projet.biblio.model.entity.Ouvrage;
 

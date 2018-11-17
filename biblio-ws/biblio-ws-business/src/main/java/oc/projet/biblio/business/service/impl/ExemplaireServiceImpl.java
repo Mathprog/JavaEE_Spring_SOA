@@ -2,7 +2,7 @@ package oc.projet.biblio.business.service.impl;
 
 
 import oc.projet.biblio.business.service.ExemplaireService;
-import oc.projet.biblio.consumer.repository.ExemplaireRepository;
+import oc.projet.biblio.model.repository.ExemplaireRepository;
 import oc.projet.biblio.model.entity.Exemplaire;
 import oc.projet.biblio.model.entity.Ouvrage;
 import org.springframework.beans.factory.annotation.Autowired;

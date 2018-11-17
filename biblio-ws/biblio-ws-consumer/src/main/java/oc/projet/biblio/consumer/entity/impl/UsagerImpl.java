@@ -1,4 +1,4 @@
-package oc.projet.biblio.model.entity.impl;
+package oc.projet.biblio.consumer.entity.impl;
 
 
 import oc.projet.biblio.model.entity.Usager;
