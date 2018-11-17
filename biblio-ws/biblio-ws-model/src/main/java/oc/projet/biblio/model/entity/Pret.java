@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Table(name ="pret")
 public class Pret {
 
     @Id

@@ -5,6 +5,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name = "ouvrage")
 @NamedQueries({
         @NamedQuery(
                 name="Ouvrage.findAllWithDispo",
@@ -19,6 +20,12 @@ import java.util.Set;
                         "LEFT JOIN o.exemplaires e " +
                         "LEFT JOIN e.pret p "+
                         "WHERE p.exemplaire IS NOT NULL"
+        ),
+        @NamedQuery(
+                name="Ouvrage.findAllOuvrage",
+                query="SELECT o FROM Ouvrage o " +
+                        "JOIN FETCH o.exemplaires e " +
+                        "JOIN FETCH e.pret p"
         )
 
 })

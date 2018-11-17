@@ -5,6 +5,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Table(name= "relance")
 public class Relance {
 
     @Id

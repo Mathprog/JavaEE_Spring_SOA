@@ -5,11 +5,12 @@ import java.util.Set;
 
 
 @Entity
+@Table(name ="usager")
 @NamedQueries({
         @NamedQuery(
-                name="Usager.findByEmail",
+                name= Usager.QN.FIND_BY_EMAIL,
                 query="SELECT u FROM Usager u " +
-                        "Where u.email = :email"
+                        "WHERE u.email = :email"
         ),
         @NamedQuery(
                 name="Usager.findPrets",
@@ -30,10 +31,15 @@ import java.util.Set;
 })
 public class Usager {
 
+    public static class QN {
+        public static final String FIND_BY_EMAIL = "Usager.findByEmail";
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column(name="email", length = 255)
     private String email;
 
     @OneToMany(mappedBy = "usager", fetch = FetchType.LAZY)

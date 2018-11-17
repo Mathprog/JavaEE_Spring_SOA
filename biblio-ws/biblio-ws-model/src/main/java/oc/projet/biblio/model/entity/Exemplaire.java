@@ -4,6 +4,7 @@ package oc.projet.biblio.model.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name="exemplaire")
 public class Exemplaire {
 
     @Id
