@@ -10,28 +10,31 @@ import java.util.Set;
 @Table(name = "ouvrage")
 @NamedQueries({
         @NamedQuery(
-                name="Ouvrage.findAllWithDispo",
+                name = OuvrageImpl.QN.FIND_ALL,
+                query = "SELECT o FROM OuvrageImpl o"
+        ),
+        @NamedQuery(
+                name=OuvrageImpl.QN.FIND_ALL_DISPO,
                 query="SELECT o FROM OuvrageImpl o " +
                         "LEFT JOIN o.exemplaires e " +
                         "LEFT JOIN e.pret p "+
                         "WHERE p.exemplaire IS NULL"
         ),
         @NamedQuery(
-                name="Ouvrage.findAllWithNoDispo",
+                name=OuvrageImpl.QN.FIND_ALL_NOT_DISPO,
                 query="SELECT o FROM OuvrageImpl o " +
                         "LEFT JOIN o.exemplaires e " +
                         "LEFT JOIN e.pret p "+
                         "WHERE p.exemplaire IS NOT NULL"
-        ),
-        @NamedQuery(
-                name="Ouvrage.findAllOuvrage",
-                query="SELECT o FROM OuvrageImpl o " +
-                        "JOIN FETCH o.exemplaires e " +
-                        "JOIN FETCH e.pret p"
         )
-
 })
 public class OuvrageImpl implements Ouvrage {
+
+    public static class QN {
+        public static final String FIND_ALL = "OuvrageImpl.findAll";
+        public static final String FIND_ALL_DISPO = "OuvrageImpl.findAllWithDispo";
+        public static final String FIND_ALL_NOT_DISPO = "OuvrageImpl.findAllWithNoDispo";
+    }
 
     @Id
     @Column(name = "id", unique = true, nullable = false)

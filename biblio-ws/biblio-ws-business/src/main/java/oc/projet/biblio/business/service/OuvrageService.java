@@ -11,4 +11,6 @@ public interface OuvrageService {
 
     Ouvrage createOuvrate(String titre);
     List<Ouvrage> findAllWithDispo();
+
+    List<Ouvrage> findAllWithNoDispo();
 }

@@ -3,18 +3,19 @@ package oc.projet.biblio.consumer.repository.impl;
 import oc.projet.biblio.model.repository.UsagerRepository;
 import oc.projet.biblio.model.entity.Usager;
 import oc.projet.biblio.consumer.entity.impl.UsagerImpl;
+import org.hibernate.NonUniqueResultException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 
 
 @Repository
 @Transactional(propagation = Propagation.MANDATORY)
 public class UsagerRepositoryImpl implements UsagerRepository {
-
 
     @Autowired
     private EntityManager entityManager;
@@ -22,24 +23,48 @@ public class UsagerRepositoryImpl implements UsagerRepository {
 
     @Override
     public Usager createUsager(String email) {
-        Usager usager = new UsagerImpl();
-        usager.setEmail(email);
-        this.entityManager.persist(usager);
-        return usager;
+        Usager testExists = this.findUsagerByEmail(email);
+        if(testExists == null){
+            Usager usager = new UsagerImpl();
+            usager.setEmail(email);
+            this.entityManager.persist(usager);
+            return usager;
+        } else {
+            return null;
+        }
+
     }
 
     @Override
     public Usager findUsagerByEmail(String email) {
-        return entityManager.createNamedQuery(UsagerImpl.QN.FIND_BY_EMAIL, Usager.class).setParameter("email", email).getSingleResult();
+        Usager usager = null;
+        try {
+            usager = entityManager.createNamedQuery(UsagerImpl.QN.FIND_BY_EMAIL, Usager.class).setParameter("email", email).getSingleResult();
+        } catch (NoResultException nre){
+            return null;
+        }
+        return usager;
     }
 
     @Override
     public Usager findUsager_pretsByEmail(String email){
-        return entityManager.createNamedQuery(UsagerImpl.QN.FIND_PRETS, Usager.class).setParameter("email", email).getSingleResult();
+        Usager usager = null;
+        try {
+            usager = entityManager.createNamedQuery(UsagerImpl.QN.FIND_PRETS, Usager.class).setParameter("email", email).getSingleResult();
+        } catch (NoResultException nre){
+            return null;
+        }
+        return usager;
     }
 
     @Override
     public Usager findUsager_pretsDetailsByEmail(String email){
-        return entityManager.createNamedQuery(UsagerImpl.QN.FIND_PRETS_DETAILS, Usager.class).setParameter("email", email).getSingleResult();
+        Usager usager = null;
+        try {
+            usager = entityManager.createNamedQuery(UsagerImpl.QN.FIND_PRETS_DETAILS, Usager.class).setParameter("email", email).getSingleResult();
+        } catch (NoResultException nre){
+            return null;
+        }
+            return usager;
     }
 }

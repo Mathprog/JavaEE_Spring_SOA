@@ -5,19 +5,19 @@ import oc.projet.biblio.model.repository.OuvrageRepository;
 import oc.projet.biblio.model.entity.Ouvrage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(propagation = Propagation.MANDATORY)
 public class OuvrageServiceImpl implements OuvrageService {
 
     @Autowired
     private OuvrageRepository ouvrageRepository;
 
     @Override
-    @Transactional(readOnly = true)
     public List<Ouvrage> findAllOuvrage() {
         return ouvrageRepository.findAll();
     }
@@ -29,7 +29,6 @@ public class OuvrageServiceImpl implements OuvrageService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<Ouvrage> findAllWithDispo(){
         List<Ouvrage> ouvrages = this.ouvrageRepository.findAllWithDispo();
 
@@ -38,4 +37,12 @@ public class OuvrageServiceImpl implements OuvrageService {
         }
         return ouvrages;
     }
+
+    @Override
+    public List<Ouvrage> findAllWithNoDispo(){
+        List<Ouvrage> ouvrages = this.ouvrageRepository.findAllWithNoDispo();
+        return ouvrages;
+    }
+
+
 }

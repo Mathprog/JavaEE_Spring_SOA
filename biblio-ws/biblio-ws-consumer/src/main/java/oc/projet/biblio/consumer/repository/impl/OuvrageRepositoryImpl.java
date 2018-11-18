@@ -5,6 +5,7 @@ import oc.projet.biblio.model.entity.Ouvrage;
 import oc.projet.biblio.consumer.entity.impl.OuvrageImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -13,21 +14,19 @@ import java.util.List;
 
 
 @Repository
-@Transactional
+@Transactional(propagation = Propagation.MANDATORY)
 public class OuvrageRepositoryImpl implements OuvrageRepository {
 
     @Autowired
     EntityManager entityManager;
 
     @Override
-    @Transactional(readOnly = true)
     public List<Ouvrage> findAll() {
-        return entityManager.createQuery("SELECT u FROM OuvrageImpl u", Ouvrage.class).getResultList();
+        return entityManager.createNamedQuery(OuvrageImpl.QN.FIND_ALL, Ouvrage.class).getResultList();
 
     }
 
     @Override
-    @Transactional
     public Ouvrage create(String titre) {
         Ouvrage ouvrage = new OuvrageImpl();
         ouvrage.setTitre(titre);
@@ -36,8 +35,12 @@ public class OuvrageRepositoryImpl implements OuvrageRepository {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<Ouvrage> findAllWithDispo(){
-        return entityManager.createNamedQuery("Ouvrage.findAllWithDispo", Ouvrage.class).getResultList();
+        return entityManager.createNamedQuery(OuvrageImpl.QN.FIND_ALL_DISPO, Ouvrage.class).getResultList();
+    }
+
+    @Override
+    public List<Ouvrage> findAllWithNoDispo(){
+        return entityManager.createNamedQuery(OuvrageImpl.QN.FIND_ALL_NOT_DISPO, Ouvrage.class).getResultList();
     }
 }
