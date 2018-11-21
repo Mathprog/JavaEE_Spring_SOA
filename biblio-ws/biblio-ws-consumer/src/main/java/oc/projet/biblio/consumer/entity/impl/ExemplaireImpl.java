@@ -21,8 +21,12 @@ public class ExemplaireImpl implements Exemplaire {
     @JoinColumn(name = "ouvrage_id")
     private Ouvrage ouvrage;
 
-     @OneToOne(fetch = FetchType.LAZY, mappedBy = "exemplaire", cascade = CascadeType.ALL, targetEntity = PretImpl.class)
-     private Pret pret;
+     /*@OneToOne(fetch = FetchType.LAZY, mappedBy = "exemplaire", cascade = CascadeType.ALL, targetEntity = PretImpl.class)
+     private Pret pret;*/
+
+    @OneToOne(fetch = FetchType.LAZY, targetEntity = PretImpl.class, optional = true)
+    @JoinColumn(name = "pret_id", nullable = true)
+    private Pret pret;
 
     @Override
     public Integer getId() {

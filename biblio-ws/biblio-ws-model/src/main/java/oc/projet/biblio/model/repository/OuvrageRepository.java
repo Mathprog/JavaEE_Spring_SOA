@@ -9,7 +9,7 @@ public interface OuvrageRepository {
 
     List<Ouvrage> findAll();
     Ouvrage create(String nom);
-    List<Ouvrage> findAllWithDispo();
+    List<Object[]> findAllWithDispo();
 
     @Transactional(readOnly = true)
     List<Ouvrage> findAllWithNoDispo();

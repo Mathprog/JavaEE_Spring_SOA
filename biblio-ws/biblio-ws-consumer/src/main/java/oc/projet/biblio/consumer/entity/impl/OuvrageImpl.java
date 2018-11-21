@@ -15,17 +15,25 @@ import java.util.Set;
         ),
         @NamedQuery(
                 name=OuvrageImpl.QN.FIND_ALL_DISPO,
-                query="SELECT o FROM OuvrageImpl o " +
-                        "LEFT JOIN o.exemplaires e " +
-                        "LEFT JOIN e.pret p "+
-                        "WHERE p.exemplaire IS NULL"
+                query="SELECT o, COUNT(e)" +
+                        "FROM OuvrageImpl o " +
+                        "JOIN o.exemplaires e " +
+                        "WHERE e.pret IS NULL " +
+                        "GROUP BY o "+
+                        "HAVING COUNT(e) > 0"
         ),
         @NamedQuery(
                 name=OuvrageImpl.QN.FIND_ALL_NOT_DISPO,
-                query="SELECT o FROM OuvrageImpl o " +
-                        "LEFT JOIN o.exemplaires e " +
-                        "LEFT JOIN e.pret p "+
-                        "WHERE p.exemplaire IS NOT NULL"
+                query="SELECT o " +
+                        "FROM OuvrageImpl o " +
+                        "JOIN o.exemplaires e "+
+                        "WHERE e.pret IS NOT NULL "+
+                        "GROUP BY o " +
+                        "HAVING COUNT(e) = ( " +
+                        "SELECT COUNT(e2) " +
+                        "FROM o.exemplaires e2 " +
+                        "JOIN OuvrageImpl o2 " +
+                        "WHERE o = o2)"
         )
 })
 public class OuvrageImpl implements Ouvrage {
@@ -36,6 +44,7 @@ public class OuvrageImpl implements Ouvrage {
         public static final String FIND_ALL_NOT_DISPO = "OuvrageImpl.findAllWithNoDispo";
     }
 
+
     @Id
     @Column(name = "id", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -45,7 +54,7 @@ public class OuvrageImpl implements Ouvrage {
     private String titre;
 
     @Transient
-    private int nbDispo;
+    private Long nbDispo;
 
     @OneToMany(mappedBy = "ouvrage", fetch = FetchType.LAZY, targetEntity = ExemplaireImpl.class)
     private Set<Exemplaire> exemplaires;
@@ -71,12 +80,12 @@ public class OuvrageImpl implements Ouvrage {
     }
 
     @Override
-    public int getNbDispo() {
+    public Long getNbDispo() {
         return nbDispo;
     }
 
     @Override
-    public void setNbDispo(int nbDispo) {
+    public void setNbDispo(Long nbDispo) {
         this.nbDispo = nbDispo;
     }
 

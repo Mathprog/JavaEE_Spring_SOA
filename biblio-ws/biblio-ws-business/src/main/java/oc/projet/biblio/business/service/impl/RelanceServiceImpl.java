@@ -6,20 +6,19 @@ import oc.projet.biblio.model.entity.Pret;
 import oc.projet.biblio.model.entity.Relance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 
 @Service
-@Transactional
+@Transactional(propagation = Propagation.MANDATORY)
 public class RelanceServiceImpl implements RelanceService {
-
 
     @Autowired
     private RelanceRepository relanceRepository;
 
     @Override
-    @Transactional
     public Relance createRelance(Pret pret, LocalDate date_fin) {
         return this.relanceRepository.create(pret, date_fin);
     }

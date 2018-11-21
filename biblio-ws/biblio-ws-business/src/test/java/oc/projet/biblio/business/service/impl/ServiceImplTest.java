@@ -5,14 +5,11 @@ import oc.projet.biblio.model.entity.*;
 
 import static org.junit.Assert.*;
 
-import org.hibernate.exception.ConstraintViolationException;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Propagation;
@@ -43,21 +40,40 @@ public class ServiceImplTest {
     @Autowired
     private RelanceService relanceService;
 
-    @Before
+    /*@Test
     @Rollback(false)
     public void populateBdd()
     {
         String email = "mathieu-martinez";
         String titre = "Spring Framework";
         Usager usager = usagerService.createUsager(email);
+        /*
+            Ouvrage non disponible
+         * /
         Ouvrage ouvrage = ouvrageService.createOuvrate(titre);
+
+        /*
+            Ouvrage avec 1 pret et 1 disponible.
+         * /
+        Ouvrage ouvrage2 = ouvrageService.createOuvrate("Spring Framework 2");
         Exemplaire exemplaire = exemplaireService.createSexemplaire(ouvrage);
+        Exemplaire exemplaire2 = exemplaireService.createSexemplaire(ouvrage2);
+        Exemplaire exemplaire3 = exemplaireService.createSexemplaire(ouvrage2);
+        Pret pret2 = pretService.createPret(exemplaire2, usager, LocalDate.now(), LocalDate.now().plusWeeks(4));
         Pret pret = pretService.createPret(exemplaire, usager, LocalDate.now(), LocalDate.now().plusWeeks(4));
         Relance relance = relanceService.createRelance(pret, LocalDate.now().plusWeeks(8));
 
-    }
+        /*
+         * Ouvrage avec deux exemplaires disponibles et pas de pret
+         * /
+        Ouvrage ouvrageDispo = ouvrageService.createOuvrate("Ouvrage disponible");
+        Exemplaire exemplaireDispo = exemplaireService.createSexemplaire(ouvrageDispo);
+        Exemplaire exemplaireDispo2 = exemplaireService.createSexemplaire(ouvrageDispo);
+
+    }*/
 
     @Test
+    @Rollback(false)
     public void findUserByEmail_NotExisting(){
         String email = "mathieu-martin";
         Usager  usagerFound = usagerService.findUsagerByEmail(email);
@@ -74,16 +90,36 @@ public class ServiceImplTest {
 
 
     @Test
+    @Rollback(false)
     public void findUserByEmail_Existing(){
         String email = "mathieu-martinez";
         Usager  usagerFound = usagerService.findUsagerByEmail(email);
         assertEquals(usagerFound.getEmail(), email);
     }
 
-    @Test
+   @Test
+    @Rollback(false)
     public void findOuvrages_Existing(){
-        List<Ouvrage> ouvrages = ouvrageService.findAllOuvrage();
-        assertNotNull(ouvrages);
+            List<Ouvrage> ouvrages = ouvrageService.findAllOuvrage();
+            assertNotNull(ouvrages);
+    }
+
+   @Test
+   @Rollback(false)
+    public void findOuvrage_Disponible_NotNull(){
+        List<Ouvrage> ouvragesDispo = ouvrageService.findAllWithDispo();
+        assertNotNull(ouvragesDispo);
+        assertEquals(ouvragesDispo.get(0).getNbDispo(), (Long)1L);
+        assertEquals(ouvragesDispo.get(0).getTitre(), "Spring Framework 2");
+        assertEquals(ouvragesDispo.get(1).getNbDispo(), (Long)2L);
+        assertEquals(ouvragesDispo.get(1).getTitre(), "Ouvrage disponible");
+        assertEquals(ouvragesDispo.size(), 2);
+    }
+
+   @Test
+    public void findOuvrage_NonDisponible_FindAll(){
+        List<Ouvrage> ouvragesNonDispo = ouvrageService.findAllWithNoDispo();
+        assertEquals(ouvragesNonDispo.size(), 1);
     }
 
 

@@ -35,8 +35,8 @@ public class OuvrageRepositoryImpl implements OuvrageRepository {
     }
 
     @Override
-    public List<Ouvrage> findAllWithDispo(){
-        return entityManager.createNamedQuery(OuvrageImpl.QN.FIND_ALL_DISPO, Ouvrage.class).getResultList();
+    public List<Object[]> findAllWithDispo(){
+        return entityManager.createNamedQuery(OuvrageImpl.QN.FIND_ALL_DISPO, Object[].class).getResultList();
     }
 
     @Override

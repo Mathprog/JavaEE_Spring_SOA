@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,30 +19,30 @@ public class OuvrageServiceImpl implements OuvrageService {
     private OuvrageRepository ouvrageRepository;
 
     @Override
-    public List<Ouvrage> findAllOuvrage() {
-        return ouvrageRepository.findAll();
-    }
-
-    @Override
-    @Transactional
     public Ouvrage createOuvrate(String titre) {
         return this.ouvrageRepository.create(titre);
     }
 
     @Override
-    public List<Ouvrage> findAllWithDispo(){
-        List<Ouvrage> ouvrages = this.ouvrageRepository.findAllWithDispo();
+    public List<Ouvrage> findAllOuvrage() {
+        return ouvrageRepository.findAll();
+    }
 
-        for (Ouvrage ouvrage: ouvrages) {
-            ouvrage.setNbDispo(ouvrage.getExemplaires().size());
+    @Override
+    public List<Ouvrage> findAllWithDispo(){
+        List<Object[]> ouvrages = this.ouvrageRepository.findAllWithDispo();
+        List<Ouvrage> ouvragesReturn = new ArrayList<>();
+        for (Object[] o : ouvrages){
+            Ouvrage ouvrage = (Ouvrage) o[0];
+            ouvrage.setNbDispo((Long) o[1]);
+            ouvragesReturn.add(ouvrage);
         }
-        return ouvrages;
+        return ouvragesReturn;
     }
 
     @Override
     public List<Ouvrage> findAllWithNoDispo(){
-        List<Ouvrage> ouvrages = this.ouvrageRepository.findAllWithNoDispo();
-        return ouvrages;
+        return this.ouvrageRepository.findAllWithNoDispo();
     }
 
 

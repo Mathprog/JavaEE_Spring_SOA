@@ -11,9 +11,9 @@ public interface Ouvrage {
 
     void setTitre(String titre);
 
-    int getNbDispo();
+    Long getNbDispo();
 
-    void setNbDispo(int nbDispo);
+    void setNbDispo(Long nbDispo);
 
     Set<Exemplaire> getExemplaires();
 
