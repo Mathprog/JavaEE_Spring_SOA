@@ -31,8 +31,8 @@ import java.util.Set;
                         "GROUP BY o " +
                         "HAVING COUNT(e) = ( " +
                         "SELECT COUNT(e2) " +
-                        "FROM o.exemplaires e2 " +
-                        "JOIN OuvrageImpl o2 " +
+                        "FROM ExemplaireImpl e2 " +
+                        "JOIN e2.ouvrage o2 " +
                         "WHERE o = o2)"
         )
 })

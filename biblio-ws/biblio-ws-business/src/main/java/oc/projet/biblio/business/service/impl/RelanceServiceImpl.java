@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 @Transactional(propagation = Propagation.MANDATORY)
@@ -21,5 +22,15 @@ public class RelanceServiceImpl implements RelanceService {
     @Override
     public Relance createRelance(Pret pret, LocalDate date_fin) {
         return this.relanceRepository.create(pret, date_fin);
+    }
+
+    @Override
+    public List<Relance> findAll(){
+        return this.relanceRepository.findALl();
+    }
+
+    @Override
+    public Relance findByPret(Pret pret){
+        return this.relanceRepository.findByPret(pret);
     }
 }

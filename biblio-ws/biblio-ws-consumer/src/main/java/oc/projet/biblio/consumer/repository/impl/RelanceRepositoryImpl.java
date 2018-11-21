@@ -6,27 +6,46 @@ import oc.projet.biblio.model.entity.Relance;
 import oc.projet.biblio.consumer.entity.impl.RelanceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Repository
-@Transactional
+@Transactional(propagation = Propagation.MANDATORY)
 public class RelanceRepositoryImpl implements RelanceRepository {
 
     @Autowired
     EntityManager entityManager;
 
     @Override
-    @Transactional
     public Relance create(Pret pret, LocalDate date_fin) {
         Relance relance = new RelanceImpl();
         relance.setDateFin(date_fin);
         relance.setPret(pret);
         entityManager.persist(relance);
+        return relance;
+    }
+
+    @Override
+    public List<Relance> findALl(){
+        return this.entityManager.createNamedQuery(RelanceImpl.QN.FIND_ALL, Relance.class).getResultList();
+    }
+
+    @Override
+    public Relance findByPret(Pret pret){
+        Relance relance = null;
+        try {
+            relance = this.entityManager.createNamedQuery(RelanceImpl.QN.FIND_ALL_BY_PRET, Relance.class).setParameter("p", pret).getSingleResult();
+
+        } catch (NoResultException nre){
+            return null;
+        }
         return relance;
     }
 }

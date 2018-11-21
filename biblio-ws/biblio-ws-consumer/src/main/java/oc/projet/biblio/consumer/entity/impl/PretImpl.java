@@ -13,6 +13,10 @@ import java.time.LocalDate;
 @Table(name ="pret")
 public class PretImpl implements Pret {
 
+    public static class QN {
+        public static final String FIND_ALL = "PretImpl.findAll";
+    }
+
     @Id
     @Column(name = "id", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)

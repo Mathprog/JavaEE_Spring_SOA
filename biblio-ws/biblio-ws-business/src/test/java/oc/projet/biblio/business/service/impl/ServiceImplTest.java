@@ -120,6 +120,29 @@ public class ServiceImplTest {
     public void findOuvrage_NonDisponible_FindAll(){
         List<Ouvrage> ouvragesNonDispo = ouvrageService.findAllWithNoDispo();
         assertEquals(ouvragesNonDispo.size(), 1);
+        assertEquals(ouvragesNonDispo.get(0).getTitre(), "Spring Framework");
+    }
+
+    @Test
+    public void findRelance_FindAll(){
+        List<Relance> relances = this.relanceService.findAll();
+        assertNotNull(relances);
+        assertEquals(relances.size(), 1);
+    }
+
+    @Test
+    @Rollback(true)
+    public void findRelance_ByPret(){
+        String email = "mathieu-martinez@gmail.com";
+        String titre = "Spring Framework 3";
+        Usager usager = usagerService.createUsager(email);
+        Ouvrage ouvrage = ouvrageService.createOuvrate(titre);
+        Exemplaire exemplaire = exemplaireService.createSexemplaire(ouvrage);
+        Pret pret = pretService.createPret(exemplaire, usager, LocalDate.now(), LocalDate.now().plusWeeks(4));
+        Relance relance = relanceService.createRelance(pret, LocalDate.now().plusWeeks(8));
+
+        Relance relanceFound = relanceService.findByPret(pret);
+        assertNotNull(relanceFound);
     }
 
 

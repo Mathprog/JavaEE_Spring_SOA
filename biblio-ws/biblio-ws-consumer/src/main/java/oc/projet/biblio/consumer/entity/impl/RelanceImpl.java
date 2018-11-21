@@ -6,9 +6,27 @@ import oc.projet.biblio.model.entity.Pret;
 import javax.persistence.*;
 import java.time.LocalDate;
 
+
+@NamedQueries({
+        @NamedQuery(
+                name = RelanceImpl.QN.FIND_ALL,
+                query = "SELECT r FROM RelanceImpl r"
+        ),
+        @NamedQuery(
+                name = RelanceImpl.QN.FIND_ALL_BY_PRET,
+                query = "SELECT r FROM RelanceImpl r " +
+                        "JOIN r.pret p " +
+                        "WHERE p = :p"
+        )
+})
 @Entity
 @Table(name= "relance")
 public class RelanceImpl implements Relance {
+
+    public static class QN {
+        public static final String FIND_ALL = "RelanceImpl.findAll";
+        public static final String FIND_ALL_BY_PRET = "RelanceImpl.findAllByPret";
+    }
 
     @Id
     @Column(name = "id", unique = true, nullable = false)
