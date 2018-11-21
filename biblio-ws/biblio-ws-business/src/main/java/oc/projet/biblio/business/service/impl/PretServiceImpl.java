@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 @Transactional(propagation = Propagation.MANDATORY)
@@ -26,5 +27,20 @@ public class PretServiceImpl implements PretService {
             exemplaire.setPret(pret);
         }
         return pret;
+    }
+
+    @Override
+    public List<Pret> findAll(){
+        return this.pretRepository.findall();
+    }
+
+    @Override
+    public Pret findByExemplaire(Exemplaire e){
+        return this.pretRepository.findByExemplaire(e);
+    }
+
+    @Override
+    public List<Pret> findAllByUsager(Usager u){
+        return this.pretRepository.findAllByUsager(u);
     }
 }

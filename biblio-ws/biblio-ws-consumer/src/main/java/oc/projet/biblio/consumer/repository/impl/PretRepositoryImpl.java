@@ -7,22 +7,24 @@ import oc.projet.biblio.model.entity.Usager;
 import oc.projet.biblio.consumer.entity.impl.PretImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Repository
-@Transactional
+@Transactional(propagation = Propagation.MANDATORY)
 public class PretRepositoryImpl implements PretRepository {
 
     @Autowired
     EntityManager entityManager;
 
     @Override
-    @Transactional
     public Pret create(Exemplaire exemplaire, Usager usager, LocalDate date_pret, LocalDate date_fin) {
         Pret pret = new PretImpl();
         pret.setExemplaire(exemplaire);
@@ -32,4 +34,27 @@ public class PretRepositoryImpl implements PretRepository {
         entityManager.persist(pret);
         return pret;
     }
+
+    @Override
+    public List<Pret> findall(){
+        return this.entityManager.createNamedQuery(PretImpl.QN.FIND_ALL, Pret.class).getResultList();
+    }
+
+    @Override
+    public Pret findByExemplaire(Exemplaire e){
+        Pret pret = null;
+        try {
+            pret = this.entityManager.createNamedQuery(PretImpl.QN.FIND_BY_EXEMPLAIRE, Pret.class).setParameter("exemplaire", e).getSingleResult();
+        } catch (NoResultException nre){
+            return null;
+        }
+        return pret;
+    }
+
+    @Override
+    public List<Pret> findAllByUsager(Usager u){
+        return this.entityManager.createNamedQuery(PretImpl.QN.FIND_ALL_BY_USAGER, Pret.class).setParameter("usager", u).getResultList();
+    }
+
+
 }

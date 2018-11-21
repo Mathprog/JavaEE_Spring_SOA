@@ -5,8 +5,15 @@ import oc.projet.biblio.model.entity.Pret;
 import oc.projet.biblio.model.entity.Usager;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public interface PretService {
 
     Pret createPret(Exemplaire exemplaire, Usager usager, LocalDate date_pret, LocalDate date_fin);
+
+    List<Pret> findAll();
+
+    Pret findByExemplaire(Exemplaire e);
+
+    List<Pret> findAllByUsager(Usager u);
 }

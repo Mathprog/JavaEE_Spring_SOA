@@ -8,16 +8,17 @@ import oc.projet.biblio.model.entity.Pret;
 
 import javax.persistence.*;
 
+
+
 @Entity
 @Table(name="exemplaire")
 public class ExemplaireImpl implements Exemplaire {
 
     public static class QN {
         public static final String FIND_ALL = "ExemplaireImpl.findAll";
-        public static final String FIND_ALL_DISPO = "ExemplaireImpl.findAllDispo";
-        public static final String FIND_ALL_DISPONOT_DISPO = "ExemplaireImpl.findAllNotDispo";
-        public static final String FIND_ALL_DISPO_BY_OUVRAGE = "ExemplaireImpl.findAllDispoByOuvrage";
-        public static final String FIND_ALL_NOT_DISPO_BY_OUVRAGE = "ExemplaireImpl.findAllNotDispoByOuvrage";
+        public static final String FIND_ALL_BY_BOOKS = "ExemplaireImpl.findAllByBooks";
+        public static final String FIND_BY_PRET = "ExemplaireImpl.findByPret";
+
     }
 
     @Id

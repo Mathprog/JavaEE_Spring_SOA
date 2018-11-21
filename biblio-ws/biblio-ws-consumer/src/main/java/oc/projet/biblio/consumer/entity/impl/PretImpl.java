@@ -9,12 +9,31 @@ import oc.projet.biblio.model.entity.Usager;
 import javax.persistence.*;
 import java.time.LocalDate;
 
+@NamedQueries({
+        @NamedQuery(
+                name = PretImpl.QN.FIND_ALL,
+                query = "SELECT p FROM PretImpl p"
+        ),
+        @NamedQuery(
+                name = PretImpl.QN.FIND_ALL_BY_USAGER,
+                query = "SELECT p FROM PretImpl p " +
+                        "WHERE p.usager = :usager"
+        ),
+        @NamedQuery(
+                name = PretImpl.QN.FIND_BY_EXEMPLAIRE,
+                query = "SELECT p FROM PretImpl p " +
+                        "WHERE p.exemplaire = :exemplaire"
+        )
+})
+
 @Entity
 @Table(name ="pret")
 public class PretImpl implements Pret {
 
     public static class QN {
         public static final String FIND_ALL = "PretImpl.findAll";
+        public static final String FIND_ALL_BY_USAGER = "PretImpl.findByUsager";
+        public static final String FIND_BY_EXEMPLAIRE = "PretImpl.findByExemplaire";
     }
 
     @Id
