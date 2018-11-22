@@ -9,8 +9,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Propagation;
@@ -21,8 +21,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@PropertySource("classpath*:application.properties")
-@ImportResource("classpath:log4j2.xml")
+@PropertySources({ @PropertySource("classpath*:application.properties"), @PropertySource("classpath*:log4j2.xml")})
 @SpringBootTest
 @Transactional(propagation = Propagation.REQUIRED)
 public class ServiceImplTest {
@@ -58,9 +57,9 @@ public class ServiceImplTest {
             Ouvrage avec 1 pret et 1 disponible.
          * /
         Ouvrage ouvrage2 = ouvrageService.createOuvrate("Spring Framework 2");
-        Exemplaire exemplaire = exemplaireService.createSexemplaire(ouvrage);
-        Exemplaire exemplaire2 = exemplaireService.createSexemplaire(ouvrage2);
-        Exemplaire exemplaire3 = exemplaireService.createSexemplaire(ouvrage2);
+        Exemplaire exemplaire = exemplaireService.createExemplaire(ouvrage);
+        Exemplaire exemplaire2 = exemplaireService.createExemplaire(ouvrage2);
+        Exemplaire exemplaire3 = exemplaireService.createExemplaire(ouvrage2);
         Pret pret2 = pretService.createPret(exemplaire2, usager, LocalDate.now(), LocalDate.now().plusWeeks(4));
         Pret pret = pretService.createPret(exemplaire, usager, LocalDate.now(), LocalDate.now().plusWeeks(4));
         Relance relance = relanceService.createRelance(pret, LocalDate.now().plusWeeks(8));
@@ -69,8 +68,8 @@ public class ServiceImplTest {
          * Ouvrage avec deux exemplaires disponibles et pas de pret
          * /
         Ouvrage ouvrageDispo = ouvrageService.createOuvrate("Ouvrage disponible");
-        Exemplaire exemplaireDispo = exemplaireService.createSexemplaire(ouvrageDispo);
-        Exemplaire exemplaireDispo2 = exemplaireService.createSexemplaire(ouvrageDispo);
+        Exemplaire exemplaireDispo = exemplaireService.createExemplaire(ouvrageDispo);
+        Exemplaire exemplaireDispo2 = exemplaireService.createExemplaire(ouvrageDispo);
 
     }*/
 
@@ -160,7 +159,7 @@ public class ServiceImplTest {
         String titre = "Spring Framework 3";
         Usager usager = usagerService.createUsager(email);
         Ouvrage ouvrage = ouvrageService.createOuvrate(titre);
-        Exemplaire exemplaire = exemplaireService.createSexemplaire(ouvrage);
+        Exemplaire exemplaire = exemplaireService.createExemplaire(ouvrage);
         Pret pret = pretService.createPret(exemplaire, usager, LocalDate.now(), LocalDate.now().plusWeeks(4));
         Relance relance = relanceService.createRelance(pret, LocalDate.now().plusWeeks(8));
 
@@ -179,7 +178,7 @@ public class ServiceImplTest {
         String titre = "Spring Framework 3";
         Usager usager = usagerService.createUsager(email);
         Ouvrage ouvrage = ouvrageService.createOuvrate(titre);
-        Exemplaire exemplaire = exemplaireService.createSexemplaire(ouvrage);
+        Exemplaire exemplaire = exemplaireService.createExemplaire(ouvrage);
         Pret pret = pretService.createPret(exemplaire, usager, LocalDate.now(), LocalDate.now().plusWeeks(4));
 
         List<Pret> allPret = pretService.findAll();
@@ -199,7 +198,7 @@ public class ServiceImplTest {
         String titre = "Spring Framework 3";
         Usager usager = usagerService.createUsager(email);
         Ouvrage ouvrage = ouvrageService.createOuvrate(titre);
-        Exemplaire exemplaire = exemplaireService.createSexemplaire(ouvrage);
+        Exemplaire exemplaire = exemplaireService.createExemplaire(ouvrage);
         Pret pret = pretService.createPret(exemplaire, usager, LocalDate.now(), LocalDate.now().plusWeeks(4));
 
         List<Exemplaire> exemplaires = this.exemplaireService.findAll();

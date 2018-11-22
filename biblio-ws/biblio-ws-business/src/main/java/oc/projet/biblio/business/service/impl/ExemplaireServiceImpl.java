@@ -26,31 +26,37 @@ public class ExemplaireServiceImpl implements ExemplaireService {
 
     @Override
     public Exemplaire find(int id){
+
+        logger.info("Method find() : Finding Exemplaire with id : " + id);
         return this.exemplaireRepository.find(id);
     }
 
     @Override
     public List<Exemplaire> findAllExemplaire() {
-        return null;
+        return this.exemplaireRepository.findAll();
     }
 
     @Override
-    public Exemplaire createSexemplaire(Ouvrage ouvrage) {
+    public Exemplaire createExemplaire(Ouvrage ouvrage) {
+        logger.info("Method createExemplaire(). Creating Pret with Book: id = "+ ouvrage.getId() + " titre = "+ ouvrage.getTitre());
         return this.exemplaireRepository.createExemplaire(ouvrage);
     }
 
     @Override
     public Exemplaire findByPret(Pret pret){
+        logger.info("Method findBypret() : Using Pret : id = " + pret.getId());
         return this.exemplaireRepository.findByPret(pret);
     }
 
     @Override
     public List<Exemplaire> findAll(){
+        logger.info("Method findAll().");
         return this.exemplaireRepository.findAll();
     }
 
     @Override
     public List<Exemplaire> findAllByBook(Ouvrage ouvrage){
+        logger.info("Method findAllByBook() : With Ouvrage : id = "+ ouvrage.getId() + " titre : " + ouvrage.getTitre());
         return this.exemplaireRepository.findAllByOuvrage(ouvrage);
     }
 }

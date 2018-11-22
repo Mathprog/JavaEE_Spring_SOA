@@ -23,8 +23,6 @@ public class OuvrageController {
 
     @GetMapping(path="/all") // Map ONLY GET Requests
     public String showAllOuvrages(Map<String, Object> model) {
-        // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
 
         // List<Ouvrage> ouvrages = this.ouvrageService.findAllOuvrage();
         List<Ouvrage> ouvragesDispos = this.ouvrageService.findAllWithDispo();

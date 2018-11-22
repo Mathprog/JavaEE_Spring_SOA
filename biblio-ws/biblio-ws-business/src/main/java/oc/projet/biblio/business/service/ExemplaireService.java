@@ -12,7 +12,7 @@ public interface ExemplaireService {
 
     List<Exemplaire> findAllExemplaire();
 
-    Exemplaire createSexemplaire(Ouvrage ouvrage);
+    Exemplaire createExemplaire(Ouvrage ouvrage);
 
     Exemplaire findByPret(Pret pret);
 
