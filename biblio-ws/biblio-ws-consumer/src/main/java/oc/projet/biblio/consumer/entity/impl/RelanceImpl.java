@@ -17,6 +17,13 @@ import java.time.LocalDate;
                 query = "SELECT r FROM RelanceImpl r " +
                         "JOIN r.pret p " +
                         "WHERE p = :p"
+        ),
+        @NamedQuery(
+                name = RelanceImpl.QN.FIND_ALL_BY_USAGER,
+                query = "SELECT r FROM RelanceImpl r " +
+                        "JOIN r.pret p " +
+                        "JOIN p.usager u " +
+                        "WHERE u = :usager"
         )
 })
 @Entity
@@ -26,6 +33,7 @@ public class RelanceImpl implements Relance {
     public static class QN {
         public static final String FIND_ALL = "RelanceImpl.findAll";
         public static final String FIND_ALL_BY_PRET = "RelanceImpl.findAllByPret";
+        public static final String FIND_ALL_BY_USAGER = "RelanceImpl.findAllByUsager";
     }
 
     @Id

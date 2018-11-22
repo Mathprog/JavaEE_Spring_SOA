@@ -22,6 +22,12 @@ public class UsagerRepositoryImpl implements UsagerRepository {
 
 
     @Override
+    public Usager find(int id){
+        return this.entityManager.find(Usager.class, id);
+    }
+
+
+    @Override
     public Usager createUsager(String email) {
         Usager testExists = this.findUsagerByEmail(email);
         if(testExists == null){

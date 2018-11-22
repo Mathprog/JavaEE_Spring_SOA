@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface PretRepository {
 
+    Pret find(int id);
+
     Pret create(Exemplaire exemplaire, Usager usager, LocalDate date_pret, LocalDate date_fin);
 
     List<Pret> findall();

@@ -21,6 +21,11 @@ public class PretServiceImpl implements PretService {
     private PretRepository pretRepository;
 
     @Override
+    public Pret fin(int id){
+        return pretRepository.find(id);
+    }
+
+    @Override
     public Pret createPret(Exemplaire exemplaire, Usager usager, LocalDate date_pret, LocalDate date_fin) {
         Pret pret = this.pretRepository.create(exemplaire, usager, date_pret, date_fin);
         if( pret != null ){

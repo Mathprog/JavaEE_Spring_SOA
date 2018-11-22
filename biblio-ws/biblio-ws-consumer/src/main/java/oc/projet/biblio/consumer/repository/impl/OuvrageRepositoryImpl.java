@@ -21,6 +21,11 @@ public class OuvrageRepositoryImpl implements OuvrageRepository {
     EntityManager entityManager;
 
     @Override
+    public Ouvrage find(int id){
+        return this.entityManager.find(Ouvrage.class, id);
+    }
+
+    @Override
     public List<Ouvrage> findAll() {
         return entityManager.createNamedQuery(OuvrageImpl.QN.FIND_ALL, Ouvrage.class).getResultList();
 

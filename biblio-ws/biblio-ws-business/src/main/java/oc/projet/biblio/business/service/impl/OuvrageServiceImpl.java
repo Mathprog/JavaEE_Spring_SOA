@@ -19,6 +19,11 @@ public class OuvrageServiceImpl implements OuvrageService {
     private OuvrageRepository ouvrageRepository;
 
     @Override
+    public Ouvrage find(int id){
+        return this.ouvrageRepository.find(id);
+    }
+
+    @Override
     public Ouvrage createOuvrate(String titre) {
         return this.ouvrageRepository.create(titre);
     }

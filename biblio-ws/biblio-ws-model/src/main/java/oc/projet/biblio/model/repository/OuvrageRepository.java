@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface OuvrageRepository {
 
+    Ouvrage find(int id);
+
     List<Ouvrage> findAll();
     Ouvrage create(String nom);
     List<Object[]> findAllWithDispo();

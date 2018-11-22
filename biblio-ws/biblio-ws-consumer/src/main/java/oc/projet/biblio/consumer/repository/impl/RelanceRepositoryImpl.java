@@ -1,5 +1,6 @@
 package oc.projet.biblio.consumer.repository.impl;
 
+import oc.projet.biblio.model.entity.Usager;
 import oc.projet.biblio.model.repository.RelanceRepository;
 import oc.projet.biblio.model.entity.Pret;
 import oc.projet.biblio.model.entity.Relance;
@@ -24,11 +25,21 @@ public class RelanceRepositoryImpl implements RelanceRepository {
     EntityManager entityManager;
 
     @Override
+    public Relance find(int id){
+        return this.entityManager.find(Relance.class, id);
+    }
+
+    @Override
     public Relance create(Pret pret, LocalDate date_fin) {
-        Relance relance = new RelanceImpl();
-        relance.setDateFin(date_fin);
-        relance.setPret(pret);
-        entityManager.persist(relance);
+        Relance relance = this.findByPret(pret);
+        if( relance == null){
+            relance = new RelanceImpl();
+            relance.setDateFin(date_fin);
+            relance.setPret(pret);
+            entityManager.persist(relance);
+        } else {
+            return null; // Ici on doit envoyer une exception
+        }
         return relance;
     }
 
@@ -47,5 +58,10 @@ public class RelanceRepositoryImpl implements RelanceRepository {
             return null;
         }
         return relance;
+    }
+
+    @Override
+    public List<Relance> findAllByUsager(Usager usager){
+        return this.entityManager.createNamedQuery(RelanceImpl.QN.FIND_ALL_BY_USAGER, Relance.class).setParameter("usager", usager).getResultList();
     }
 }

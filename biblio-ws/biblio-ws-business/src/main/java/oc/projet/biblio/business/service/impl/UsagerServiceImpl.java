@@ -18,6 +18,11 @@ public class UsagerServiceImpl implements UsagerService {
     private UsagerRepository usagerRepository;
 
     @Override
+    public Usager find(int id){
+        return this.usagerRepository.find(id);
+    }
+
+    @Override
     public Usager createUsager(String email){
         return usagerRepository.createUsager(email);
     }

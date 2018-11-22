@@ -9,6 +9,8 @@ public interface OuvrageService {
 
     List<Ouvrage> findAllOuvrage();
 
+    Ouvrage find(int id);
+
     Ouvrage createOuvrate(String titre);
     List<Ouvrage> findAllWithDispo();
 

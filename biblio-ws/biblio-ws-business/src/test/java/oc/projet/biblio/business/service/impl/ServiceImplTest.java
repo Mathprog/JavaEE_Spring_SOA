@@ -142,8 +142,11 @@ public class ServiceImplTest {
         Relance relance = relanceService.createRelance(pret, LocalDate.now().plusWeeks(8));
 
         Relance relanceFound = relanceService.findByPret(pret);
+        List<Relance> relancesUsager = relanceService.findAllByUsager(usager);
         assertNotNull(relanceFound);
         assertEquals(relanceFound.getDateFin().toString(), relance.getDateFin().toString());
+        assertNotNull(relancesUsager);
+        assertEquals(relancesUsager.size(), 1);
     }
 
     @Test
@@ -158,10 +161,32 @@ public class ServiceImplTest {
 
         List<Pret> allPret = pretService.findAll();
         assertEquals(allPret.size(), 3);
+
         Pret pretByExemplaire = pretService.findByExemplaire(exemplaire);
         assertNotNull(pretByExemplaire);
+
         List<Pret> pretsByUsager = pretService.findAllByUsager(usager);
         assertEquals(pretsByUsager.size(), 1);
+    }
+
+    @Test
+    @Rollback(true)
+    public void findExemplaire_All_ByPret_ByOuvrage(){
+        String email = "mathieu-martinez@gmail.com";
+        String titre = "Spring Framework 3";
+        Usager usager = usagerService.createUsager(email);
+        Ouvrage ouvrage = ouvrageService.createOuvrate(titre);
+        Exemplaire exemplaire = exemplaireService.createSexemplaire(ouvrage);
+        Pret pret = pretService.createPret(exemplaire, usager, LocalDate.now(), LocalDate.now().plusWeeks(4));
+
+        List<Exemplaire> exemplaires = this.exemplaireService.findAll();
+        assertEquals(exemplaires.size(), 6 );
+
+        List<Exemplaire> exemplairesOuvrage = this.exemplaireService.findAllByBook(ouvrage);
+        assertEquals(exemplairesOuvrage.size(), 1);
+
+        Exemplaire exemplairePret = this.exemplaireService.findByPret(pret);
+        assertNotNull(exemplairePret);
     }
 
 

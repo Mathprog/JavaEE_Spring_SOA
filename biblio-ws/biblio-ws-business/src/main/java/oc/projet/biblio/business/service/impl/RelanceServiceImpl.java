@@ -1,6 +1,7 @@
 package oc.projet.biblio.business.service.impl;
 
 import oc.projet.biblio.business.service.RelanceService;
+import oc.projet.biblio.model.entity.Usager;
 import oc.projet.biblio.model.repository.RelanceRepository;
 import oc.projet.biblio.model.entity.Pret;
 import oc.projet.biblio.model.entity.Relance;
@@ -20,6 +21,11 @@ public class RelanceServiceImpl implements RelanceService {
     private RelanceRepository relanceRepository;
 
     @Override
+    public Relance find(int id){
+        return this.relanceRepository.find(id);
+    }
+
+    @Override
     public Relance createRelance(Pret pret, LocalDate date_fin) {
         return this.relanceRepository.create(pret, date_fin);
     }
@@ -32,5 +38,10 @@ public class RelanceServiceImpl implements RelanceService {
     @Override
     public Relance findByPret(Pret pret){
         return this.relanceRepository.findByPret(pret);
+    }
+
+    @Override
+    public List<Relance> findAllByUsager(Usager usager){
+        return this.relanceRepository.findAllByUsager(usager);
     }
 }

@@ -25,6 +25,11 @@ public class PretRepositoryImpl implements PretRepository {
     EntityManager entityManager;
 
     @Override
+    public Pret find(int id){
+        return entityManager.find(Pret.class, id);
+    }
+
+    @Override
     public Pret create(Exemplaire exemplaire, Usager usager, LocalDate date_pret, LocalDate date_fin) {
         Pret pret = new PretImpl();
         pret.setExemplaire(exemplaire);
