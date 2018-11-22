@@ -8,7 +8,23 @@ import oc.projet.biblio.model.entity.Pret;
 
 import javax.persistence.*;
 
+@NamedQueries({
+        @NamedQuery(
+                name = ExemplaireImpl.QN.FIND_ALL,
+                query = "SELECT e FROM ExemplaireImpl e"
 
+        ),
+        @NamedQuery(
+                name = ExemplaireImpl.QN.FIND_ALL_BY_BOOKS,
+                query = "SELECT e FROM ExemplaireImpl e " +
+                        "WHERE e.ouvrage = :ouvrage"
+        ),
+        @NamedQuery(
+                name = ExemplaireImpl.QN.FIND_BY_PRET,
+                query = "SELECT e FROM ExemplaireImpl e " +
+                        "WHERE e.pret = :pret"
+        )
+})
 
 @Entity
 @Table(name="exemplaire")
