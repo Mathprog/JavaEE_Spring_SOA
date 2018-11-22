@@ -88,6 +88,20 @@ public class ServiceImplTest {
         assertNull(usager);
     }
 
+    @Test
+    public void Usager_Find_All_Infos(){
+        String email = "mathieu-martinez";
+        Usager usager = usagerService.findUsagerByEmail(email);
+        assertNotNull(usager);
+        List<Relance> relances = this.relanceService.findAllByUsager(usager);
+        List<Pret> prets = this.pretService.findAllByUsager(usager);
+
+        assertNotNull(relances);
+        assertNotNull(prets);
+        assertEquals(relances.size(), 1);
+        assertEquals(prets.size(), 2);
+    }
+
 
     @Test
     @Rollback(false)
@@ -99,9 +113,16 @@ public class ServiceImplTest {
 
    @Test
     @Rollback(false)
-    public void findOuvrages_Existing(){
+    public void findOuvrages(){
             List<Ouvrage> ouvrages = ouvrageService.findAllOuvrage();
             assertNotNull(ouvrages);
+
+            List<Ouvrage> ouvrageFindByResearch = ouvrageService.findAllByTitreResearch("Spring");
+            assertNotNull(ouvrageFindByResearch);
+            assertEquals(ouvrageFindByResearch.size(), 2);
+
+            ouvrageFindByResearch = ouvrageService.findAllByTitreResearch("2");
+            assertEquals(ouvrageFindByResearch.size(), 1);
     }
 
    @Test

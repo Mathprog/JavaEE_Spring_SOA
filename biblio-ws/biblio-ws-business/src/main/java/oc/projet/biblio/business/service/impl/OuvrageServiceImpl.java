@@ -50,5 +50,10 @@ public class OuvrageServiceImpl implements OuvrageService {
         return this.ouvrageRepository.findAllWithNoDispo();
     }
 
+    @Override
+    public List<Ouvrage> findAllByTitreResearch(String titre){
+        return this.ouvrageRepository.findAllOuvrageByResearch(titre);
+    }
+
 
 }

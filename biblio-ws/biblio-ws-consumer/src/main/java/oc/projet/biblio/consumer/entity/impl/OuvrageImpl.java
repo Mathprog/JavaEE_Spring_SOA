@@ -34,6 +34,12 @@ import java.util.Set;
                         "FROM ExemplaireImpl e2 " +
                         "JOIN e2.ouvrage o2 " +
                         "WHERE o = o2)"
+        ),
+        @NamedQuery(
+                name = OuvrageImpl.QN.FIND_ALL_BY_RESEARCH,
+                query = "SELECT o " +
+                        "FROM OuvrageImpl o " +
+                        "WHERE o.titre LIKE :liketitre"
         )
 })
 public class OuvrageImpl implements Ouvrage {
@@ -42,6 +48,7 @@ public class OuvrageImpl implements Ouvrage {
         public static final String FIND_ALL = "OuvrageImpl.findAll";
         public static final String FIND_ALL_DISPO = "OuvrageImpl.findAllWithDispo";
         public static final String FIND_ALL_NOT_DISPO = "OuvrageImpl.findAllWithNoDispo";
+        public static final String FIND_ALL_BY_RESEARCH = "OuvrageImpl.findAllByResearch";
     }
 
 

@@ -3,7 +3,6 @@ package oc.projet.biblio.consumer.repository.impl;
 import oc.projet.biblio.model.repository.UsagerRepository;
 import oc.projet.biblio.model.entity.Usager;
 import oc.projet.biblio.consumer.entity.impl.UsagerImpl;
-import org.hibernate.NonUniqueResultException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -56,7 +55,7 @@ public class UsagerRepositoryImpl implements UsagerRepository {
     public Usager findUsager_pretsByEmail(String email){
         Usager usager = null;
         try {
-            usager = entityManager.createNamedQuery(UsagerImpl.QN.FIND_PRETS, Usager.class).setParameter("email", email).getSingleResult();
+            usager = entityManager.createNamedQuery(UsagerImpl.QN.FIND_ALL_PRETS, Usager.class).setParameter("email", email).getSingleResult();
         } catch (NoResultException nre){
             return null;
         }

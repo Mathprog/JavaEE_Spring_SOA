@@ -48,4 +48,9 @@ public class OuvrageRepositoryImpl implements OuvrageRepository {
     public List<Ouvrage> findAllWithNoDispo(){
         return entityManager.createNamedQuery(OuvrageImpl.QN.FIND_ALL_NOT_DISPO, Ouvrage.class).getResultList();
     }
+
+    @Override
+    public List<Ouvrage> findAllOuvrageByResearch(String titre){
+        return entityManager.createNamedQuery(OuvrageImpl.QN.FIND_ALL_BY_RESEARCH, Ouvrage.class).setParameter("liketitre", "%" + titre + "%").getResultList();
+    }
 }

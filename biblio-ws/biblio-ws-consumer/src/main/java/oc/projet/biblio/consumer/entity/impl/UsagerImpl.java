@@ -17,7 +17,7 @@ import java.util.Set;
                         "WHERE u.email = :email"
         ),
         @NamedQuery(
-                name = UsagerImpl.QN.FIND_PRETS,
+                name = UsagerImpl.QN.FIND_ALL_PRETS,
                 query ="SELECT u FROM UsagerImpl u " +
                         "JOIN FETCH u.prets p " +
                         "WHERE u.email = :email"
@@ -37,7 +37,7 @@ public class UsagerImpl implements Usager {
 
     public static class QN {
         public static final String FIND_BY_EMAIL = "UsagerImpl.findByEmail";
-        public static final String FIND_PRETS = "UsagerImpl.findPrets";
+        public static final String FIND_ALL_PRETS = "UsagerImpl.findAllPrets";
         public static final String FIND_PRETS_DETAILS = "UsagerImpl.findPretsDetails";
     }
 

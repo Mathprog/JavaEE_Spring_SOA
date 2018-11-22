@@ -15,4 +15,6 @@ public interface OuvrageRepository {
 
     @Transactional(readOnly = true)
     List<Ouvrage> findAllWithNoDispo();
+
+    List<Ouvrage> findAllOuvrageByResearch(String titre);
 }
