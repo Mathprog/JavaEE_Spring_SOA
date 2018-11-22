@@ -2,10 +2,12 @@ package oc.projet.biblio.business.service.impl;
 
 
 import oc.projet.biblio.business.service.ExemplaireService;
+import oc.projet.biblio.consumer.entity.impl.ExemplaireImpl;
 import oc.projet.biblio.model.entity.Pret;
 import oc.projet.biblio.model.repository.ExemplaireRepository;
 import oc.projet.biblio.model.entity.Exemplaire;
 import oc.projet.biblio.model.entity.Ouvrage;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -16,6 +18,8 @@ import java.util.List;
 @Service
 @Transactional(propagation = Propagation.MANDATORY)
 public class ExemplaireServiceImpl implements ExemplaireService {
+
+    private Logger logger = Logger.getLogger(ExemplaireImpl.class);
 
     @Autowired
     private ExemplaireRepository exemplaireRepository;

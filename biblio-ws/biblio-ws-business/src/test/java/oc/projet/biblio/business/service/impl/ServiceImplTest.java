@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -21,6 +22,7 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @PropertySource("classpath*:application.properties")
+@ImportResource("classpath:log4j2.xml")
 @SpringBootTest
 @Transactional(propagation = Propagation.REQUIRED)
 public class ServiceImplTest {
