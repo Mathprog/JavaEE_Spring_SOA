@@ -2,15 +2,24 @@
            targetNamespace="http://biblio.io/api/usager-web-service" elementFormDefault="qualified">
 
 
+    <!--
+    ============== User ===================
+     -->
+
+    <xs:complexType name="usagerWS">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+            <xs:element name="email" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!--
+     ============== GET ALL USERS ===================
+     -->
 
     <xs:element name="getUsagerRequest">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="name" type="xs:string"/>
-            </xs:sequence>
-        </xs:complexType>
+        <xs:complexType/>
     </xs:element>
-
 
     <xs:element name="getUsagerResponse">
         <xs:complexType>
@@ -20,10 +29,45 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:complexType name="usagerWS">
-        <xs:sequence>
-            <xs:element name="id" type="xs:integer"/>
-            <xs:element name="email" type="xs:string"/>
-        </xs:sequence>
-    </xs:complexType>
+    <!--
+    ============== CREATE USER ===================
+    -->
+
+    <xs:element name="getUsagerCreateRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="email" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getUsagerCreateResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="usagerWS" type="tns:usagerWS"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <!--
+    ============== GET USER BY EMAIL ===================
+    -->
+
+    <xs:element name="getUsagerByEmailRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="email" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getUsagerByEmailResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="usagerWS" type="tns:usagerWS"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
 </xs:schema>
