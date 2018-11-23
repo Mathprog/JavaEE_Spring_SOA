@@ -6,8 +6,10 @@
 //
 
 
-package io.biblio.api.usager_web_service;
+package io.biblio.api.ouvrage_web_service;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -25,7 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="usagerWS" type="{http://biblio.io/api/usager-web-service}usagerWS"/>
+ *         &lt;element name="ouvrageWS" type="{http://biblio.io/api/ouvrage-web-service}ouvrageWS" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,36 +38,41 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "usagerWS"
+    "ouvrageWS"
 })
-@XmlRootElement(name = "getUsagerByIdResponse")
-public class GetUsagerByIdResponse {
+@XmlRootElement(name = "getOuvrageResponse")
+public class GetOuvrageResponse {
 
     @XmlElement(required = true)
-    protected UsagerWS usagerWS;
+    protected List<OuvrageWS> ouvrageWS;
 
     /**
-     * Obtient la valeur de la propriété usagerWS.
+     * Gets the value of the ouvrageWS property.
      * 
-     * @return
-     *     possible object is
-     *     {@link UsagerWS }
-     *     
-     */
-    public UsagerWS getUsagerWS() {
-        return usagerWS;
-    }
-
-    /**
-     * Définit la valeur de la propriété usagerWS.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the ouvrageWS property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link UsagerWS }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getOuvrageWS().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link OuvrageWS }
+     * 
+     * 
      */
-    public void setUsagerWS(UsagerWS value) {
-        this.usagerWS = value;
+    public List<OuvrageWS> getOuvrageWS() {
+        if (ouvrageWS == null) {
+            ouvrageWS = new ArrayList<OuvrageWS>();
+        }
+        return this.ouvrageWS;
     }
 
 }

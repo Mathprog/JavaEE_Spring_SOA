@@ -6,7 +6,7 @@
 //
 
 
-package io.biblio.api.usager_web_service;
+package io.biblio.api.ouvrage_web_service;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -32,8 +32,8 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-@XmlRootElement(name = "getUsagerRequest")
-public class GetUsagerRequest {
+@XmlRootElement(name = "getOuvrageRequest")
+public class GetOuvrageRequest {
 
 
 }

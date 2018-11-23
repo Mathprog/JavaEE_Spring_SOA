@@ -5,5 +5,5 @@
 // Généré le : 2018.11.23 à 10:47:31 PM CET 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://biblio.io/api/usager-web-service", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package io.biblio.api.usager_web_service;
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://biblio.io/api/ouvrage-web-service", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+package io.biblio.api.ouvrage_web_service;

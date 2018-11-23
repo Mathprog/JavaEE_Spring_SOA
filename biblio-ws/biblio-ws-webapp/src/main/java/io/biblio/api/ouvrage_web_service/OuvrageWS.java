@@ -6,26 +6,26 @@
 //
 
 
-package io.biblio.api.usager_web_service;
+package io.biblio.api.ouvrage_web_service;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour anonymous complex type.
+ * <p>Classe Java pour ouvrageWS complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType>
+ * &lt;complexType name="ouvrageWS">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="usagerWS" type="{http://biblio.io/api/usager-web-service}usagerWS"/>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="titre" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,37 +35,54 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "usagerWS"
+@XmlType(name = "ouvrageWS", propOrder = {
+    "id",
+    "titre"
 })
-@XmlRootElement(name = "getUsagerByIdResponse")
-public class GetUsagerByIdResponse {
+public class OuvrageWS {
 
+    protected int id;
     @XmlElement(required = true)
-    protected UsagerWS usagerWS;
+    protected String titre;
 
     /**
-     * Obtient la valeur de la propriété usagerWS.
+     * Obtient la valeur de la propriété id.
      * 
-     * @return
-     *     possible object is
-     *     {@link UsagerWS }
-     *     
      */
-    public UsagerWS getUsagerWS() {
-        return usagerWS;
+    public int getId() {
+        return id;
     }
 
     /**
-     * Définit la valeur de la propriété usagerWS.
+     * Définit la valeur de la propriété id.
+     * 
+     */
+    public void setId(int value) {
+        this.id = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété titre.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getTitre() {
+        return titre;
+    }
+
+    /**
+     * Définit la valeur de la propriété titre.
      * 
      * @param value
      *     allowed object is
-     *     {@link UsagerWS }
+     *     {@link String }
      *     
      */
-    public void setUsagerWS(UsagerWS value) {
-        this.usagerWS = value;
+    public void setTitre(String value) {
+        this.titre = value;
     }
 
 }

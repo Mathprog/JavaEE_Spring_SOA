@@ -24,17 +24,33 @@ public class WSConfig extends WsConfigurerAdapter {
     }
 
     @Bean(name = "usagers")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema articlesSchema) {
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema usagersSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("UsagersPort");
         wsdl11Definition.setLocationUri("/soapws");
         wsdl11Definition.setTargetNamespace("http://biblio.io/api/usager-web-service");
-        wsdl11Definition.setSchema(articlesSchema);
+        wsdl11Definition.setSchema(usagersSchema);
+        return wsdl11Definition;
+    }
+
+
+    @Bean(name = "ouvrages")
+    public DefaultWsdl11Definition defaultWsdl11lDefinition(XsdSchema ouvragesSchema) {
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("OuvragesPort");
+        wsdl11Definition.setLocationUri("/soapws");
+        wsdl11Definition.setTargetNamespace("http://biblio.io/api/ouvrage-web-service");
+        wsdl11Definition.setSchema(ouvragesSchema);
         return wsdl11Definition;
     }
 
     @Bean
     public XsdSchema usagersSchema() {
         return new SimpleXsdSchema(new ClassPathResource("usagers.xsd"));
+    }
+
+    @Bean
+    public XsdSchema ouvragesSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("ouvrages.xsd"));
     }
 }
