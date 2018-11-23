@@ -21,7 +21,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@PropertySources({ @PropertySource("classpath*:application.properties"), @PropertySource("classpath*:log4j2.xml")})
+@PropertySources({ @PropertySource("classpath*:application.properties"), @PropertySource("classpath*:log4j.properties")})
 @SpringBootTest
 @Transactional(propagation = Propagation.REQUIRED)
 public class ServiceImplTest {
