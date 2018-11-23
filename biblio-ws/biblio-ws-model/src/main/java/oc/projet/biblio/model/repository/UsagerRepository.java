@@ -2,6 +2,8 @@ package oc.projet.biblio.model.repository;
 
 import oc.projet.biblio.model.entity.Usager;
 
+import java.util.List;
+
 public interface UsagerRepository {
 
    Usager findUsagerByEmail(String email);
@@ -12,4 +14,6 @@ public interface UsagerRepository {
     Usager findUsager_pretsByEmail(String email);
 
     Usager findUsager_pretsDetailsByEmail(String email);
+
+    List<Usager> findAll();
 }

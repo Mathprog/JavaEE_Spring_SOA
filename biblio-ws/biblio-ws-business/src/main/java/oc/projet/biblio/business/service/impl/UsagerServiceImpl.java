@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Service
 @Transactional(propagation = Propagation.MANDATORY)
@@ -40,5 +42,10 @@ public class UsagerServiceImpl implements UsagerService {
     @Override
     public Usager findUsager_pretsDetailsByEmail(String email){
         return this.usagerRepository.findUsager_pretsDetailsByEmail(email);
+    }
+
+    @Override
+    public List<Usager> findAll(){
+        return this.usagerRepository.findAll();
     }
 }

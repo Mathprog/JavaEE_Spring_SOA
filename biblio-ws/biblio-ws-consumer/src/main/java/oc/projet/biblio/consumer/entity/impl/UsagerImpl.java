@@ -12,6 +12,10 @@ import java.util.Set;
 @Table(name ="usager")
 @NamedQueries({
         @NamedQuery(
+                name = UsagerImpl.QN.FIND_ALL,
+                query = "SELECT u FROM UsagerImpl u"
+        ),
+        @NamedQuery(
                 name= UsagerImpl.QN.FIND_BY_EMAIL,
                 query="SELECT u FROM UsagerImpl u " +
                         "WHERE u.email = :email"
@@ -39,6 +43,7 @@ public class UsagerImpl implements Usager {
         public static final String FIND_BY_EMAIL = "UsagerImpl.findByEmail";
         public static final String FIND_ALL_PRETS = "UsagerImpl.findAllPrets";
         public static final String FIND_PRETS_DETAILS = "UsagerImpl.findPretsDetails";
+        public static final String FIND_ALL = "UsagerImpl.findAll";
     }
 
     @Id

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import java.util.List;
 
 
 @Repository
@@ -71,5 +72,10 @@ public class UsagerRepositoryImpl implements UsagerRepository {
             return null;
         }
             return usager;
+    }
+
+    @Override
+    public List<Usager> findAll(){
+        return this.entityManager.createNamedQuery(UsagerImpl.QN.FIND_ALL, Usager.class).getResultList();
     }
 }
