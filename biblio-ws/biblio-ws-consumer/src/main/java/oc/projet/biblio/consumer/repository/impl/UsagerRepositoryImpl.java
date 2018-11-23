@@ -23,7 +23,7 @@ public class UsagerRepositoryImpl implements UsagerRepository {
 
     @Override
     public Usager find(int id){
-        return this.entityManager.find(Usager.class, id);
+        return this.entityManager.find(UsagerImpl.class, id);
     }
 
 

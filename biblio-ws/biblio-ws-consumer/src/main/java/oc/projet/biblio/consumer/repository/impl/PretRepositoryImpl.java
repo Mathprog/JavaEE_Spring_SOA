@@ -26,7 +26,7 @@ public class PretRepositoryImpl implements PretRepository {
 
     @Override
     public Pret find(int id){
-        return entityManager.find(Pret.class, id);
+        return entityManager.find(PretImpl.class, id);
     }
 
     @Override

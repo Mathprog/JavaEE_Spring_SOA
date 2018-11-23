@@ -29,7 +29,7 @@ public class UsagerEndPoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getUsagerRequest")
     @ResponsePayload
     public GetUsagerResponse getUsager(){
-            GetUsagerResponse response = new GetUsagerResponse();
+            GetUsagerResponse UsagerResponse = new GetUsagerResponse();
             List<Usager> usagers = this.usagerService.findAll();
             List<UsagerWS> usagersWS = new ArrayList<>();
             for (Usager usager : usagers){
@@ -37,9 +37,9 @@ public class UsagerEndPoint {
                 BeanUtils.copyProperties(usager, usagerws);
                 usagersWS.add(usagerws);
             }
-            response.getUsagerWS().addAll(usagersWS);
+            UsagerResponse.getUsagerWS().addAll(usagersWS);
 
-            return response;
+            return UsagerResponse;
     }
 
 
@@ -49,9 +49,9 @@ public class UsagerEndPoint {
         Usager usager = this.usagerService.findUsagerByEmail(request.getEmail());
         UsagerWS usagerWs = new UsagerWS();
         BeanUtils.copyProperties(usager, usagerWs);
-        GetUsagerByEmailResponse guber = new GetUsagerByEmailResponse();
-        guber.setUsagerWS(usagerWs);
-        return guber;
+        GetUsagerByEmailResponse usagerResponse = new GetUsagerByEmailResponse();
+        usagerResponse.setUsagerWS(usagerWs);
+        return usagerResponse;
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getUsagerCreateRequest")
@@ -60,9 +60,9 @@ public class UsagerEndPoint {
         Usager usager = this.usagerService.createUsager(request.getEmail());
         UsagerWS usagerWs = new UsagerWS();
         BeanUtils.copyProperties(usager, usagerWs);
-        GetUsagerCreateResponse guber = new GetUsagerCreateResponse();
-        guber.setUsagerWS(usagerWs);
-        return guber;
+        GetUsagerCreateResponse usagerResponse = new GetUsagerCreateResponse();
+        usagerResponse.setUsagerWS(usagerWs);
+        return usagerResponse;
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getUsagerByIdRequest")
@@ -71,9 +71,9 @@ public class UsagerEndPoint {
         Usager usager = this.usagerService.find(request.getId());
         UsagerWS usagerWs = new UsagerWS();
         BeanUtils.copyProperties(usager, usagerWs);
-        GetUsagerByIdResponse guber = new GetUsagerByIdResponse();
-        guber.setUsagerWS(usagerWs);
-        return guber;
+        GetUsagerByIdResponse usagerResponse = new GetUsagerByIdResponse();
+        usagerResponse.setUsagerWS(usagerWs);
+        return usagerResponse;
     }
 
 

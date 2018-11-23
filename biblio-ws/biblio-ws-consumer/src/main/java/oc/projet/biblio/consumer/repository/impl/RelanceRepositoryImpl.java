@@ -26,7 +26,7 @@ public class RelanceRepositoryImpl implements RelanceRepository {
 
     @Override
     public Relance find(int id){
-        return this.entityManager.find(Relance.class, id);
+        return this.entityManager.find(RelanceImpl.class, id);
     }
 
     @Override

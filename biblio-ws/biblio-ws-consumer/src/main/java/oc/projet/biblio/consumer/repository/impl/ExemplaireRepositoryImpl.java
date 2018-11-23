@@ -24,7 +24,7 @@ public class ExemplaireRepositoryImpl implements ExemplaireRepository {
 
     @Override
     public Exemplaire find(int id){
-        return this.entityManager.find(Exemplaire.class, id);
+        return this.entityManager.find(ExemplaireImpl.class, id);
     }
 
     @Override

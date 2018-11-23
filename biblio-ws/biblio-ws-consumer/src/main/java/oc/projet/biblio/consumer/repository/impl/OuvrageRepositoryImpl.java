@@ -22,7 +22,7 @@ public class OuvrageRepositoryImpl implements OuvrageRepository {
 
     @Override
     public Ouvrage find(int id){
-        return this.entityManager.find(Ouvrage.class, id);
+        return this.entityManager.find(OuvrageImpl.class, id);
     }
 
     @Override

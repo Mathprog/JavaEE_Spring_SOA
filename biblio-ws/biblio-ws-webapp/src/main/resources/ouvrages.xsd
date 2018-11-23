@@ -85,7 +85,7 @@
     <xs:element name="getOuvrageByTitreResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="ouvrageWS" type="tns:ouvrageWS"/>
+                <xs:element name="ouvrageWS" type="tns:ouvrageWS" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
