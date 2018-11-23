@@ -1,10 +1,7 @@
 package oc.projet.biblio.webapp.controller.serviceWeb;
 
 
-import io.biblio.api.usager_web_service.GetUsagerByEmailRequest;
-import io.biblio.api.usager_web_service.GetUsagerByEmailResponse;
-import io.biblio.api.usager_web_service.GetUsagerResponse;
-import io.biblio.api.usager_web_service.UsagerWS;
+import io.biblio.api.usager_web_service.*;
 import oc.projet.biblio.business.service.UsagerService;
 import oc.projet.biblio.model.entity.Usager;
 import org.springframework.beans.BeanUtils;
@@ -56,4 +53,28 @@ public class UsagerEndPoint {
         guber.setUsagerWS(usagerWs);
         return guber;
     }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getUsagerCreateRequest")
+    @ResponsePayload
+    public GetUsagerCreateResponse getUsagerCreate(@RequestPayload GetUsagerByEmailRequest request){
+        Usager usager = this.usagerService.createUsager(request.getEmail());
+        UsagerWS usagerWs = new UsagerWS();
+        BeanUtils.copyProperties(usager, usagerWs);
+        GetUsagerCreateResponse guber = new GetUsagerCreateResponse();
+        guber.setUsagerWS(usagerWs);
+        return guber;
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getUsagerByIdRequest")
+    @ResponsePayload
+    public GetUsagerByIdResponse getUsagerById(@RequestPayload GetUsagerByIdRequest request){
+        Usager usager = this.usagerService.find(request.getId());
+        UsagerWS usagerWs = new UsagerWS();
+        BeanUtils.copyProperties(usager, usagerWs);
+        GetUsagerByIdResponse guber = new GetUsagerByIdResponse();
+        guber.setUsagerWS(usagerWs);
+        return guber;
+    }
+
+
 }

@@ -10,7 +10,6 @@ package io.biblio.api.usager_web_service;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -25,7 +24,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="usagerWS" type="{http://biblio.io/api/usager-web-service}usagerWS"/>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,36 +35,27 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "usagerWS"
+    "id"
 })
-@XmlRootElement(name = "getUsagerByEmailResponse")
-public class GetUsagerByEmailResponse {
+@XmlRootElement(name = "getUsagerByIdRequest")
+public class GetUsagerByIdRequest {
 
-    @XmlElement(required = true)
-    protected UsagerWS usagerWS;
+    protected int id;
 
     /**
-     * Obtient la valeur de la propriété usagerWS.
+     * Obtient la valeur de la propriété id.
      * 
-     * @return
-     *     possible object is
-     *     {@link UsagerWS }
-     *     
      */
-    public UsagerWS getUsagerWS() {
-        return usagerWS;
+    public int getId() {
+        return id;
     }
 
     /**
-     * Définit la valeur de la propriété usagerWS.
+     * Définit la valeur de la propriété id.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link UsagerWS }
-     *     
      */
-    public void setUsagerWS(UsagerWS value) {
-        this.usagerWS = value;
+    public void setId(int value) {
+        this.id = value;
     }
 
 }
