@@ -26,12 +26,12 @@ public class WSConfig extends WsConfigurerAdapter {
     }
 
     @Bean(name = "usagers")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema usagersSchema) {
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchemaCollection usagerSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("UsagersPort");
         wsdl11Definition.setLocationUri("/soapws");
         wsdl11Definition.setTargetNamespace("http://biblio.io/api/biblio-web-service");
-        wsdl11Definition.setSchema(usagersSchema);
+        wsdl11Definition.setSchemaCollection(usagerSchema);
         return wsdl11Definition;
     }
 
@@ -57,15 +57,19 @@ public class WSConfig extends WsConfigurerAdapter {
     }
 
     @Bean
-    public XsdSchema usagersSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("usagers.xsd"));
+    public XsdSchemaCollection usagerSchema() {
+        CommonsXsdSchemaCollection xsds = new CommonsXsdSchemaCollection(
+                new ClassPathResource("WS-XSD/usager.xsd"),
+                new ClassPathResource("WS-XSD/usager-method.xsd"));
+        xsds.setInline(true);
+        return  xsds;
     }
 
     @Bean
     public XsdSchemaCollection ouvragesSchema() {
         CommonsXsdSchemaCollection xsds = new CommonsXsdSchemaCollection(
                 new ClassPathResource("WS-XSD/ouvrage.xsd"),
-                new ClassPathResource("WS-XSD/ouvrage-methods.xsd"));
+                new ClassPathResource("WS-XSD/ouvrage-method.xsd"));
         xsds.setInline(true);
         return xsds;
     }

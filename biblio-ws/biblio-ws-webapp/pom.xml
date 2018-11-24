@@ -112,7 +112,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory>
+                    <schemaDirectory>${project.basedir}/src/main/resources/WS-XSD</schemaDirectory>
                     <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
                     <clearOutputDir>false</clearOutputDir>
 

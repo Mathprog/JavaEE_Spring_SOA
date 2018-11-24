@@ -2,20 +2,7 @@
            targetNamespace="http://biblio.io/api/biblio-web-service" elementFormDefault="qualified">
 
 
-    <!--
-    ============== User ===================
-     -->
-
-    <xs:complexType name="usagerWS">
-        <xs:sequence>
-            <xs:element name="id" type="xs:int"/>
-            <xs:element name="email" type="xs:string"/>
-        </xs:sequence>
-    </xs:complexType>
-
-    <!--
-     ============== GET USER BY ID ===================
-     -->
+   <xs:include schemaLocation="usager.xsd"/>
 
     <xs:element name="getUsagerByIdRequest">
         <xs:complexType>

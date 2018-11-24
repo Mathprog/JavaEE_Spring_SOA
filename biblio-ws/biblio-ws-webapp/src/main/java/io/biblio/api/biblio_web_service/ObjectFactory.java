@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2018.11.24 à 03:01:35 PM CET 
+// Généré le : 2018.11.24 à 03:52:55 PM CET 
 //
 
 
@@ -37,22 +37,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetUsagerResponse }
-     * 
-     */
-    public GetUsagerResponse createGetUsagerResponse() {
-        return new GetUsagerResponse();
-    }
-
-    /**
-     * Create an instance of {@link UsagerWS }
-     * 
-     */
-    public UsagerWS createUsagerWS() {
-        return new UsagerWS();
-    }
-
-    /**
      * Create an instance of {@link GetOuvrageByIdRequest }
      * 
      */
@@ -74,6 +58,22 @@ public class ObjectFactory {
      */
     public OuvrageWS createOuvrageWS() {
         return new OuvrageWS();
+    }
+
+    /**
+     * Create an instance of {@link GetUsagerResponse }
+     * 
+     */
+    public GetUsagerResponse createGetUsagerResponse() {
+        return new GetUsagerResponse();
+    }
+
+    /**
+     * Create an instance of {@link UsagerWS }
+     * 
+     */
+    public UsagerWS createUsagerWS() {
+        return new UsagerWS();
     }
 
     /**
