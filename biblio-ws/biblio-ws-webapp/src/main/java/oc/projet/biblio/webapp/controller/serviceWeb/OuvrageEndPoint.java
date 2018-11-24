@@ -1,6 +1,6 @@
 package oc.projet.biblio.webapp.controller.serviceWeb;
 
-import io.biblio.api.ouvrage_web_service.*;
+import io.biblio.api.biblio_web_service.*;
 import oc.projet.biblio.business.service.OuvrageService;
 import oc.projet.biblio.model.entity.Ouvrage;
 import org.springframework.beans.BeanUtils;
@@ -19,7 +19,7 @@ import java.util.*;
 @Transactional(propagation = Propagation.REQUIRED)
 public class OuvrageEndPoint {
 
-    private static final String NAMESPACE_URI = "http://biblio.io/api/ouvrage-web-service";
+    private static final String NAMESPACE_URI = "http://biblio.io/api/biblio-web-service";
 
     @Autowired
     private OuvrageService ouvrageService;

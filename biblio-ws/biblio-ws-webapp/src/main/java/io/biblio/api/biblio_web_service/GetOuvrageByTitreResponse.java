@@ -2,11 +2,11 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2018.11.23 à 11:57:53 PM CET 
+// Généré le : 2018.11.24 à 03:01:35 PM CET 
 //
 
 
-package io.biblio.api.ouvrage_web_service;
+package io.biblio.api.biblio_web_service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="ouvrageWS" type="{http://biblio.io/api/ouvrage-web-service}ouvrageWS" maxOccurs="unbounded"/>
+ *         &lt;element name="ouvrageWS" type="{http://biblio.io/api/biblio-web-service}ouvrageWS" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -40,8 +40,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "ouvrageWS"
 })
-@XmlRootElement(name = "getOuvrageResponse")
-public class GetOuvrageResponse {
+@XmlRootElement(name = "getOuvrageByTitreResponse")
+public class GetOuvrageByTitreResponse {
 
     @XmlElement(required = true)
     protected List<OuvrageWS> ouvrageWS;
