@@ -1,5 +1,4 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://biblio.io/api/biblio-web-service"
-           xmlns:tnso="http://biblio.io/api/biblio-web-service"
            targetNamespace="http://biblio.io/api/biblio-web-service" elementFormDefault="qualified">
 
     <xs:include schemaLocation="exemplaire.xsd"/>
@@ -20,6 +19,27 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="exemplaireWS" type="tns:exemplaireWS"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <!--
+     ============== GET EXEMPLAIRE BY BOOK ===================
+     -->
+
+    <xs:element name="getExemplaireByBookRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="book" type="tns:ouvrageWS"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getExemplaireByBookResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="exemplaireWS" type="tns:exemplaireWS" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -47,7 +67,7 @@
     <xs:element name="getExemplaireCreateRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="ouvrage" type="tnso:ouvrageWS"/>
+                <xs:element name="ouvrage" type="tns:ouvrageWS"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

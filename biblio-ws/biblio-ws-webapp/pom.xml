@@ -114,6 +114,8 @@
                 <configuration>
                     <schemaDirectory>${project.basedir}/src/main/resources/WS-XSD</schemaDirectory>
                     <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+                    <bindingDirectory>${project.basedir}/src/main/resources/xjc</bindingDirectory>
+                    <bindingFiles>bindings.xjc</bindingFiles>
                     <clearOutputDir>false</clearOutputDir>
 
                 </configuration>

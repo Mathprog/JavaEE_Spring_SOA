@@ -11,7 +11,8 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(
                 name = ExemplaireImpl.QN.FIND_ALL,
-                query = "SELECT e FROM ExemplaireImpl e"
+                query = "SELECT e FROM ExemplaireImpl e " +
+                        "JOIN FETCH e.ouvrage"
 
         ),
         @NamedQuery(

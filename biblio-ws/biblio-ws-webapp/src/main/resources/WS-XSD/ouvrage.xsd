@@ -1,4 +1,4 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tnso="http://biblio.io/api/biblio-web-service"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
            targetNamespace="http://biblio.io/api/biblio-web-service" elementFormDefault="qualified">
 
 

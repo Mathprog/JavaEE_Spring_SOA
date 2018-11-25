@@ -11,21 +11,21 @@ package io.biblio.api.biblio_web_service;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour usagerWS complex type.
+ * <p>Classe Java pour anonymous complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="usagerWS">
+ * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="pret" type="{http://biblio.io/api/biblio-web-service}pretWS"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,54 +35,37 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "usagerWS", propOrder = {
-    "id",
-    "email"
+@XmlType(name = "", propOrder = {
+    "pret"
 })
-public class UsagerWS {
+@XmlRootElement(name = "getPretByExemplaireResponse")
+public class GetPretByExemplaireResponse {
 
-    protected int id;
     @XmlElement(required = true)
-    protected String email;
+    protected PretWS pret;
 
     /**
-     * Obtient la valeur de la propriété id.
-     * 
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * Définit la valeur de la propriété id.
-     * 
-     */
-    public void setId(int value) {
-        this.id = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété email.
+     * Obtient la valeur de la propriété pret.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link PretWS }
      *     
      */
-    public String getEmail() {
-        return email;
+    public PretWS getPret() {
+        return pret;
     }
 
     /**
-     * Définit la valeur de la propriété email.
+     * Définit la valeur de la propriété pret.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link PretWS }
      *     
      */
-    public void setEmail(String value) {
-        this.email = value;
+    public void setPret(PretWS value) {
+        this.pret = value;
     }
 
 }

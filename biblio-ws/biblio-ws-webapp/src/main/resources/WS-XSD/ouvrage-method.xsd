@@ -1,4 +1,4 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tnso="http://biblio.io/api/biblio-web-service"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://biblio.io/api/biblio-web-service"
            targetNamespace="http://biblio.io/api/biblio-web-service" elementFormDefault="qualified">
 
     <xs:include schemaLocation="ouvrage.xsd"/>
@@ -18,7 +18,7 @@
     <xs:element name="getOuvrageByIdResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="ouvrageWS" type="tnso:ouvrageWS"/>
+                <xs:element name="ouvrageWS" type="tns:ouvrageWS"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -34,7 +34,7 @@
     <xs:element name="getOuvrageResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="ouvrageWS" type="tnso:ouvrageWS" maxOccurs="unbounded"/>
+                <xs:element name="ouvrageWS" type="tns:ouvrageWS" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -54,7 +54,7 @@
     <xs:element name="getOuvrageCreateResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="ouvrageWS" type="tnso:ouvrageWS"/>
+                <xs:element name="ouvrageWS" type="tns:ouvrageWS"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -75,7 +75,7 @@
     <xs:element name="getOuvrageByTitreResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="ouvrageWS" type="tnso:ouvrageWS" maxOccurs="unbounded"/>
+                <xs:element name="ouvrageWS" type="tns:ouvrageWS" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

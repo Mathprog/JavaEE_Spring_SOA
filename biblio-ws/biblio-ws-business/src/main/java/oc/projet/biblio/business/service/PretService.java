@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface PretService {
 
-    Pret fin(int id);
+    Pret find(int id);
 
     Pret createPret(Exemplaire exemplaire, Usager usager, LocalDate date_pret, LocalDate date_fin);
 

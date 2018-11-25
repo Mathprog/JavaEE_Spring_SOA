@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2018.11.24 à 03:52:55 PM CET 
+// Généré le : 2018.11.25 à 07:54:27 PM CET 
 //
 
 
@@ -45,38 +45,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetOuvrageResponse }
-     * 
-     */
-    public GetOuvrageResponse createGetOuvrageResponse() {
-        return new GetOuvrageResponse();
-    }
-
-    /**
-     * Create an instance of {@link OuvrageWS }
-     * 
-     */
-    public OuvrageWS createOuvrageWS() {
-        return new OuvrageWS();
-    }
-
-    /**
-     * Create an instance of {@link GetUsagerResponse }
-     * 
-     */
-    public GetUsagerResponse createGetUsagerResponse() {
-        return new GetUsagerResponse();
-    }
-
-    /**
-     * Create an instance of {@link UsagerWS }
-     * 
-     */
-    public UsagerWS createUsagerWS() {
-        return new UsagerWS();
-    }
-
-    /**
      * Create an instance of {@link GetUsagerByIdRequest }
      * 
      */
@@ -93,27 +61,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetUsagerByEmailRequest }
+     * Create an instance of {@link GetExemplaireByBookResponse }
      * 
      */
-    public GetUsagerByEmailRequest createGetUsagerByEmailRequest() {
-        return new GetUsagerByEmailRequest();
-    }
-
-    /**
-     * Create an instance of {@link GetOuvrageByTitreResponse }
-     * 
-     */
-    public GetOuvrageByTitreResponse createGetOuvrageByTitreResponse() {
-        return new GetOuvrageByTitreResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetExemplaireCreateResponse }
-     * 
-     */
-    public GetExemplaireCreateResponse createGetExemplaireCreateResponse() {
-        return new GetExemplaireCreateResponse();
+    public GetExemplaireByBookResponse createGetExemplaireByBookResponse() {
+        return new GetExemplaireByBookResponse();
     }
 
     /**
@@ -125,11 +77,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetOuvrageCreateResponse }
+     * Create an instance of {@link GetOuvrageByTitreResponse }
      * 
      */
-    public GetOuvrageCreateResponse createGetOuvrageCreateResponse() {
-        return new GetOuvrageCreateResponse();
+    public GetOuvrageByTitreResponse createGetOuvrageByTitreResponse() {
+        return new GetOuvrageByTitreResponse();
+    }
+
+    /**
+     * Create an instance of {@link OuvrageWS }
+     * 
+     */
+    public OuvrageWS createOuvrageWS() {
+        return new OuvrageWS();
+    }
+
+    /**
+     * Create an instance of {@link GetExemplaireCreateResponse }
+     * 
+     */
+    public GetExemplaireCreateResponse createGetExemplaireCreateResponse() {
+        return new GetExemplaireCreateResponse();
     }
 
     /**
@@ -149,11 +117,155 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link UsagerWS }
+     * 
+     */
+    public UsagerWS createUsagerWS() {
+        return new UsagerWS();
+    }
+
+    /**
+     * Create an instance of {@link GetPretByExemplaireResponse }
+     * 
+     */
+    public GetPretByExemplaireResponse createGetPretByExemplaireResponse() {
+        return new GetPretByExemplaireResponse();
+    }
+
+    /**
+     * Create an instance of {@link PretWS }
+     * 
+     */
+    public PretWS createPretWS() {
+        return new PretWS();
+    }
+
+    /**
+     * Create an instance of {@link GetOuvrageCreateRequest }
+     * 
+     */
+    public GetOuvrageCreateRequest createGetOuvrageCreateRequest() {
+        return new GetOuvrageCreateRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetPretsResponse }
+     * 
+     */
+    public GetPretsResponse createGetPretsResponse() {
+        return new GetPretsResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetExemplaireByBookRequest }
+     * 
+     */
+    public GetExemplaireByBookRequest createGetExemplaireByBookRequest() {
+        return new GetExemplaireByBookRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetUsagerByIdResponse }
+     * 
+     */
+    public GetUsagerByIdResponse createGetUsagerByIdResponse() {
+        return new GetUsagerByIdResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetPretByIdResponse }
+     * 
+     */
+    public GetPretByIdResponse createGetPretByIdResponse() {
+        return new GetPretByIdResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetExemplaireByIdRequest }
+     * 
+     */
+    public GetExemplaireByIdRequest createGetExemplaireByIdRequest() {
+        return new GetExemplaireByIdRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetOuvrageResponse }
+     * 
+     */
+    public GetOuvrageResponse createGetOuvrageResponse() {
+        return new GetOuvrageResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetUsagerResponse }
+     * 
+     */
+    public GetUsagerResponse createGetUsagerResponse() {
+        return new GetUsagerResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetPretByExemplaireRequest }
+     * 
+     */
+    public GetPretByExemplaireRequest createGetPretByExemplaireRequest() {
+        return new GetPretByExemplaireRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetPretByUsagerRequest }
+     * 
+     */
+    public GetPretByUsagerRequest createGetPretByUsagerRequest() {
+        return new GetPretByUsagerRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetUsagerByEmailRequest }
+     * 
+     */
+    public GetUsagerByEmailRequest createGetUsagerByEmailRequest() {
+        return new GetUsagerByEmailRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetOuvrageCreateResponse }
+     * 
+     */
+    public GetOuvrageCreateResponse createGetOuvrageCreateResponse() {
+        return new GetOuvrageCreateResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetPretCreateRequest }
+     * 
+     */
+    public GetPretCreateRequest createGetPretCreateRequest() {
+        return new GetPretCreateRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetPretCreateResponse }
+     * 
+     */
+    public GetPretCreateResponse createGetPretCreateResponse() {
+        return new GetPretCreateResponse();
+    }
+
+    /**
      * Create an instance of {@link GetUsagerByEmailResponse }
      * 
      */
     public GetUsagerByEmailResponse createGetUsagerByEmailResponse() {
         return new GetUsagerByEmailResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetPretsRequest }
+     * 
+     */
+    public GetPretsRequest createGetPretsRequest() {
+        return new GetPretsRequest();
     }
 
     /**
@@ -165,11 +277,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetOuvrageCreateRequest }
+     * Create an instance of {@link GetPretByIdRequest }
      * 
      */
-    public GetOuvrageCreateRequest createGetOuvrageCreateRequest() {
-        return new GetOuvrageCreateRequest();
+    public GetPretByIdRequest createGetPretByIdRequest() {
+        return new GetPretByIdRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetPretByUsagerResponse }
+     * 
+     */
+    public GetPretByUsagerResponse createGetPretByUsagerResponse() {
+        return new GetPretByUsagerResponse();
     }
 
     /**
@@ -189,27 +309,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetUsagerByIdResponse }
-     * 
-     */
-    public GetUsagerByIdResponse createGetUsagerByIdResponse() {
-        return new GetUsagerByIdResponse();
-    }
-
-    /**
      * Create an instance of {@link GetExemplaireRequest }
      * 
      */
     public GetExemplaireRequest createGetExemplaireRequest() {
         return new GetExemplaireRequest();
-    }
-
-    /**
-     * Create an instance of {@link GetExemplaireByIdRequest }
-     * 
-     */
-    public GetExemplaireByIdRequest createGetExemplaireByIdRequest() {
-        return new GetExemplaireByIdRequest();
     }
 
     /**

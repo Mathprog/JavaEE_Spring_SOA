@@ -11,21 +11,21 @@ package io.biblio.api.biblio_web_service;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour usagerWS complex type.
+ * <p>Classe Java pour anonymous complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="usagerWS">
+ * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="exemplaire" type="{http://biblio.io/api/biblio-web-service}exemplaireWS"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,54 +35,37 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "usagerWS", propOrder = {
-    "id",
-    "email"
+@XmlType(name = "", propOrder = {
+    "exemplaire"
 })
-public class UsagerWS {
+@XmlRootElement(name = "getPretByExemplaireRequest")
+public class GetPretByExemplaireRequest {
 
-    protected int id;
     @XmlElement(required = true)
-    protected String email;
+    protected ExemplaireWS exemplaire;
 
     /**
-     * Obtient la valeur de la propriété id.
-     * 
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * Définit la valeur de la propriété id.
-     * 
-     */
-    public void setId(int value) {
-        this.id = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété email.
+     * Obtient la valeur de la propriété exemplaire.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link ExemplaireWS }
      *     
      */
-    public String getEmail() {
-        return email;
+    public ExemplaireWS getExemplaire() {
+        return exemplaire;
     }
 
     /**
-     * Définit la valeur de la propriété email.
+     * Définit la valeur de la propriété exemplaire.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link ExemplaireWS }
      *     
      */
-    public void setEmail(String value) {
-        this.email = value;
+    public void setExemplaire(ExemplaireWS value) {
+        this.exemplaire = value;
     }
 
 }

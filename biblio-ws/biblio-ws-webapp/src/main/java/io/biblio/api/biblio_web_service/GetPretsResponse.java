@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="usagerWS" type="{http://biblio.io/api/biblio-web-service}usagerWS" maxOccurs="unbounded"/>
+ *         &lt;element name="pret" type="{http://biblio.io/api/biblio-web-service}pretWS" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,41 +38,41 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "usagerWS"
+    "pret"
 })
-@XmlRootElement(name = "getUsagerResponse")
-public class GetUsagerResponse {
+@XmlRootElement(name = "getPretsResponse")
+public class GetPretsResponse {
 
     @XmlElement(required = true)
-    protected List<UsagerWS> usagerWS;
+    protected List<PretWS> pret;
 
     /**
-     * Gets the value of the usagerWS property.
+     * Gets the value of the pret property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the usagerWS property.
+     * This is why there is not a <CODE>set</CODE> method for the pret property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getUsagerWS().add(newItem);
+     *    getPret().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link UsagerWS }
+     * {@link PretWS }
      * 
      * 
      */
-    public List<UsagerWS> getUsagerWS() {
-        if (usagerWS == null) {
-            usagerWS = new ArrayList<UsagerWS>();
+    public List<PretWS> getPret() {
+        if (pret == null) {
+            pret = new ArrayList<PretWS>();
         }
-        return this.usagerWS;
+        return this.pret;
     }
 
 }

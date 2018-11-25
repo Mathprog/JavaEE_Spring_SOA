@@ -21,7 +21,7 @@ public class PretServiceImpl implements PretService {
     private PretRepository pretRepository;
 
     @Override
-    public Pret fin(int id){
+    public Pret find(int id){
         return pretRepository.find(id);
     }
 

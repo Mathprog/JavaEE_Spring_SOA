@@ -56,6 +56,16 @@ public class WSConfig extends WsConfigurerAdapter {
         return wsdl11Definition;
     }
 
+    @Bean(name = "prets")
+    public DefaultWsdl11Definition defaultWsdl11ll1Definition(XsdSchemaCollection pretsSchema) {
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("PretsPort");
+        wsdl11Definition.setLocationUri("/soapws");
+        wsdl11Definition.setTargetNamespace("http://biblio.io/api/biblio-web-service");
+        wsdl11Definition.setSchemaCollection(pretsSchema);
+        return wsdl11Definition;
+    }
+
     @Bean
     public XsdSchemaCollection usagerSchema() {
         CommonsXsdSchemaCollection xsds = new CommonsXsdSchemaCollection(
@@ -80,6 +90,18 @@ public class WSConfig extends WsConfigurerAdapter {
                 new ClassPathResource("WS-XSD/ouvrage.xsd"),
                 new ClassPathResource("WS-XSD/exemplaire.xsd"),
                 new ClassPathResource("WS-XSD/exemplaire-method.xsd"));
+        xsds.setInline(true);
+        return xsds;
+
+    }
+
+    @Bean
+    public XsdSchemaCollection pretsSchema() {
+        CommonsXsdSchemaCollection xsds = new CommonsXsdSchemaCollection(
+                new ClassPathResource("WS-XSD/exemplaire.xsd"),
+                new ClassPathResource("WS-XSD/usager.xsd"),
+                new ClassPathResource("WS-XSD/pret.xsd"),
+                new ClassPathResource("WS-XSD/pret-method.xsd"));
         xsds.setInline(true);
         return xsds;
 
