@@ -89,4 +89,22 @@ public class PretEndPoint {
         return pretResponse;
     }
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getPretByUsagerRequest")
+    @ResponsePayload
+    public GetPretByUsagerResponse getPretByUsager (@RequestPayload GetPretByUsagerRequest request){
+        GetPretByUsagerResponse pretResponse = new GetPretByUsagerResponse();
+        UsagerWS usagerWS = request.getUsager();
+        Usager usager = new UsagerImpl();
+        BeanUtils.copyProperties(usagerWS, usager);
+        List<Pret> prets = this.pretService.findAllByUsager(usager);
+
+        List<PretWS> pretWSList = new ArrayList<>();
+        for(Pret pret : prets){
+            PretWS pretWS = new PretWS();
+            BeanUtils.copyProperties(pret, pretWS);
+            pretWSList.add(pretWS);
+        }
+        pretResponse.getPret().addAll(pretWSList);
+        return pretResponse;
+    }
 }

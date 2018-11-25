@@ -8,24 +8,29 @@
 
 package io.biblio.api.biblio_web_service;
 
+import java.time.LocalDate;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import org.w3._2001.xmlschema.Adapter1;
 
 
 /**
- * <p>Classe Java pour exemplaireWS complex type.
+ * <p>Classe Java pour relanceWS complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="exemplaireWS">
+ * &lt;complexType name="relanceWS">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="ouvrage" type="{http://biblio.io/api/biblio-web-service}ouvrageWS"/>
+ *         &lt;element name="pret" type="{http://biblio.io/api/biblio-web-service}pretWS"/>
+ *         &lt;element name="dateFin" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,15 +40,20 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "exemplaireWS", propOrder = {
+@XmlType(name = "relanceWS", propOrder = {
     "id",
-    "ouvrage"
+    "pret",
+    "dateFin"
 })
-public class ExemplaireWS {
+public class RelanceWS {
 
     protected int id;
     @XmlElement(required = true)
-    protected OuvrageWS ouvrage;
+    protected PretWS pret;
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlSchemaType(name = "date")
+    protected LocalDate dateFin;
 
     /**
      * Obtient la valeur de la propriété id.
@@ -62,27 +72,51 @@ public class ExemplaireWS {
     }
 
     /**
-     * Obtient la valeur de la propriété ouvrage.
+     * Obtient la valeur de la propriété pret.
      * 
      * @return
      *     possible object is
-     *     {@link OuvrageWS }
+     *     {@link PretWS }
      *     
      */
-    public OuvrageWS getOuvrage() {
-        return ouvrage;
+    public PretWS getPret() {
+        return pret;
     }
 
     /**
-     * Définit la valeur de la propriété ouvrage.
+     * Définit la valeur de la propriété pret.
      * 
      * @param value
      *     allowed object is
-     *     {@link OuvrageWS }
+     *     {@link PretWS }
      *     
      */
-    public void setOuvrage(OuvrageWS value) {
-        this.ouvrage = value;
+    public void setPret(PretWS value) {
+        this.pret = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété dateFin.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public LocalDate getDateFin() {
+        return dateFin;
+    }
+
+    /**
+     * Définit la valeur de la propriété dateFin.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDateFin(LocalDate value) {
+        this.dateFin = value;
     }
 
 }

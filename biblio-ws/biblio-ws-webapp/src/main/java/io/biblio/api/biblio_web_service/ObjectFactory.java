@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2018.11.25 à 07:54:27 PM CET 
+// Généré le : 2018.11.26 à 12:02:25 AM CET 
 //
 
 
@@ -109,6 +109,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetRelanceByIdRequest }
+     * 
+     */
+    public GetRelanceByIdRequest createGetRelanceByIdRequest() {
+        return new GetRelanceByIdRequest();
+    }
+
+    /**
      * Create an instance of {@link GetUsagerCreateResponse }
      * 
      */
@@ -157,6 +165,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetRelanceCreateResponse }
+     * 
+     */
+    public GetRelanceCreateResponse createGetRelanceCreateResponse() {
+        return new GetRelanceCreateResponse();
+    }
+
+    /**
+     * Create an instance of {@link RelanceWS }
+     * 
+     */
+    public RelanceWS createRelanceWS() {
+        return new RelanceWS();
+    }
+
+    /**
      * Create an instance of {@link GetExemplaireByBookRequest }
      * 
      */
@@ -181,11 +205,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetRelanceByUsagerResponse }
+     * 
+     */
+    public GetRelanceByUsagerResponse createGetRelanceByUsagerResponse() {
+        return new GetRelanceByUsagerResponse();
+    }
+
+    /**
      * Create an instance of {@link GetExemplaireByIdRequest }
      * 
      */
     public GetExemplaireByIdRequest createGetExemplaireByIdRequest() {
         return new GetExemplaireByIdRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetRelanceByPretResponse }
+     * 
+     */
+    public GetRelanceByPretResponse createGetRelanceByPretResponse() {
+        return new GetRelanceByPretResponse();
     }
 
     /**
@@ -226,6 +266,22 @@ public class ObjectFactory {
      */
     public GetUsagerByEmailRequest createGetUsagerByEmailRequest() {
         return new GetUsagerByEmailRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetRelanceByIdResponse }
+     * 
+     */
+    public GetRelanceByIdResponse createGetRelanceByIdResponse() {
+        return new GetRelanceByIdResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetRelanceByUsagereRequest }
+     * 
+     */
+    public GetRelanceByUsagereRequest createGetRelanceByUsagereRequest() {
+        return new GetRelanceByUsagereRequest();
     }
 
     /**
@@ -277,11 +333,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetRelanceByPretRequest }
+     * 
+     */
+    public GetRelanceByPretRequest createGetRelanceByPretRequest() {
+        return new GetRelanceByPretRequest();
+    }
+
+    /**
      * Create an instance of {@link GetPretByIdRequest }
      * 
      */
     public GetPretByIdRequest createGetPretByIdRequest() {
         return new GetPretByIdRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetRelanceRequest }
+     * 
+     */
+    public GetRelanceRequest createGetRelanceRequest() {
+        return new GetRelanceRequest();
     }
 
     /**
@@ -306,6 +378,22 @@ public class ObjectFactory {
      */
     public GetExemplaireByIdResponse createGetExemplaireByIdResponse() {
         return new GetExemplaireByIdResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetRelanceResponse }
+     * 
+     */
+    public GetRelanceResponse createGetRelanceResponse() {
+        return new GetRelanceResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetRelanceCreateRequest }
+     * 
+     */
+    public GetRelanceCreateRequest createGetRelanceCreateRequest() {
+        return new GetRelanceCreateRequest();
     }
 
     /**

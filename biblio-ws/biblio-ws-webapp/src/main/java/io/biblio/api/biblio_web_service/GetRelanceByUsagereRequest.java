@@ -10,6 +10,7 @@ package io.biblio.api.biblio_web_service;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -23,6 +24,9 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="usager" type="{http://biblio.io/api/biblio-web-service}usagerWS"/>
+ *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -31,9 +35,37 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
-@XmlRootElement(name = "getPretsRequest")
-public class GetPretsRequest {
+@XmlType(name = "", propOrder = {
+    "usager"
+})
+@XmlRootElement(name = "getRelanceByUsagereRequest")
+public class GetRelanceByUsagereRequest {
 
+    @XmlElement(required = true)
+    protected UsagerWS usager;
+
+    /**
+     * Obtient la valeur de la propriété usager.
+     * 
+     * @return
+     *     possible object is
+     *     {@link UsagerWS }
+     *     
+     */
+    public UsagerWS getUsager() {
+        return usager;
+    }
+
+    /**
+     * Définit la valeur de la propriété usager.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link UsagerWS }
+     *     
+     */
+    public void setUsager(UsagerWS value) {
+        this.usager = value;
+    }
 
 }

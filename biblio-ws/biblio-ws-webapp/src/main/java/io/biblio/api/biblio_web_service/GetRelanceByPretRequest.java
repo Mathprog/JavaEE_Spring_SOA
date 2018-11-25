@@ -10,6 +10,7 @@ package io.biblio.api.biblio_web_service;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -23,6 +24,9 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="pret" type="{http://biblio.io/api/biblio-web-service}pretWS"/>
+ *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -31,9 +35,37 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
-@XmlRootElement(name = "getPretsRequest")
-public class GetPretsRequest {
+@XmlType(name = "", propOrder = {
+    "pret"
+})
+@XmlRootElement(name = "getRelanceByPretRequest")
+public class GetRelanceByPretRequest {
 
+    @XmlElement(required = true)
+    protected PretWS pret;
+
+    /**
+     * Obtient la valeur de la propriété pret.
+     * 
+     * @return
+     *     possible object is
+     *     {@link PretWS }
+     *     
+     */
+    public PretWS getPret() {
+        return pret;
+    }
+
+    /**
+     * Définit la valeur de la propriété pret.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link PretWS }
+     *     
+     */
+    public void setPret(PretWS value) {
+        this.pret = value;
+    }
 
 }

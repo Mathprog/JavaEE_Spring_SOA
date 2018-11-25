@@ -66,6 +66,16 @@ public class WSConfig extends WsConfigurerAdapter {
         return wsdl11Definition;
     }
 
+    @Bean(name = "relances")
+    public DefaultWsdl11Definition defaultWsdl11ll11Definition(XsdSchemaCollection relancesSchema) {
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("RelancesPort");
+        wsdl11Definition.setLocationUri("/soapws");
+        wsdl11Definition.setTargetNamespace("http://biblio.io/api/biblio-web-service");
+        wsdl11Definition.setSchemaCollection(relancesSchema);
+        return wsdl11Definition;
+    }
+
     @Bean
     public XsdSchemaCollection usagerSchema() {
         CommonsXsdSchemaCollection xsds = new CommonsXsdSchemaCollection(
@@ -102,6 +112,17 @@ public class WSConfig extends WsConfigurerAdapter {
                 new ClassPathResource("WS-XSD/usager.xsd"),
                 new ClassPathResource("WS-XSD/pret.xsd"),
                 new ClassPathResource("WS-XSD/pret-method.xsd"));
+        xsds.setInline(true);
+        return xsds;
+    }
+
+    @Bean
+    public XsdSchemaCollection relancesSchema() {
+        CommonsXsdSchemaCollection xsds = new CommonsXsdSchemaCollection(
+                new ClassPathResource("WS-XSD/pret.xsd"),
+                new ClassPathResource("WS-XSD/relance.xsd"),
+                new ClassPathResource("WS-XSD/usager.xsd"),
+                new ClassPathResource("WS-XSD/relance-method.xsd"));
         xsds.setInline(true);
         return xsds;
 

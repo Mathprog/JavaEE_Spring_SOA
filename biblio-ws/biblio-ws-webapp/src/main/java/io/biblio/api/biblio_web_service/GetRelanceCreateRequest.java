@@ -8,11 +8,15 @@
 
 package io.biblio.api.biblio_web_service;
 
+import java.time.LocalDate;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import org.w3._2001.xmlschema.Adapter1;
 
 
 /**
@@ -25,7 +29,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="titre" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="pret" type="{http://biblio.io/api/biblio-web-service}pretWS"/>
+ *         &lt;element name="dateFin" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,36 +41,65 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "titre"
+    "pret",
+    "dateFin"
 })
-@XmlRootElement(name = "getOuvrageCreateRequest")
-public class GetOuvrageCreateRequest {
+@XmlRootElement(name = "getRelanceCreateRequest")
+public class GetRelanceCreateRequest {
 
     @XmlElement(required = true)
-    protected String titre;
+    protected PretWS pret;
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlSchemaType(name = "date")
+    protected LocalDate dateFin;
 
     /**
-     * Obtient la valeur de la propriété titre.
+     * Obtient la valeur de la propriété pret.
+     * 
+     * @return
+     *     possible object is
+     *     {@link PretWS }
+     *     
+     */
+    public PretWS getPret() {
+        return pret;
+    }
+
+    /**
+     * Définit la valeur de la propriété pret.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link PretWS }
+     *     
+     */
+    public void setPret(PretWS value) {
+        this.pret = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété dateFin.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getTitre() {
-        return titre;
+    public LocalDate getDateFin() {
+        return dateFin;
     }
 
     /**
-     * Définit la valeur de la propriété titre.
+     * Définit la valeur de la propriété dateFin.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setTitre(String value) {
-        this.titre = value;
+    public void setDateFin(LocalDate value) {
+        this.dateFin = value;
     }
 
 }
