@@ -2,7 +2,6 @@
            targetNamespace="http://biblio.io/api/biblio-web-service" elementFormDefault="qualified">
 
     <xs:include schemaLocation="relance.xsd"/>
-    <xs:include schemaLocation="usager.xsd"/>
 
     <!--
      ============== GET RELANCE BY ID ===================
@@ -86,7 +85,7 @@
    ============== GET RELANCE BY USAGER ===================
    -->
 
-    <xs:element name="getRelanceByUsagereRequest">
+    <xs:element name="getRelanceByUsagerRequest">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="usager" type="tns:usagerWS"/>
@@ -97,7 +96,7 @@
     <xs:element name="getRelanceByUsagerResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="relance" type="tns:relanceWS"/>
+                <xs:element name="relance" type="tns:relanceWS" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

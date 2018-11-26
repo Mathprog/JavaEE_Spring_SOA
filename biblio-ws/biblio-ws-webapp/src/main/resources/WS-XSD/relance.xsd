@@ -10,7 +10,14 @@
     <xs:complexType name="relanceWS">
         <xs:sequence>
             <xs:element name="id" type="xs:int"/>
-            <xs:element name="pret" type="tns:pretWS"/>
+            <xs:element name="pret" type="tns:pretWS" minOccurs="0"/>
+            <xs:element name="dateFin" type="xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="relanceWSAlone">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
             <xs:element name="dateFin" type="xs:date"/>
         </xs:sequence>
     </xs:complexType>

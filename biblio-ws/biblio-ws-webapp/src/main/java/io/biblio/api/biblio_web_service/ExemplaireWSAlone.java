@@ -10,22 +10,20 @@ package io.biblio.api.biblio_web_service;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour anonymous complex type.
+ * <p>Classe Java pour exemplaireWSAlone complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType>
+ * &lt;complexType name="exemplaireWSAlone">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="ouvrageWS" type="{http://biblio.io/api/biblio-web-service}ouvrageWS"/>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,37 +33,27 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "ouvrageWS"
+@XmlType(name = "exemplaireWSAlone", propOrder = {
+    "id"
 })
-@XmlRootElement(name = "getOuvrageCreateResponse")
-public class GetOuvrageCreateResponse {
+public class ExemplaireWSAlone {
 
-    @XmlElement(required = true)
-    protected OuvrageWS ouvrageWS;
+    protected int id;
 
     /**
-     * Obtient la valeur de la propriété ouvrageWS.
+     * Obtient la valeur de la propriété id.
      * 
-     * @return
-     *     possible object is
-     *     {@link OuvrageWS }
-     *     
      */
-    public OuvrageWS getOuvrageWS() {
-        return ouvrageWS;
+    public int getId() {
+        return id;
     }
 
     /**
-     * Définit la valeur de la propriété ouvrageWS.
+     * Définit la valeur de la propriété id.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link OuvrageWS }
-     *     
      */
-    public void setOuvrageWS(OuvrageWS value) {
-        this.ouvrageWS = value;
+    public void setId(int value) {
+        this.id = value;
     }
 
 }

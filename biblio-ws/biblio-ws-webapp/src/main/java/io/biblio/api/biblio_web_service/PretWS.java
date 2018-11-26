@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2018.11.26 à 12:02:25 AM CET 
+// Généré le : 2018.11.26 à 07:44:56 PM CET 
 //
 
 
@@ -29,8 +29,8 @@ import org.w3._2001.xmlschema.Adapter1;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="exemplaire" type="{http://biblio.io/api/biblio-web-service}exemplaireWS"/>
- *         &lt;element name="ouvrage" type="{http://biblio.io/api/biblio-web-service}ouvrageWS"/>
+ *         &lt;element name="exemplaire" type="{http://biblio.io/api/biblio-web-service}exemplaireWS" minOccurs="0"/>
+ *         &lt;element name="ouvrage" type="{http://biblio.io/api/biblio-web-service}ouvrageWS" minOccurs="0"/>
  *         &lt;element name="datePret" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="dateFin" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *       &lt;/sequence>
@@ -52,9 +52,7 @@ import org.w3._2001.xmlschema.Adapter1;
 public class PretWS {
 
     protected int id;
-    @XmlElement(required = true)
     protected ExemplaireWS exemplaire;
-    @XmlElement(required = true)
     protected OuvrageWS ouvrage;
     @XmlElement(required = true, type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)

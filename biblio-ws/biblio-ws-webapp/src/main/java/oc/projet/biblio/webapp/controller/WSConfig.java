@@ -119,9 +119,9 @@ public class WSConfig extends WsConfigurerAdapter {
     @Bean
     public XsdSchemaCollection relancesSchema() {
         CommonsXsdSchemaCollection xsds = new CommonsXsdSchemaCollection(
+                new ClassPathResource("WS-XSD/usager.xsd"),
                 new ClassPathResource("WS-XSD/pret.xsd"),
                 new ClassPathResource("WS-XSD/relance.xsd"),
-                new ClassPathResource("WS-XSD/usager.xsd"),
                 new ClassPathResource("WS-XSD/relance-method.xsd"));
         xsds.setInline(true);
         return xsds;

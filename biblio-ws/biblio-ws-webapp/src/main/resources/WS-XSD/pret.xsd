@@ -11,8 +11,16 @@
     <xs:complexType name="pretWS">
         <xs:sequence>
             <xs:element name="id" type="xs:int"/>
-            <xs:element name="exemplaire" type="tns:exemplaireWS"/>
-            <xs:element name="ouvrage" type="tns:ouvrageWS"/>
+            <xs:element name="exemplaire" type="tns:exemplaireWS" minOccurs="0"/>
+            <xs:element name="ouvrage" type="tns:ouvrageWS" minOccurs="0"/>
+            <xs:element name="datePret" type="xs:date" />
+            <xs:element name="dateFin" type="xs:date" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="pretWSAlone">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
             <xs:element name="datePret" type="xs:date" />
             <xs:element name="dateFin" type="xs:date" />
         </xs:sequence>

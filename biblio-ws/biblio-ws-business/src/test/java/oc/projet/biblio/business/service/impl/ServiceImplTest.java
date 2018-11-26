@@ -79,8 +79,8 @@ public class ServiceImplTest {
         String email = "mathieu-martin";
         Usager  usagerFound = usagerService.findUsagerByEmail(email);
         assertNull(usagerFound);
-        usagerFound = usagerService.find(37);
-        assertNotNull(usagerFound);
+        /*usagerFound = usagerService.find(37);
+        assertNotNull(usagerFound);*/
     }
 
     @Test
