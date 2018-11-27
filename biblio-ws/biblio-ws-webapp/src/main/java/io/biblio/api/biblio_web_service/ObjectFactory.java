@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2018.11.26 à 07:44:56 PM CET 
+// Généré le : 2018.11.27 à 06:40:22 PM CET 
 //
 
 
@@ -133,6 +133,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetOuvrageCreateRequest }
+     * 
+     */
+    public GetOuvrageCreateRequest createGetOuvrageCreateRequest() {
+        return new GetOuvrageCreateRequest();
+    }
+
+    /**
      * Create an instance of {@link GetPretByExemplaireResponse }
      * 
      */
@@ -146,14 +154,6 @@ public class ObjectFactory {
      */
     public PretWS createPretWS() {
         return new PretWS();
-    }
-
-    /**
-     * Create an instance of {@link GetOuvrageCreateRequest }
-     * 
-     */
-    public GetOuvrageCreateRequest createGetOuvrageCreateRequest() {
-        return new GetOuvrageCreateRequest();
     }
 
     /**
@@ -237,19 +237,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetOuvrageResponse }
-     * 
-     */
-    public GetOuvrageResponse createGetOuvrageResponse() {
-        return new GetOuvrageResponse();
-    }
-
-    /**
      * Create an instance of {@link GetUsagerResponse }
      * 
      */
     public GetUsagerResponse createGetUsagerResponse() {
         return new GetUsagerResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetOuvrageResponse }
+     * 
+     */
+    public GetOuvrageResponse createGetOuvrageResponse() {
+        return new GetOuvrageResponse();
     }
 
     /**
@@ -293,6 +293,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetUsagerByEmailResponse }
+     * 
+     */
+    public GetUsagerByEmailResponse createGetUsagerByEmailResponse() {
+        return new GetUsagerByEmailResponse();
+    }
+
+    /**
      * Create an instance of {@link GetPretCreateRequest }
      * 
      */
@@ -306,14 +314,6 @@ public class ObjectFactory {
      */
     public GetPretCreateResponse createGetPretCreateResponse() {
         return new GetPretCreateResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetUsagerByEmailResponse }
-     * 
-     */
-    public GetUsagerByEmailResponse createGetUsagerByEmailResponse() {
-        return new GetUsagerByEmailResponse();
     }
 
     /**
@@ -357,19 +357,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetPretByUsagerResponse }
-     * 
-     */
-    public GetPretByUsagerResponse createGetPretByUsagerResponse() {
-        return new GetPretByUsagerResponse();
-    }
-
-    /**
      * Create an instance of {@link GetUsagerRequest }
      * 
      */
     public GetUsagerRequest createGetUsagerRequest() {
         return new GetUsagerRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetPretByUsagerResponse }
+     * 
+     */
+    public GetPretByUsagerResponse createGetPretByUsagerResponse() {
+        return new GetPretByUsagerResponse();
     }
 
     /**

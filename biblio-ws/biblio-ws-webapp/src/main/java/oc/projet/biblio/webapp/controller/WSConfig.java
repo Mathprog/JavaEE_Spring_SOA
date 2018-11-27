@@ -25,7 +25,7 @@ public class WSConfig extends WsConfigurerAdapter {
         return new ServletRegistrationBean(servlet, "/soapws/*");
     }
 
-    @Bean(name = "usagers")
+    /*@Bean(name = "usagers")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchemaCollection usagerSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("UsagersPort");
@@ -73,19 +73,30 @@ public class WSConfig extends WsConfigurerAdapter {
         wsdl11Definition.setLocationUri("/soapws");
         wsdl11Definition.setTargetNamespace("http://biblio.io/api/biblio-web-service");
         wsdl11Definition.setSchemaCollection(relancesSchema);
+
+        return wsdl11Definition;
+    }*/
+
+    @Bean(name = "bibliosoap")
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema biblioSOAPSchema) {
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("BibliosoapPort");
+        wsdl11Definition.setLocationUri("/soapws");
+        wsdl11Definition.setTargetNamespace("http://biblio.io/api/biblio-web-service");
+        wsdl11Definition.setSchema(biblioSOAPSchema);
         return wsdl11Definition;
     }
 
-    @Bean
+   /* @Bean
     public XsdSchemaCollection usagerSchema() {
         CommonsXsdSchemaCollection xsds = new CommonsXsdSchemaCollection(
-                new ClassPathResource("WS-XSD/usager.xsd"),
-                new ClassPathResource("WS-XSD/usager-method.xsd"));
+                new ClassPathResource("XSD-BACKUP/usager.xsd"),
+                new ClassPathResource("XSD-BACKUP/usager-method.xsd"));
         xsds.setInline(true);
         return  xsds;
-    }
+    }*/
 
-    @Bean
+    /*@Bean
     public XsdSchemaCollection ouvragesSchema() {
         CommonsXsdSchemaCollection xsds = new CommonsXsdSchemaCollection(
                 new ClassPathResource("WS-XSD/ouvrage.xsd"),
@@ -126,5 +137,10 @@ public class WSConfig extends WsConfigurerAdapter {
         xsds.setInline(true);
         return xsds;
 
+    }*/
+
+    @Bean
+    public XsdSchema biblioSOAPSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("WS-XSD/biblio_soap.xsd"));
     }
 }

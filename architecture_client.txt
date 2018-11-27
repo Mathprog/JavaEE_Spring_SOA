@@ -1,11 +1,11 @@
-mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart DarchetypeVersion=1.1 -DgroupId=oc.projet.biblio.client -DartifactId=biblio-client -Dversion=1.0-SNAPSHOT
+mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.1 -DgroupId=oc.projet.biblio.client -DartifactId=biblio-client -Dversion=1.0-SNAPSHOT
 
 ## module : ticket-batch
 mvn -B archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.1 -DgroupId=oc.projet.biblio.client -DartifactId=biblio-client-batch -Dpackage=oc.projet.biblio.client.batch
 
 ## module : ticket-webapp
 ## Remarquez ici l'utilisation de l'archetype "webapp"
-mvn -B archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-webapp -DgroupId=oc.projet.biblio -DartifactId=biblio-client-webapp -Dpackage=oc.projet.biblio.client.webapp
+mvn -B archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-webapp -DgroupId=oc.projet.biblio.client -DartifactId=biblio-client-webapp -Dpackage=oc.projet.biblio.client.webapp
 
 ## module : ticket-business
 mvn -B archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.1 -DgroupId=oc.projet.biblio.client -DartifactId=biblio-client-business -Dpackage=oc.projet.biblio.client.business
@@ -15,3 +15,5 @@ mvn -B archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -Darche
 
 ## module : ticket-model
 mvn -B archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.1 -DgroupId=oc.projet.biblio.client -DartifactId=biblio-client-model -Dpackage=oc.projet.biblio.client.model
+
+mvn clean install -Djavax.xml.accessExternalSchema=all -DskipTests

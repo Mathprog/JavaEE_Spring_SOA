@@ -12,9 +12,55 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <maven.compiler.source>1.8</maven.compiler.source>
+      <maven.compiler.target>1.8</maven.compiler.target>
+      <jersey.version>2.26</jersey.version>
   </properties>
 
+  <modules>
+    <module>biblio-client-batch</module>
+    <module>biblio-client-webapp</module>
+    <module>biblio-client-business</module>
+    <module>biblio-client-consumer</module>
+    <module>biblio-client-model</module>
+  </modules>
+
+  <!-- =============================================================== -->
+  <!-- Gestion des dépendances -->
+  <!-- =============================================================== -->
+  <dependencyManagement>
   <dependencies>
+
+    <!-- ===== Modules ===== -->
+    <dependency>
+      <groupId>oc.projet.biblio.client</groupId>
+      <artifactId>biblio-client-batch</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>oc.projet.biblio.client</groupId>
+      <artifactId>biblio-client-webapp</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>oc.projet.biblio.client</groupId>
+      <artifactId>biblio-client-business</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>oc.projet.biblio.client</groupId>
+      <artifactId>biblio-client-consumer</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>oc.projet.biblio.client</groupId>
+      <artifactId>biblio-client-model</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+
+
+
+
     <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -35,13 +81,10 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <modules>
-    <module>biblio-client-batch</module>
-    <module>biblio-client-webapp</module>
-    <module>biblio-client-business</module>
-    <module>biblio-client-consumer</module>
-    <module>biblio-client-model</module>
-  </modules>
+
+  </dependencyManagement>
+
+
 
 
 
@@ -50,28 +93,7 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-      <!-- tag::wsdl[] -->
-      <plugin>
-        <groupId>org.jvnet.jaxb2.maven2</groupId>
-        <artifactId>maven-jaxb2-plugin</artifactId>
-        <version>0.12.3</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <schemaLanguage>WSDL</schemaLanguage>
-          <generatePackage>hello.wsdl</generatePackage>
-          <schemas>
-            <schema>
-              <url>http://localhost:8080/ws/countries.wsdl</url>
-            </schema>
-          </schemas>
-        </configuration>
+        <version>2.1.0.RELEASE</version>
       </plugin>
       <!-- end::wsdl[] -->
     </plugins>

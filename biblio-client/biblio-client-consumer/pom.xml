@@ -15,9 +15,9 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+
+
   <dependencies>
-
-
     <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -47,9 +47,10 @@
       <plugin>
         <groupId>org.jvnet.jaxb2.maven2</groupId>
         <artifactId>maven-jaxb2-plugin</artifactId>
-        <version>0.12.3</version>
+        <version>0.13.1</version>
         <executions>
           <execution>
+            <id>generate-relances</id>
             <goals>
               <goal>generate</goal>
             </goals>
@@ -57,12 +58,14 @@
         </executions>
         <configuration>
           <schemaLanguage>WSDL</schemaLanguage>
-          <generatePackage>hello.wsdl</generatePackage>
+          <generatePackage>bibliosoap.wsdl</generatePackage>
           <schemas>
             <schema>
-              <url>http://localhost:8080/ws/countries.wsdl</url>
+              <url>http://localhost:8080/soapws/bibliosoap.wsdl</url>
             </schema>
           </schemas>
+          <generateDirectory>${project.basedir}/src/main/java</generateDirectory>
+          <generatePackage>oc.projet.biblio.client.consumer.wsclient</generatePackage>
         </configuration>
       </plugin>
       <!-- end::wsdl[] -->
