@@ -1,5 +1,6 @@
 package oc.projet.biblio.client.consumer;
 
+import oc.projet.biblio.client.consumer.ws.ExemplaireClient;
 import oc.projet.biblio.client.consumer.ws.OuvrageClient;
 import oc.projet.biblio.client.consumer.ws.UsagerClient;
 import org.springframework.context.annotation.Bean;
@@ -34,6 +35,15 @@ public class ClientWSConfiguration {
         ouvrageClient.setMarshaller(marshaller);
         ouvrageClient.setUnmarshaller(marshaller);
         return ouvrageClient;
+    }
+
+    @Bean
+    public ExemplaireClient exemplaireClient(Jaxb2Marshaller marshaller){
+        ExemplaireClient exemplaireClient = new ExemplaireClient();
+        exemplaireClient.setDefaultUri("http://localhost:8080/soapws");
+        exemplaireClient.setMarshaller(marshaller);
+        exemplaireClient.setUnmarshaller(marshaller);
+        return exemplaireClient;
     }
 
 }

@@ -2,6 +2,7 @@ package oc.projet.biblio.client.consumer;
 
 import oc.projet.biblio.client.consumer.generated.*;
 
+import oc.projet.biblio.client.consumer.ws.ExemplaireClient;
 import oc.projet.biblio.client.consumer.ws.OuvrageClient;
 import oc.projet.biblio.client.consumer.ws.UsagerClient;
 import org.springframework.boot.CommandLineRunner;
@@ -38,7 +39,7 @@ public class App
             GetUsagerByEmailResponse responseUsagerByEmail = quoteClient.getUsagerByEmailClientRequest(email);
             System.err.println("Usager trouvé avec l'email : " + email + " / Usager id = " + responseUsagerByEmail.getUsagerWS().getId() + " email = " + responseUsagerByEmail.getUsagerWS().getEmail());
 
-            String email_create = "mathieu-martinez-client2";
+            String email_create = "mathieu-martinez-client3";
             GetUsagerCreateResponse responseCreateUsager = quoteClient.getUsagerCreateClientRequest(email_create);
             System.err.println("Usager crée avec l'email : " + email_create + " / Usager id = " +
                     responseCreateUsager.getUsagerWS().getId() + " email = " +
@@ -64,6 +65,27 @@ public class App
             String titre_create = "Client Spring Framework SOAP";
             GetOuvrageCreateResponse ouvrageCreateResponse = quoteClient.getOuvrageCreateClientRequest(titre_create);
             System.err.println(" Ouvrage crée : id : " + ouvrageCreateResponse.getOuvrageWS().getId() + " titre : " + ouvrageCreateResponse.getOuvrageWS().getTitre());
+
+        };
+    }
+
+    @Bean
+    CommandLineRunner lookup3(ExemplaireClient quoteClientExemplaire, OuvrageClient quoteClientOuvrage) {
+        return args -> {
+            GetExemplaireResponse exemplaireResponse = quoteClientExemplaire.getExemplaireClientRequest();
+            System.err.println("Nombre d'exemplaires dans la BDD : " + exemplaireResponse.getExemplaireWS().size());
+
+            int id = 521;
+            GetExemplaireByIdResponse exemplaireByIdResponse = quoteClientExemplaire.getExemplaireByIdCLientRequest(id);
+            System.err.println("Exemplaire trouvé avec l'id : " + id + " id = " + exemplaireByIdResponse.getExemplaireWS().getId());
+
+            String titre = "Spring Framework";
+            OuvrageWS ouvrage = quoteClientOuvrage.getOuvrageByTitreClientRequest(titre).getOuvrageWS().get(0);
+            GetExemplaireByBookResponse exemplaireByBookResponse = quoteClientExemplaire.getExemplaireByBookCLientRequest(ouvrage);
+            System.err.println("Exemplaire trouvé avec l'ouvrage : " + ouvrage.getTitre() + ". Exemplaire id = " + exemplaireByBookResponse.getExemplaireWS().get(0).getId());
+
+            GetExemplaireCreateResponse exemplaireCreateResponse = quoteClientExemplaire.getExemplaireCreateClientRequest(ouvrage);
+            System.err.println(" Exemplaire crée : id : " + exemplaireCreateResponse.getExemplaireWS().getId());
 
         };
     }
