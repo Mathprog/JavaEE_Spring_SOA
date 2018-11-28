@@ -1,4 +1,9 @@
 package oc.projet.biblio.client.consumer.ws;
 
-public class ExemplaireClient {
+import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
+
+public class ExemplaireClient extends WebServiceGatewaySupport {
+
+
+    
 }
