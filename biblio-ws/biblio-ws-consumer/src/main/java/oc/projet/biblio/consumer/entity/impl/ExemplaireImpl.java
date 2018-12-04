@@ -24,7 +24,14 @@ import javax.persistence.*;
                 name = ExemplaireImpl.QN.FIND_BY_PRET,
                 query = "SELECT e FROM ExemplaireImpl e " +
                         "WHERE e.pret = :pret"
-        )
+        ),
+         @NamedQuery(
+                 name = ExemplaireImpl.QN.FIND_ALL_BY_USAGER,
+                 query = "SELECT e FROM ExemplaireImpl e " +
+                         "JOIN e.pret p " +
+                         "JOIN p.usager u " +
+                         "WHERE u = :usager"
+         )
 })
 
 @Entity
@@ -35,6 +42,7 @@ public class ExemplaireImpl implements Exemplaire {
         public static final String FIND_ALL = "ExemplaireImpl.findAll";
         public static final String FIND_ALL_BY_BOOKS = "ExemplaireImpl.findAllByBooks";
         public static final String FIND_BY_PRET = "ExemplaireImpl.findByPret";
+        public static final String FIND_ALL_BY_USAGER = "ExemplaireImpl.findAllByUsager";
 
     }
 

@@ -3,6 +3,7 @@ package oc.projet.biblio.business.service.impl;
 
 import oc.projet.biblio.business.service.ExemplaireService;
 import oc.projet.biblio.model.entity.Pret;
+import oc.projet.biblio.model.entity.Usager;
 import oc.projet.biblio.model.repository.ExemplaireRepository;
 import oc.projet.biblio.model.entity.Exemplaire;
 import oc.projet.biblio.model.entity.Ouvrage;
@@ -58,5 +59,11 @@ public class ExemplaireServiceImpl implements ExemplaireService {
     public List<Exemplaire> findAllByBook(Ouvrage ouvrage){
         logger.info("Method findAllByBook() : With Ouvrage : id = "+ ouvrage.getId() + " titre : " + ouvrage.getTitre());
         return this.exemplaireRepository.findAllByOuvrage(ouvrage);
+    }
+
+
+    @Override
+    public List<Exemplaire> findAllByUsager(Usager usager){
+        return this.exemplaireRepository.findAllByUsager(usager);
     }
 }

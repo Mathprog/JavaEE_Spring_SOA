@@ -41,21 +41,20 @@ public class ServiceImplTest {
     @Autowired
     private RelanceService relanceService;
 
-    /*@Test
+    @Test
     @Rollback(false)
-    public void populateBdd()
-    {
+    public void populateBdd() {
         String email = "mathieu-martinez";
         String titre = "Spring Framework";
         Usager usager = usagerService.createUsager(email);
         /*
             Ouvrage non disponible
-         * /
+         */
         Ouvrage ouvrage = ouvrageService.createOuvrate(titre);
 
         /*
             Ouvrage avec 1 pret et 1 disponible.
-         * /
+         */
         Ouvrage ouvrage2 = ouvrageService.createOuvrate("Spring Framework 2");
         Exemplaire exemplaire = exemplaireService.createExemplaire(ouvrage);
         Exemplaire exemplaire2 = exemplaireService.createExemplaire(ouvrage2);
@@ -66,21 +65,21 @@ public class ServiceImplTest {
 
         /*
          * Ouvrage avec deux exemplaires disponibles et pas de pret
-         * /
+         */
         Ouvrage ouvrageDispo = ouvrageService.createOuvrate("Ouvrage disponible");
         Exemplaire exemplaireDispo = exemplaireService.createExemplaire(ouvrageDispo);
         Exemplaire exemplaireDispo2 = exemplaireService.createExemplaire(ouvrageDispo);
 
-    }*/
+    }
 
-    @Test
+    /*@Test
     @Rollback(false)
     public void findUserByEmail_NotExisting(){
         String email = "mathieu-martin";
         Usager  usagerFound = usagerService.findUsagerByEmail(email);
         assertNull(usagerFound);
         /*usagerFound = usagerService.find(37);
-        assertNotNull(usagerFound);*/
+        assertNotNull(usagerFound);* /
     }
 
     @Test
@@ -209,9 +208,12 @@ public class ServiceImplTest {
         List<Exemplaire> exemplairesOuvrage = this.exemplaireService.findAllByBook(ouvrage);
         assertEquals(exemplairesOuvrage.size(), 1);
 
+        List<Exemplaire> exemplairesUsager = this.exemplaireService.findAllByUsager(usager);
+        assertEquals(exemplairesUsager.size(), 1);
+
         Exemplaire exemplairePret = this.exemplaireService.findByPret(pret);
         assertNotNull(exemplairePret);
-    }
+    }*/
 
 
 }

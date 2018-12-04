@@ -1,9 +1,8 @@
 package oc.projet.biblio.consumer.repository.impl;
 
-import oc.projet.biblio.model.entity.Pret;
+
+import oc.projet.biblio.model.entity.*;
 import oc.projet.biblio.model.repository.ExemplaireRepository;
-import oc.projet.biblio.model.entity.Exemplaire;
-import oc.projet.biblio.model.entity.Ouvrage;
 import oc.projet.biblio.consumer.entity.impl.ExemplaireImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -54,5 +53,10 @@ public class ExemplaireRepositoryImpl implements ExemplaireRepository {
     @Override
     public List<Exemplaire> findAllByOuvrage(Ouvrage ouvrage){
         return this.entityManager.createNamedQuery(ExemplaireImpl.QN.FIND_ALL_BY_BOOKS, Exemplaire.class).setParameter("ouvrage", ouvrage).getResultList();
+    }
+
+    @Override
+    public List<Exemplaire> findAllByUsager(Usager usager){
+        return this.entityManager.createNamedQuery(ExemplaireImpl.QN.FIND_ALL_BY_USAGER, Exemplaire.class).setParameter("usager", usager).getResultList();
     }
 }

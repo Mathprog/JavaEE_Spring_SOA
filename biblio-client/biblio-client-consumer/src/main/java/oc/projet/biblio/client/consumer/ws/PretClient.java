@@ -1,4 +1,9 @@
 package oc.projet.biblio.client.consumer.ws;
 
-public class PretClient {
+import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
+
+public class PretClient extends WebServiceGatewaySupport {
+
+
+
 }

@@ -56,7 +56,7 @@ public class UsagerEndPoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getUsagerCreateRequest")
     @ResponsePayload
-    public GetUsagerCreateResponse getUsagerCreate(@RequestPayload GetUsagerByEmailRequest request){
+    public GetUsagerCreateResponse getUsagerCreate(@RequestPayload GetUsagerCreateRequest request){
         Usager usager = this.usagerService.createUsager(request.getEmail());
         UsagerWS usagerWs = new UsagerWS();
         BeanUtils.copyProperties(usager, usagerWs);
