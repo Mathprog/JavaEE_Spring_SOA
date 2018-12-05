@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.11 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2018.12.05 à 08:54:58 AM CET 
+// Généré le : 2018.12.05 à 08:14:23 PM CET 
 //
 
 
@@ -106,6 +106,38 @@ public class ObjectFactory {
      */
     public GetUsagerByEmailResponse createGetUsagerByEmailResponse() {
         return new GetUsagerByEmailResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetUsagerByPretDateRequest }
+     * 
+     */
+    public GetUsagerByPretDateRequest createGetUsagerByPretDateRequest() {
+        return new GetUsagerByPretDateRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetUsagerByPretDateResponse }
+     * 
+     */
+    public GetUsagerByPretDateResponse createGetUsagerByPretDateResponse() {
+        return new GetUsagerByPretDateResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetUsagerByRelanceDateRequest }
+     * 
+     */
+    public GetUsagerByRelanceDateRequest createGetUsagerByRelanceDateRequest() {
+        return new GetUsagerByRelanceDateRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetUsagerByRelanceDateResponse }
+     * 
+     */
+    public GetUsagerByRelanceDateResponse createGetUsagerByRelanceDateResponse() {
+        return new GetUsagerByRelanceDateResponse();
     }
 
     /**

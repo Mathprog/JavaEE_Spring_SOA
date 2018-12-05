@@ -76,5 +76,34 @@ public class UsagerEndPoint {
         return usagerResponse;
     }
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getUsagerByPretDateRequest")
+    @ResponsePayload
+    public GetUsagerByPretDateResponse getUsagerByPretDate (){
+        List<Usager> usagerList = this.usagerService.findAllByPretDate();
+        GetUsagerByPretDateResponse usagerByPretDateResponse = new GetUsagerByPretDateResponse();
+        List<UsagerWS> usagerWSList = new ArrayList<>();
+        for(Usager usager : usagerList){
+            UsagerWS usagerWS = new UsagerWS();
+            BeanUtils.copyProperties(usager, usagerWS);
+            usagerWSList.add(usagerWS);
+        }
+        usagerByPretDateResponse.getUsagerWS().addAll(usagerWSList);
+        return usagerByPretDateResponse;
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getUsagerByRelanceDateRequest")
+    @ResponsePayload
+    public GetUsagerByRelanceDateResponse getUsagerByRelanceDate (){
+        List<Usager> usagerList = this.usagerService.findAllByRelanceDate();
+        GetUsagerByRelanceDateResponse usagerByRelanceDateResponse = new GetUsagerByRelanceDateResponse();
+        List<UsagerWS> usagerWSList = new ArrayList<>();
+        for(Usager usager : usagerList){
+            UsagerWS usagerWS = new UsagerWS();
+            BeanUtils.copyProperties(usager, usagerWS);
+            usagerWSList.add(usagerWS);
+        }
+        usagerByRelanceDateResponse.getUsagerWS().addAll(usagerWSList);
+        return usagerByRelanceDateResponse;
+    }
 
 }

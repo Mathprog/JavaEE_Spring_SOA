@@ -1,8 +1,6 @@
 package oc.projet.biblio.client.consumer;
 
-import oc.projet.biblio.client.consumer.ws.ExemplaireClient;
-import oc.projet.biblio.client.consumer.ws.OuvrageClient;
-import oc.projet.biblio.client.consumer.ws.UsagerClient;
+import oc.projet.biblio.client.consumer.ws.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
@@ -46,4 +44,21 @@ public class ClientWSConfiguration {
         return exemplaireClient;
     }
 
+    @Bean
+    public PretClient pretClient(Jaxb2Marshaller marshaller){
+        PretClient exemplaireClient = new PretClient();
+        exemplaireClient.setDefaultUri("http://localhost:8080/soapws");
+        exemplaireClient.setMarshaller(marshaller);
+        exemplaireClient.setUnmarshaller(marshaller);
+        return exemplaireClient;
+    }
+
+    @Bean
+    public RelanceClient relanceClient(Jaxb2Marshaller marshaller){
+        RelanceClient exemplaireClient = new RelanceClient();
+        exemplaireClient.setDefaultUri("http://localhost:8080/soapws");
+        exemplaireClient.setMarshaller(marshaller);
+        exemplaireClient.setUnmarshaller(marshaller);
+        return exemplaireClient;
+    }
 }

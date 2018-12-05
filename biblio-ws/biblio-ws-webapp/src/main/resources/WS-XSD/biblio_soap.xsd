@@ -166,6 +166,38 @@
         </xs:complexType>
     </xs:element>
 
+    <!--
+    ============== GET USER BY PRET DATE ===================
+    -->
+
+    <xs:element name="getUsagerByPretDateRequest">
+        <xs:complexType/>
+
+    </xs:element>
+
+    <xs:element name="getUsagerByPretDateResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="usagerWS" type="tns:usagerWS" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--
+    ============== GET USER BY RELANCE DATE ===================
+    -->
+    <xs:element name="getUsagerByRelanceDateRequest">
+        <xs:complexType/>
+    </xs:element>
+
+    <xs:element name="getUsagerByRelanceDateResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="usagerWS" type="tns:usagerWS" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
 
     <!--
     ======================================================

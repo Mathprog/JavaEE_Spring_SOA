@@ -52,4 +52,23 @@ public class UsagerClient extends WebServiceGatewaySupport {
         return usagerByIdResponse;
     }
 
+    public GetUsagerByPretDateResponse getUsagerByPretDateClientRequest (){
+        GetUsagerByPretDateRequest usagerByPretDateRequest = new GetUsagerByPretDateRequest();
+        GetUsagerByPretDateResponse usagerByPretDateResponse = (GetUsagerByPretDateResponse) getWebServiceTemplate()
+                .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", usagerByPretDateRequest,
+                        new SoapActionCallback(
+                                "http://biblio.io/api/biblio-web-service/GetUsagerByIdRequest"));
+
+        return usagerByPretDateResponse;
+    }
+
+    public GetUsagerByRelanceDateResponse usagerByRelanceDateClientRequest(){
+        GetUsagerByRelanceDateRequest usagerByRelanceDateRequest = new GetUsagerByRelanceDateRequest();
+        GetUsagerByRelanceDateResponse usagerByRelanceDateResponse = ( GetUsagerByRelanceDateResponse) getWebServiceTemplate()
+                .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", usagerByRelanceDateRequest,
+                        new SoapActionCallback(
+                                "http://biblio.io/api/biblio-web-service/GetUsagerByIdRequest"));
+        return usagerByRelanceDateResponse;
+    }
+
 }

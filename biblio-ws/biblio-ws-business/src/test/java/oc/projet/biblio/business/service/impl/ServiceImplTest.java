@@ -131,6 +131,7 @@ public class ServiceImplTest {
 
         List<Usager> usagerPretLate = this.usagerService.findAllByPretDate();
         assertEquals(usagerPretLate.size(), 1);
+        assertEquals(usagerPretLate.get(0).getEmail(), email);
         List<Usager> usagerRelanceLate = this.usagerService.findAllByRelanceDate();
         assertEquals(usagerRelanceLate.size(), 1);
         assertEquals(usagerRelanceLate.get(0).getEmail(), email);
