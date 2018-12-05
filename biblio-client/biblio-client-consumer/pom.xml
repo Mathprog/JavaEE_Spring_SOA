@@ -79,6 +79,10 @@
           </schemas>
           <generateDirectory>${project.basedir}/src/main/java</generateDirectory>
           <generatePackage>oc.projet.biblio.client.consumer.generated</generatePackage>
+          <bindingDirectory>src/main/resources/xjb</bindingDirectory>
+          <bindingIncludes>
+            <include>bindings.xjb</include>
+          </bindingIncludes>
         </configuration>
       </plugin>
       <!-- end::wsdl[] -->

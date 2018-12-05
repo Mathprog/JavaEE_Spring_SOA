@@ -78,4 +78,14 @@ public class UsagerRepositoryImpl implements UsagerRepository {
     public List<Usager> findAll(){
         return this.entityManager.createNamedQuery(UsagerImpl.QN.FIND_ALL, Usager.class).getResultList();
     }
+
+    @Override
+    public List<Usager> findAllByRelanceDate(){
+        return this.entityManager.createNamedQuery(UsagerImpl.QN.FIND_ALL_BY_RELANCE_DATE, Usager.class).getResultList();
+    }
+
+    @Override
+    public List<Usager> findAllByPretDate(){
+        return this.entityManager.createNamedQuery(UsagerImpl.QN.FIND_ALL_BY_PRET_DATE, Usager.class).getResultList();
+    }
 }

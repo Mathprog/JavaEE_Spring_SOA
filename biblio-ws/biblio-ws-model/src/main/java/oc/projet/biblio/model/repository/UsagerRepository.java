@@ -16,4 +16,9 @@ public interface UsagerRepository {
     Usager findUsager_pretsDetailsByEmail(String email);
 
     List<Usager> findAll();
+
+
+  List<Usager> findAllByRelanceDate();
+
+  List<Usager> findAllByPretDate();
 }

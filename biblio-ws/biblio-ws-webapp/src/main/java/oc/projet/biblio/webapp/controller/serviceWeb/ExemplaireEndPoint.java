@@ -4,8 +4,10 @@ package oc.projet.biblio.webapp.controller.serviceWeb;
 import io.biblio.api.biblio_web_service.*;
 import oc.projet.biblio.business.service.ExemplaireService;
 import oc.projet.biblio.consumer.entity.impl.OuvrageImpl;
+import oc.projet.biblio.consumer.entity.impl.UsagerImpl;
 import oc.projet.biblio.model.entity.Exemplaire;
 import oc.projet.biblio.model.entity.Ouvrage;
+import oc.projet.biblio.model.entity.Usager;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
@@ -70,6 +72,28 @@ public class ExemplaireEndPoint {
         for (Exemplaire exemplaire : exemplairesFound){
             ExemplaireWS exemplaireWS = new ExemplaireWS();
             BeanUtils.copyProperties(exemplaire, exemplaireWS);
+            exemplaireWS.setOuvrage(ouvrageWS);
+            exemplaireWSList.add(exemplaireWS);
+        }
+        exemplairesResponse.getExemplaireWS().addAll(exemplaireWSList);
+        return exemplairesResponse;
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getExemplaireByUsagerRequest")
+    @ResponsePayload
+    public GetExemplaireByUsagerResponse getAllExemplaireByUsager(@RequestPayload GetExemplaireByUsagerRequest request){
+        GetExemplaireByUsagerResponse exemplairesResponse = new GetExemplaireByUsagerResponse();
+        UsagerWS usagerWS = request.getUsager();
+        Usager usager = new UsagerImpl();
+        BeanUtils.copyProperties(usagerWS, usager);
+        List<Exemplaire> exemplairesFound = this.exemplaireService.findAllByUsager( usager);
+        List<ExemplaireWS> exemplaireWSList = new ArrayList<>();
+        for (Exemplaire exemplaire : exemplairesFound){
+            ExemplaireWS exemplaireWS = new ExemplaireWS();
+            OuvrageWS ouvrageWS = new OuvrageWS();
+            BeanUtils.copyProperties(exemplaire, exemplaireWS);
+            BeanUtils.copyProperties(exemplaire.getOuvrage(), ouvrageWS);
+            exemplaireWS.setOuvrage(ouvrageWS);
             exemplaireWSList.add(exemplaireWS);
         }
         exemplairesResponse.getExemplaireWS().addAll(exemplaireWSList);
@@ -86,6 +110,7 @@ public class ExemplaireEndPoint {
         Exemplaire exemplaire = this.exemplaireService.createExemplaire(ouvrage);
         ExemplaireWS exemplaireWS = new ExemplaireWS();
         BeanUtils.copyProperties(exemplaire, exemplaireWS);
+        exemplaireWS.setOuvrage(ouvrageWS);
         exemplaireResponse.setExemplaireWS(exemplaireWS);
         return exemplaireResponse;
     }

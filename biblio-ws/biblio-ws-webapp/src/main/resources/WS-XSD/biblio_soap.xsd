@@ -298,6 +298,26 @@
     </xs:element>
 
     <!--
+     ============== GET EXEMPLAIRE BY USAGER ===================
+     -->
+
+    <xs:element name="getExemplaireByUsagerRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="usager" type="tns:usagerWS"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getExemplaireByUsagerResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="exemplaireWS" type="tns:exemplaireWS" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--
      ============== GET ALL EXEMPLAIRES ===================
      -->
 

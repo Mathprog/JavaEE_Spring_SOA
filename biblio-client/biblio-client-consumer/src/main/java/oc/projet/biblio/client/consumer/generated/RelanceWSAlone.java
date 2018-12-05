@@ -2,18 +2,19 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.11 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2018.11.28 à 09:53:06 PM CET 
+// Généré le : 2018.12.05 à 08:54:58 AM CET 
 //
 
 
 package oc.projet.biblio.client.consumer.generated;
 
+import java.time.LocalDate;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
@@ -44,9 +45,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
 public class RelanceWSAlone {
 
     protected int id;
-    @XmlElement(required = true)
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar dateFin;
+    protected LocalDate dateFin;
 
     /**
      * Obtient la valeur de la propriété id.
@@ -69,10 +71,10 @@ public class RelanceWSAlone {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getDateFin() {
+    public LocalDate getDateFin() {
         return dateFin;
     }
 
@@ -81,10 +83,10 @@ public class RelanceWSAlone {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setDateFin(XMLGregorianCalendar value) {
+    public void setDateFin(LocalDate value) {
         this.dateFin = value;
     }
 

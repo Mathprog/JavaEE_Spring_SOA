@@ -48,4 +48,14 @@ public class UsagerServiceImpl implements UsagerService {
     public List<Usager> findAll(){
         return this.usagerRepository.findAll();
     }
+
+    @Override
+    public List<Usager> findAllByRelanceDate(){
+        return this.usagerRepository.findAllByRelanceDate();
+    }
+
+    @Override
+    public List<Usager> findAllByPretDate(){
+        return this.usagerRepository.findAllByPretDate();
+    }
 }

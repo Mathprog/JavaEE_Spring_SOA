@@ -53,15 +53,15 @@ SHOW CREATE TABLE javaee.exemplaire;
 SELECT * FROM javaee.exemplaire;
 SELECT * FROM javaee.pret;
 SELECT * FROM javaee.relance;
-SELECT * FROM javaee.ouvrage;
-SELECT * FROM javaee.usager;
+SELECT * FROM javaee.ouvrage;/*1056*/
+SELECT * FROM javaee.usager;/*1051*/
 
-DELETE FROM javaee.relance WHERE id BETWEEN 1 AND 100000;
-UPDATE javaee.exemplaire set pret_id = NULL  WHERE id BETWEEN 1 AND 100000;
-DELETE FROM javaee.pret WHERE id BETWEEN 1 AND 100000;
-DELETE FROM javaee.exemplaire WHERE id BETWEEN 1 AND 100000;
-DELETE FROM javaee.usager WHERE id BETWEEN 1 AND 10000;
-DELETE FROM javaee.ouvrage WHERE id BETWEEN 1 AND 10000;
+DELETE FROM javaee.relance WHERE id BETWEEN 1 AND 1000000;
+UPDATE javaee.exemplaire set pret_id = NULL  WHERE id BETWEEN 1 AND 1000000;
+DELETE FROM javaee.pret WHERE id BETWEEN 1 AND 1000000;
+DELETE FROM javaee.exemplaire WHERE id BETWEEN 1 AND 1000000;
+DELETE FROM javaee.usager WHERE id BETWEEN 1 AND 100000;
+DELETE FROM javaee.ouvrage WHERE id BETWEEN 1 AND 100000;
 
 SELECT *, COUNT(e.ouvrage_id) AS nb_ex 
 FROM javaee.ouvrage o 
@@ -91,3 +91,18 @@ ALTER TABLE javaee.relance ENGINE = InnoDB;
 ALTER TABLE javaee.exemplaire
 ADD CONSTRAINT FK_exemplaire_pret
 FOREIGN KEY (pret_id) REFERENCES javaee.pret(id);
+
+
+
+
+select usagerimpl0_.id as id1_4_, 
+email as email2_4_ 
+from javaee.usager usagerimpl0_ 
+inner join javaee.pret prets1_ on usagerimpl0_.id=prets1_.usager_id 
+where prets1_.date_fin < current_date
+and  not (exists (select relanceimp3_.id 
+from javaee.relance relanceimp3_ 
+inner join javaee.pret pretimpl4_ on relanceimp3_.pret_id=pretimpl4_.id 
+where pretimpl4_.id=prets1_.id));
+
+select distinct usagerimpl0_.id as id1_4_, usagerimpl0_.email as email2_4_ from usager usagerimpl0_ inner join pret prets1_ on usagerimpl0_.id=prets1_.usager_id inner join relance relanceimp2_ on prets1_.id=relanceimp2_.pret_id where relanceimp2_.date_fin<current_date

@@ -34,7 +34,24 @@ import java.util.Set;
                         "JOIN FETCH p.exemplaire e " +
                         "JOIN FETCH e.ouvrage o " +
                         "WHERE u.email = :email"
+        ),
+        @NamedQuery(
+                name= UsagerImpl.QN.FIND_ALL_BY_RELANCE_DATE,
+                query = "SELECT distinct u FROM UsagerImpl u " +
+                        "JOIN u.prets p " +
+                        "JOIN p.relance r " +
+                        "WHERE r.dateFin < current_date"
+        ),
+        @NamedQuery(
+                name = UsagerImpl.QN.FIND_ALL_BY_PRET_DATE,
+                query = "SELECT distinct u FROM UsagerImpl u " +
+                        "JOIN u.prets p " +
+                        "WHERE p.dateFin < current_date " +
+                        "AND NOT EXISTS (SELECT r2 FROM RelanceImpl r2 " +
+                        "JOIN r2.pret p2 " +
+                        "WHERE p2.id = p.id)"
         )
+
 
 })
 public class UsagerImpl implements Usager {
@@ -44,6 +61,8 @@ public class UsagerImpl implements Usager {
         public static final String FIND_ALL_PRETS = "UsagerImpl.findAllPrets";
         public static final String FIND_PRETS_DETAILS = "UsagerImpl.findPretsDetails";
         public static final String FIND_ALL = "UsagerImpl.findAll";
+        public static final String FIND_ALL_BY_RELANCE_DATE = "UsagerImpl.findAllByRelanceDate";
+        public static final String FIND_ALL_BY_PRET_DATE = "UsagerImpl.findAllByPretDate";
     }
 
     @Id

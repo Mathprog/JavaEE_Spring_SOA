@@ -30,6 +30,7 @@ import javax.persistence.*;
                  query = "SELECT e FROM ExemplaireImpl e " +
                          "JOIN e.pret p " +
                          "JOIN p.usager u " +
+                         "JOIN FETCH e.ouvrage " +
                          "WHERE u = :usager"
          )
 })
