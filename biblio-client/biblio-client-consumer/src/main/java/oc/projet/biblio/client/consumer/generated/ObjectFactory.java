@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.11 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2018.12.05 à 08:14:23 PM CET 
+// Généré le : 2018.12.06 à 05:10:25 PM CET 
 //
 
 
@@ -213,6 +213,38 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetOuvrageByDispoRequest }
+     * 
+     */
+    public GetOuvrageByDispoRequest createGetOuvrageByDispoRequest() {
+        return new GetOuvrageByDispoRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetOuvrageByDispoResponse }
+     * 
+     */
+    public GetOuvrageByDispoResponse createGetOuvrageByDispoResponse() {
+        return new GetOuvrageByDispoResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetOuvrageByNoDispoRequest }
+     * 
+     */
+    public GetOuvrageByNoDispoRequest createGetOuvrageByNoDispoRequest() {
+        return new GetOuvrageByNoDispoRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetOuvrageByNoDispoResponse }
+     * 
+     */
+    public GetOuvrageByNoDispoResponse createGetOuvrageByNoDispoResponse() {
+        return new GetOuvrageByNoDispoResponse();
+    }
+
+    /**
      * Create an instance of {@link GetExemplaireByIdRequest }
      * 
      */
@@ -269,6 +301,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetExemplaireByPretRequest }
+     * 
+     */
+    public GetExemplaireByPretRequest createGetExemplaireByPretRequest() {
+        return new GetExemplaireByPretRequest();
+    }
+
+    /**
+     * Create an instance of {@link PretWS }
+     * 
+     */
+    public PretWS createPretWS() {
+        return new PretWS();
+    }
+
+    /**
+     * Create an instance of {@link GetExemplaireByPretResponse }
+     * 
+     */
+    public GetExemplaireByPretResponse createGetExemplaireByPretResponse() {
+        return new GetExemplaireByPretResponse();
+    }
+
+    /**
      * Create an instance of {@link GetExemplaireRequest }
      * 
      */
@@ -314,14 +370,6 @@ public class ObjectFactory {
      */
     public GetPretByIdResponse createGetPretByIdResponse() {
         return new GetPretByIdResponse();
-    }
-
-    /**
-     * Create an instance of {@link PretWS }
-     * 
-     */
-    public PretWS createPretWS() {
-        return new PretWS();
     }
 
     /**

@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="pret" type="{http://biblio.io/api/biblio-web-service}pretWS" maxOccurs="unbounded"/&gt;
+ *         &lt;element name="ouvrageWS" type="{http://biblio.io/api/biblio-web-service}ouvrageWS" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -38,41 +38,41 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "pret"
+    "ouvrageWS"
 })
-@XmlRootElement(name = "getPretByUsagerResponse")
-public class GetPretByUsagerResponse {
+@XmlRootElement(name = "getOuvrageByDispoResponse")
+public class GetOuvrageByDispoResponse {
 
     @XmlElement(required = true)
-    protected List<PretWS> pret;
+    protected List<OuvrageWS> ouvrageWS;
 
     /**
-     * Gets the value of the pret property.
+     * Gets the value of the ouvrageWS property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the pret property.
+     * This is why there is not a <CODE>set</CODE> method for the ouvrageWS property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getPret().add(newItem);
+     *    getOuvrageWS().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link PretWS }
+     * {@link OuvrageWS }
      * 
      * 
      */
-    public List<PretWS> getPret() {
-        if (pret == null) {
-            pret = new ArrayList<PretWS>();
+    public List<OuvrageWS> getOuvrageWS() {
+        if (ouvrageWS == null) {
+            ouvrageWS = new ArrayList<OuvrageWS>();
         }
-        return this.pret;
+        return this.ouvrageWS;
     }
 
 }

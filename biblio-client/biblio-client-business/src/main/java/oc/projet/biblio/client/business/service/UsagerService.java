@@ -1,4 +1,4 @@
-package oc.projet.biblio.client.business;
+package oc.projet.biblio.client.business.service;
 
 
 
@@ -12,8 +12,6 @@ public interface UsagerService {
 
     UsagerWS createUsager(String email);
     UsagerWS findUsagerByEmail(String email);
-    UsagerWS findUsager_pretsByEmail(String email);
-    UsagerWS findUsager_pretsDetailsByEmail(String email);
 
     List<UsagerWS> findAll();
 

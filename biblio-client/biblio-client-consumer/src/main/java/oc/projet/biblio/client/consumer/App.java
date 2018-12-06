@@ -25,7 +25,7 @@ public class App
 
     }
 
-    @Bean
+   /* @Bean
     CommandLineRunner lookup(UsagerClient quoteClient) {
         return args -> {
             String email_create = "mathieu-martinez-client3";
@@ -162,5 +162,5 @@ public class App
 
 
         };
-    }
+    }*/
 }

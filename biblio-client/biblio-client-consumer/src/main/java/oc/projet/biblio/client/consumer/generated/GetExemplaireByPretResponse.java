@@ -8,14 +8,11 @@
 
 package oc.projet.biblio.client.consumer.generated;
 
-import java.time.LocalDate;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
@@ -28,8 +25,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="pret" type="{http://biblio.io/api/biblio-web-service}pretWS"/&gt;
- *         &lt;element name="dateFin" type="{http://www.w3.org/2001/XMLSchema}date"/&gt;
+ *         &lt;element name="exemplaireWS" type="{http://biblio.io/api/biblio-web-service}exemplaireWS"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -40,65 +36,36 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "pret",
-    "dateFin"
+    "exemplaireWS"
 })
-@XmlRootElement(name = "getRelanceCreateRequest")
-public class GetRelanceCreateRequest {
+@XmlRootElement(name = "getExemplaireByPretResponse")
+public class GetExemplaireByPretResponse {
 
     @XmlElement(required = true)
-    protected PretWS pret;
-    @XmlElement(required = true, type = String.class)
-    @XmlJavaTypeAdapter(Adapter1 .class)
-    @XmlSchemaType(name = "date")
-    protected LocalDate dateFin;
+    protected ExemplaireWS exemplaireWS;
 
     /**
-     * Obtient la valeur de la propriété pret.
+     * Obtient la valeur de la propriété exemplaireWS.
      * 
      * @return
      *     possible object is
-     *     {@link PretWS }
+     *     {@link ExemplaireWS }
      *     
      */
-    public PretWS getPret() {
-        return pret;
+    public ExemplaireWS getExemplaireWS() {
+        return exemplaireWS;
     }
 
     /**
-     * Définit la valeur de la propriété pret.
+     * Définit la valeur de la propriété exemplaireWS.
      * 
      * @param value
      *     allowed object is
-     *     {@link PretWS }
+     *     {@link ExemplaireWS }
      *     
      */
-    public void setPret(PretWS value) {
-        this.pret = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété dateFin.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public LocalDate getDateFin() {
-        return dateFin;
-    }
-
-    /**
-     * Définit la valeur de la propriété dateFin.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDateFin(LocalDate value) {
-        this.dateFin = value;
+    public void setExemplaireWS(ExemplaireWS value) {
+        this.exemplaireWS = value;
     }
 
 }

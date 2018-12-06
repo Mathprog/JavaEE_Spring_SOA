@@ -1,4 +1,4 @@
-package oc.projet.biblio.client.business;
+package oc.projet.biblio.client.business.service;
 
 
 
@@ -17,8 +17,6 @@ public interface ExemplaireService {
     ExemplaireWS createExemplaire(OuvrageWS ouvrage);
 
     ExemplaireWS findByPret(PretWS pret);
-
-    List<ExemplaireWS> findAll();
 
     List<ExemplaireWS> findAllByBook(OuvrageWS ouvrage);
 

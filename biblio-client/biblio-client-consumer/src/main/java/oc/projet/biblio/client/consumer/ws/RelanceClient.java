@@ -5,10 +5,12 @@ import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
 import java.time.LocalDate;
+import java.util.List;
+
 
 public class RelanceClient extends WebServiceGatewaySupport {
 
-    public GetRelanceResponse getRelanceClientResponse(){
+    public List<RelanceWS> getRelanceClientResponse(){
         GetRelanceRequest relanceRequest = new GetRelanceRequest();
 
         GetRelanceResponse relanceResponse = (GetRelanceResponse) getWebServiceTemplate()
@@ -16,10 +18,10 @@ public class RelanceClient extends WebServiceGatewaySupport {
                         new SoapActionCallback(
                                 "http://biblio.io/api/biblio-web-service/GetExemplaireRequest"));
 
-        return relanceResponse;
+        return relanceResponse.getRelance();
     }
 
-    public GetRelanceByIdResponse getRelanceByIdClientRequest (int id){
+    public RelanceWS getRelanceByIdClientRequest (int id){
         GetRelanceByIdRequest relanceByIdRequest = new GetRelanceByIdRequest();
         relanceByIdRequest.setId(id);
 
@@ -28,10 +30,10 @@ public class RelanceClient extends WebServiceGatewaySupport {
                         new SoapActionCallback(
                                 "http://biblio.io/api/biblio-web-service/GetExemplaireRequest"));
 
-        return relanceByIdResponse;
+        return relanceByIdResponse.getRelance();
     }
 
-    public GetRelanceCreateResponse getRelanceCreateClientRequest (PretWS pretWS, LocalDate datFin){
+    public RelanceWS getRelanceCreateClientRequest (PretWS pretWS, LocalDate datFin){
         GetRelanceCreateRequest relanceCreateRequest = new GetRelanceCreateRequest();
         relanceCreateRequest.setPret(pretWS);
         relanceCreateRequest.setDateFin(datFin);
@@ -41,10 +43,10 @@ public class RelanceClient extends WebServiceGatewaySupport {
                         new SoapActionCallback(
                                 "http://biblio.io/api/biblio-web-service/GetExemplaireRequest"));
 
-        return relanceCreateResponse;
+        return relanceCreateResponse.getRelance();
     }
 
-    public GetRelanceByUsagerResponse relanceByUsagerClientRequest (UsagerWS usagerWS){
+    public List<RelanceWS> relanceByUsagerClientRequest (UsagerWS usagerWS){
         GetRelanceByUsagerRequest relanceByUsagerRequest = new GetRelanceByUsagerRequest();
         relanceByUsagerRequest.setUsager(usagerWS);
 
@@ -53,6 +55,18 @@ public class RelanceClient extends WebServiceGatewaySupport {
                         new SoapActionCallback(
                                 "http://biblio.io/api/biblio-web-service/GetExemplaireRequest"));
 
-        return relanceByUsagerResponse;
+        return relanceByUsagerResponse.getRelance();
+    }
+
+    public RelanceWS getRelanceByPretClientRequest(PretWS pretWS){
+        GetRelanceByPretRequest relanceByPretRequest = new GetRelanceByPretRequest();
+        relanceByPretRequest.setPret(pretWS);
+
+        GetRelanceByPretResponse relanceByPretResponse = (GetRelanceByPretResponse) getWebServiceTemplate()
+                .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", relanceByPretRequest,
+                        new SoapActionCallback(
+                                "http://biblio.io/api/biblio-web-service/GetExemplaireRequest"));
+
+        return relanceByPretResponse.getRelance();
     }
 }

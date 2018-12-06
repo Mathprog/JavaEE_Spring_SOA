@@ -4,19 +4,21 @@ import oc.projet.biblio.client.consumer.generated.*;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
+import java.util.List;
+
 public class UsagerClient extends WebServiceGatewaySupport {
 
-    public GetUsagerResponse getUsagerClientRequest(){
+    public List<UsagerWS> getUsagerClientRequest(){
         GetUsagerRequest usagerRequest = new GetUsagerRequest();
         GetUsagerResponse responseUsager = (GetUsagerResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", usagerRequest,
                         new SoapActionCallback(
                                 "http://biblio.io/api/biblio-web-service/GetUsagerRequest"));
 
-        return responseUsager;
+        return responseUsager.getUsagerWS();
     }
 
-    public GetUsagerByEmailResponse getUsagerByEmailClientRequest(String email){
+    public UsagerWS getUsagerByEmailClientRequest(String email){
         GetUsagerByEmailRequest usagerRequest = new GetUsagerByEmailRequest();
         usagerRequest.setEmail(email);
         GetUsagerByEmailResponse usagerByEmailResponse = (GetUsagerByEmailResponse) getWebServiceTemplate()
@@ -24,10 +26,10 @@ public class UsagerClient extends WebServiceGatewaySupport {
                         new SoapActionCallback(
                                 "http://biblio.io/api/biblio-web-service/GetUsagerByEmailRequest"));
 
-        return usagerByEmailResponse;
+        return usagerByEmailResponse.getUsagerWS();
     }
 
-    public GetUsagerCreateResponse getUsagerCreateClientRequest(String email){
+    public UsagerWS getUsagerCreateClientRequest(String email){
         GetUsagerCreateRequest usagerRequest = new GetUsagerCreateRequest();
         usagerRequest.setEmail(email);
 
@@ -36,11 +38,11 @@ public class UsagerClient extends WebServiceGatewaySupport {
                         new SoapActionCallback(
                                 "http://biblio.io/api/biblio-web-service/GetUsagerCreateRequest"));
 
-        return getUsagerCreateResponse;
+        return getUsagerCreateResponse.getUsagerWS();
 
     }
 
-    public GetUsagerByIdResponse getUsagerByIdClientRequest(int id){
+    public UsagerWS getUsagerByIdClientRequest(int id){
         GetUsagerByIdRequest usagerByIdRequest = new GetUsagerByIdRequest();
         usagerByIdRequest.setId(id);
 
@@ -49,26 +51,26 @@ public class UsagerClient extends WebServiceGatewaySupport {
                         new SoapActionCallback(
                                 "http://biblio.io/api/biblio-web-service/GetUsagerByIdRequest"));
 
-        return usagerByIdResponse;
+        return usagerByIdResponse.getUsagerWS();
     }
 
-    public GetUsagerByPretDateResponse getUsagerByPretDateClientRequest (){
+    public List<UsagerWS> getUsagerByPretDateClientRequest (){
         GetUsagerByPretDateRequest usagerByPretDateRequest = new GetUsagerByPretDateRequest();
         GetUsagerByPretDateResponse usagerByPretDateResponse = (GetUsagerByPretDateResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", usagerByPretDateRequest,
                         new SoapActionCallback(
                                 "http://biblio.io/api/biblio-web-service/GetUsagerByIdRequest"));
 
-        return usagerByPretDateResponse;
+        return usagerByPretDateResponse.getUsagerWS();
     }
 
-    public GetUsagerByRelanceDateResponse usagerByRelanceDateClientRequest(){
+    public List<UsagerWS> usagerByRelanceDateClientRequest(){
         GetUsagerByRelanceDateRequest usagerByRelanceDateRequest = new GetUsagerByRelanceDateRequest();
         GetUsagerByRelanceDateResponse usagerByRelanceDateResponse = ( GetUsagerByRelanceDateResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", usagerByRelanceDateRequest,
                         new SoapActionCallback(
                                 "http://biblio.io/api/biblio-web-service/GetUsagerByIdRequest"));
-        return usagerByRelanceDateResponse;
+        return usagerByRelanceDateResponse.getUsagerWS();
     }
 
 }

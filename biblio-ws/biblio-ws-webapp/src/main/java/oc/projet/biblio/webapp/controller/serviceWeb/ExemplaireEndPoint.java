@@ -125,8 +125,12 @@ public class ExemplaireEndPoint {
         Pret pret = new PretImpl();
         BeanUtils.copyProperties(pretWS, pret);
         Exemplaire exemplaire = this.exemplaireService.findByPret(pret);
+        Ouvrage ouvrage = exemplaire.getOuvrage();
+        OuvrageWS ouvrageWS = new OuvrageWS();
+        BeanUtils.copyProperties(ouvrage, ouvrageWS);
         ExemplaireWS exemplaireWS = new ExemplaireWS();
         BeanUtils.copyProperties(exemplaire, exemplaireWS);
+        exemplaireWS.setOuvrage(ouvrageWS);
         exemplaireResponse.setExemplaireWS(exemplaireWS);
         return exemplaireResponse;
     }

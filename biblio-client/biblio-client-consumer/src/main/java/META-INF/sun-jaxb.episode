@@ -5,7 +5,7 @@
 Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.11 
 Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-Généré le : 2018.12.05 à 08:14:23 PM CET 
+Généré le : 2018.12.06 à 05:10:25 PM CET 
 
   -->
   <bindings xmlns:tns="http://biblio.io/api/biblio-web-service" if-exists="true" scd="x-schema::tns">
@@ -78,6 +78,18 @@ Généré le : 2018.12.05 à 08:14:23 PM CET
     <bindings if-exists="true" scd="tns:getOuvrageByTitreResponse">
       <class ref="oc.projet.biblio.client.consumer.generated.GetOuvrageByTitreResponse"/>
     </bindings>
+    <bindings if-exists="true" scd="tns:getOuvrageByDispoRequest">
+      <class ref="oc.projet.biblio.client.consumer.generated.GetOuvrageByDispoRequest"/>
+    </bindings>
+    <bindings if-exists="true" scd="tns:getOuvrageByDispoResponse">
+      <class ref="oc.projet.biblio.client.consumer.generated.GetOuvrageByDispoResponse"/>
+    </bindings>
+    <bindings if-exists="true" scd="tns:getOuvrageByNoDispoRequest">
+      <class ref="oc.projet.biblio.client.consumer.generated.GetOuvrageByNoDispoRequest"/>
+    </bindings>
+    <bindings if-exists="true" scd="tns:getOuvrageByNoDispoResponse">
+      <class ref="oc.projet.biblio.client.consumer.generated.GetOuvrageByNoDispoResponse"/>
+    </bindings>
     <bindings if-exists="true" scd="tns:getExemplaireByIdRequest">
       <class ref="oc.projet.biblio.client.consumer.generated.GetExemplaireByIdRequest"/>
     </bindings>
@@ -99,6 +111,15 @@ Généré le : 2018.12.05 à 08:14:23 PM CET
     <bindings if-exists="true" scd="tns:getExemplaireByUsagerResponse">
       <class ref="oc.projet.biblio.client.consumer.generated.GetExemplaireByUsagerResponse"/>
     </bindings>
+    <bindings if-exists="true" scd="tns:getExemplaireByPretRequest">
+      <class ref="oc.projet.biblio.client.consumer.generated.GetExemplaireByPretRequest"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:pretWS">
+      <class ref="oc.projet.biblio.client.consumer.generated.PretWS"/>
+    </bindings>
+    <bindings if-exists="true" scd="tns:getExemplaireByPretResponse">
+      <class ref="oc.projet.biblio.client.consumer.generated.GetExemplaireByPretResponse"/>
+    </bindings>
     <bindings if-exists="true" scd="tns:getExemplaireRequest">
       <class ref="oc.projet.biblio.client.consumer.generated.GetExemplaireRequest"/>
     </bindings>
@@ -116,9 +137,6 @@ Généré le : 2018.12.05 à 08:14:23 PM CET
     </bindings>
     <bindings if-exists="true" scd="tns:getPretByIdResponse">
       <class ref="oc.projet.biblio.client.consumer.generated.GetPretByIdResponse"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:pretWS">
-      <class ref="oc.projet.biblio.client.consumer.generated.PretWS"/>
     </bindings>
     <bindings if-exists="true" scd="tns:getPretsRequest">
       <class ref="oc.projet.biblio.client.consumer.generated.GetPretsRequest"/>

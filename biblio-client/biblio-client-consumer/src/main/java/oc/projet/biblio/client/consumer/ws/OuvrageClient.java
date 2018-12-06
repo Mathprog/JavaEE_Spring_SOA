@@ -4,9 +4,11 @@ import oc.projet.biblio.client.consumer.generated.*;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
+import java.util.List;
+
 public class OuvrageClient extends WebServiceGatewaySupport {
 
-    public GetOuvrageResponse geOuvrageClientRequest (){
+    public List<OuvrageWS> geOuvrageClientRequest(){
         GetOuvrageRequest ouvrageRequest = new GetOuvrageRequest();
 
         GetOuvrageResponse ouvrageResponse = (GetOuvrageResponse) getWebServiceTemplate()
@@ -14,11 +16,11 @@ public class OuvrageClient extends WebServiceGatewaySupport {
                         new SoapActionCallback(
                                 "http://biblio.io/api/biblio-web-service/GetOuvrageRequest"));
 
-        return ouvrageResponse;
+        return ouvrageResponse.getOuvrageWS();
     }
 
 
-    public GetOuvrageByIdResponse getOuvrageByIdClientRequest(int id){
+    public OuvrageWS getOuvrageByIdClientRequest(int id){
         GetOuvrageByIdRequest ouvrageByIdRequest = new GetOuvrageByIdRequest();
         ouvrageByIdRequest.setId(id);
 
@@ -27,11 +29,11 @@ public class OuvrageClient extends WebServiceGatewaySupport {
                         new SoapActionCallback(
                                 "http://biblio.io/api/biblio-web-service/GetOuvrageByIdRequest"));
 
-        return ouvrageByIdResponse;
+        return ouvrageByIdResponse.getOuvrageWS();
     }
 
 
-    public GetOuvrageCreateResponse getOuvrageCreateClientRequest(String titre){
+    public OuvrageWS getOuvrageCreateClientRequest(String titre){
         GetOuvrageCreateRequest ouvrageCreateRequest = new GetOuvrageCreateRequest();
         ouvrageCreateRequest.setTitre(titre);
 
@@ -40,10 +42,10 @@ public class OuvrageClient extends WebServiceGatewaySupport {
                         new SoapActionCallback(
                                 "http://biblio.io/api/biblio-web-service/GetOuvrageCreateRequest"));
 
-        return ouvrageCreateResponse;
+        return ouvrageCreateResponse.getOuvrageWS();
     }
 
-    public GetOuvrageByTitreResponse getOuvrageByTitreClientRequest(String titre){
+    public List<OuvrageWS> getOuvrageByTitreClientRequest(String titre){
         GetOuvrageByTitreRequest ouvrageByTitreRequest = new GetOuvrageByTitreRequest();
         ouvrageByTitreRequest.setTitre(titre);
 
@@ -52,7 +54,29 @@ public class OuvrageClient extends WebServiceGatewaySupport {
                         new SoapActionCallback(
                                 "http://biblio.io/api/biblio-web-service/GetOuvrageCreateRequest"));
 
-        return ouvrageByTitreResponse;
+        return ouvrageByTitreResponse.getOuvrageWS();
+    }
+
+    public List<OuvrageWS> getOuvrageByDispo(){
+        GetOuvrageByDispoRequest ouvrageByDispoRequest = new GetOuvrageByDispoRequest();
+
+        GetOuvrageByDispoResponse ouvrageByNoDispoResponse = (GetOuvrageByDispoResponse) getWebServiceTemplate()
+                .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", ouvrageByDispoRequest,
+                        new SoapActionCallback(
+                                "http://biblio.io/api/biblio-web-service/GetOuvrageCreateRequest"));
+
+        return ouvrageByNoDispoResponse.getOuvrageWS();
+    }
+
+    public List<OuvrageWS> getOuvrageByNoDispo(){
+        GetOuvrageByNoDispoRequest ouvrageByNoDispoRequest = new GetOuvrageByNoDispoRequest();
+
+        GetOuvrageByNoDispoResponse ouvrageByNoDispoResponse = (GetOuvrageByNoDispoResponse) getWebServiceTemplate()
+                .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", ouvrageByNoDispoRequest,
+                        new SoapActionCallback(
+                                "http://biblio.io/api/biblio-web-service/GetOuvrageCreateRequest"));
+
+        return ouvrageByNoDispoResponse.getOuvrageWS();
     }
 
 }

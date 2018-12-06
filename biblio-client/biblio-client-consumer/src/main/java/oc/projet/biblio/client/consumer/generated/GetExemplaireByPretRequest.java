@@ -8,14 +8,11 @@
 
 package oc.projet.biblio.client.consumer.generated;
 
-import java.time.LocalDate;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
@@ -29,7 +26,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="pret" type="{http://biblio.io/api/biblio-web-service}pretWS"/&gt;
- *         &lt;element name="dateFin" type="{http://www.w3.org/2001/XMLSchema}date"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -40,18 +36,13 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "pret",
-    "dateFin"
+    "pret"
 })
-@XmlRootElement(name = "getRelanceCreateRequest")
-public class GetRelanceCreateRequest {
+@XmlRootElement(name = "getExemplaireByPretRequest")
+public class GetExemplaireByPretRequest {
 
     @XmlElement(required = true)
     protected PretWS pret;
-    @XmlElement(required = true, type = String.class)
-    @XmlJavaTypeAdapter(Adapter1 .class)
-    @XmlSchemaType(name = "date")
-    protected LocalDate dateFin;
 
     /**
      * Obtient la valeur de la propriété pret.
@@ -75,30 +66,6 @@ public class GetRelanceCreateRequest {
      */
     public void setPret(PretWS value) {
         this.pret = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété dateFin.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public LocalDate getDateFin() {
-        return dateFin;
-    }
-
-    /**
-     * Définit la valeur de la propriété dateFin.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDateFin(LocalDate value) {
-        this.dateFin = value;
     }
 
 }

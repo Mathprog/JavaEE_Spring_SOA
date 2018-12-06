@@ -1,4 +1,4 @@
-package oc.projet.biblio.client.business;
+package oc.projet.biblio.client.business.service;
 
 
 import oc.projet.biblio.client.consumer.generated.ExemplaireWS;
@@ -18,5 +18,5 @@ public interface PretService {
 
     PretWS findByExemplaire(ExemplaireWS e);
 
-    List<PretService> findAllByUsager(UsagerWS u);
+    List<PretWS> findAllByUsager(UsagerWS u);
 }
