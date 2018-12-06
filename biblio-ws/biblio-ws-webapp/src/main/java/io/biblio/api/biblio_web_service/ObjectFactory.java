@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2018.12.05 à 04:00:12 PM CET 
+// Généré le : 2018.12.06 à 04:16:51 PM CET 
 //
 
 
@@ -58,6 +58,22 @@ public class ObjectFactory {
      */
     public ExemplaireWS createExemplaireWS() {
         return new ExemplaireWS();
+    }
+
+    /**
+     * Create an instance of {@link GetExemplaireByPretRequest }
+     * 
+     */
+    public GetExemplaireByPretRequest createGetExemplaireByPretRequest() {
+        return new GetExemplaireByPretRequest();
+    }
+
+    /**
+     * Create an instance of {@link PretWS }
+     * 
+     */
+    public PretWS createPretWS() {
+        return new PretWS();
     }
 
     /**
@@ -117,14 +133,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PretWS }
-     * 
-     */
-    public PretWS createPretWS() {
-        return new PretWS();
-    }
-
-    /**
      * Create an instance of {@link GetRelanceCreateResponse }
      * 
      */
@@ -173,6 +181,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetOuvrageByNoDispoRequest }
+     * 
+     */
+    public GetOuvrageByNoDispoRequest createGetOuvrageByNoDispoRequest() {
+        return new GetOuvrageByNoDispoRequest();
+    }
+
+    /**
      * Create an instance of {@link GetUsagerByRelanceDateResponse }
      * 
      */
@@ -205,6 +221,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetExemplaireByPretResponse }
+     * 
+     */
+    public GetExemplaireByPretResponse createGetExemplaireByPretResponse() {
+        return new GetExemplaireByPretResponse();
+    }
+
+    /**
      * Create an instance of {@link GetOuvrageCreateResponse }
      * 
      */
@@ -234,6 +258,14 @@ public class ObjectFactory {
      */
     public GetExemplaireByUsagerRequest createGetExemplaireByUsagerRequest() {
         return new GetExemplaireByUsagerRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetOuvrageByNoDispoResponse }
+     * 
+     */
+    public GetOuvrageByNoDispoResponse createGetOuvrageByNoDispoResponse() {
+        return new GetOuvrageByNoDispoResponse();
     }
 
     /**
@@ -306,6 +338,14 @@ public class ObjectFactory {
      */
     public GetUsagerByIdRequest createGetUsagerByIdRequest() {
         return new GetUsagerByIdRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetOuvrageByDispoRequest }
+     * 
+     */
+    public GetOuvrageByDispoRequest createGetOuvrageByDispoRequest() {
+        return new GetOuvrageByDispoRequest();
     }
 
     /**
@@ -418,6 +458,14 @@ public class ObjectFactory {
      */
     public GetPretsRequest createGetPretsRequest() {
         return new GetPretsRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetOuvrageByDispoResponse }
+     * 
+     */
+    public GetOuvrageByDispoResponse createGetOuvrageByDispoResponse() {
+        return new GetOuvrageByDispoResponse();
     }
 
     /**

@@ -4,9 +4,11 @@ package oc.projet.biblio.webapp.controller.serviceWeb;
 import io.biblio.api.biblio_web_service.*;
 import oc.projet.biblio.business.service.ExemplaireService;
 import oc.projet.biblio.consumer.entity.impl.OuvrageImpl;
+import oc.projet.biblio.consumer.entity.impl.PretImpl;
 import oc.projet.biblio.consumer.entity.impl.UsagerImpl;
 import oc.projet.biblio.model.entity.Exemplaire;
 import oc.projet.biblio.model.entity.Ouvrage;
+import oc.projet.biblio.model.entity.Pret;
 import oc.projet.biblio.model.entity.Usager;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,6 +113,20 @@ public class ExemplaireEndPoint {
         ExemplaireWS exemplaireWS = new ExemplaireWS();
         BeanUtils.copyProperties(exemplaire, exemplaireWS);
         exemplaireWS.setOuvrage(ouvrageWS);
+        exemplaireResponse.setExemplaireWS(exemplaireWS);
+        return exemplaireResponse;
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getExemplaireByPretRequest")
+    @ResponsePayload
+    public GetExemplaireByPretResponse getExemplaireById (@RequestPayload GetExemplaireByPretRequest request){
+        GetExemplaireByPretResponse exemplaireResponse = new GetExemplaireByPretResponse();
+        PretWS pretWS = request.getPret();
+        Pret pret = new PretImpl();
+        BeanUtils.copyProperties(pretWS, pret);
+        Exemplaire exemplaire = this.exemplaireService.findByPret(pret);
+        ExemplaireWS exemplaireWS = new ExemplaireWS();
+        BeanUtils.copyProperties(exemplaire, exemplaireWS);
         exemplaireResponse.setExemplaireWS(exemplaireWS);
         return exemplaireResponse;
     }

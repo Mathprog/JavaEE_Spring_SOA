@@ -283,6 +283,38 @@
     </xs:element>
 
     <!--
+    ============== GET OUVRAGE BY DISPO ===================
+    -->
+
+    <xs:element name="getOuvrageByDispoRequest">
+        <xs:complexType/>
+    </xs:element>
+
+    <xs:element name="getOuvrageByDispoResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ouvrageWS" type="tns:ouvrageWS" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--
+    ============== GET OUVRAGE BY NO DISPO ===================
+    -->
+
+    <xs:element name="getOuvrageByNoDispoRequest">
+        <xs:complexType/>
+    </xs:element>
+
+    <xs:element name="getOuvrageByNoDispoResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ouvrageWS" type="tns:ouvrageWS" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--
     =======================================================================
     ======================== EXEMPLAIRES METHODES =========================
     =======================================================================
@@ -345,6 +377,26 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="exemplaireWS" type="tns:exemplaireWS" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--
+     ============== GET EXEMPLAIRE BY PRET ===================
+     -->
+
+    <xs:element name="getExemplaireByPretRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="pret" type="tns:pretWS"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getExemplaireByPretResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="exemplaireWS" type="tns:exemplaireWS"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

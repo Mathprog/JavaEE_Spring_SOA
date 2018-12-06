@@ -12,6 +12,7 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import javax.print.attribute.standard.MediaSize;
 import java.util.*;
 
 
@@ -75,6 +76,36 @@ public class OuvrageEndPoint {
         }
         ouvrageResponse.getOuvrageWS().addAll(ouvrageWSList);
         return ouvrageResponse;
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getOuvrageByDispoRequest")
+    @ResponsePayload
+    public GetOuvrageByDispoResponse getOuvrageByDispoClientRequest (){
+        GetOuvrageByDispoResponse ouvrageByDispoResponse = new GetOuvrageByDispoResponse();
+        List<Ouvrage> ouvrages = this.ouvrageService.findAllWithDispo();
+        List<OuvrageWS> ouvrageWSList = new ArrayList<>();
+        for (Ouvrage ouvrage : ouvrages){
+            OuvrageWS ouvrageWS = new OuvrageWS();
+            BeanUtils.copyProperties(ouvrage, ouvrageWS);
+            ouvrageWSList.add(ouvrageWS);
+        }
+        ouvrageByDispoResponse.getOuvrageWS().addAll(ouvrageWSList);
+        return ouvrageByDispoResponse;
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getOuvrageByNoDispoRequest")
+    @ResponsePayload
+    public GetOuvrageByNoDispoResponse getOuvrageByNoDispoClientRequest (){
+        GetOuvrageByNoDispoResponse ouvrageByNoDispoResponse = new GetOuvrageByNoDispoResponse();
+        List<Ouvrage> ouvrages = this.ouvrageService.findAllWithNoDispo();
+        List<OuvrageWS> ouvrageWSList = new ArrayList<>();
+        for (Ouvrage ouvrage : ouvrages){
+            OuvrageWS ouvrageWS = new OuvrageWS();
+            BeanUtils.copyProperties(ouvrage, ouvrageWS);
+            ouvrageWSList.add(ouvrageWS);
+        }
+        ouvrageByNoDispoResponse.getOuvrageWS().addAll(ouvrageWSList);
+        return ouvrageByNoDispoResponse;
     }
 
 }
