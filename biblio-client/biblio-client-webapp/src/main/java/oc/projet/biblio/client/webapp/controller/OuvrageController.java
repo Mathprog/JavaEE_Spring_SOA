@@ -18,6 +18,8 @@ public class OuvrageController {
     @RequestMapping(value = { "/liste" }, method = RequestMethod.GET)
     public String pretsPage(ModelMap model) {
         model.addAttribute("ouvrages", this.ouvrageService.findAllOuvrage() );
+        model.addAttribute("ouvragesDispos", this.ouvrageService.findAllWithDispo());
+        model.addAttribute("ouvragesNonDispos", this.ouvrageService.findAllWithNoDispo());
         return "ouvrages";
     }
 }

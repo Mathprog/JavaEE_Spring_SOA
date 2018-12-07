@@ -34,8 +34,11 @@ public class RelanceEndPoint {
     public GetRelanceByIdResponse getRelanceByIdRequest(@RequestPayload GetRelanceByIdRequest request){
         GetRelanceByIdResponse relanceResponse = new GetRelanceByIdResponse();
         Relance relance = this.relanceService.find(request.getId());
-        RelanceWS relanceWS = new RelanceWS();
-        BeanUtils.copyProperties(relance, relanceWS);
+        RelanceWS relanceWS = null;
+        if( relance != null ){
+            relanceWS = new RelanceWS();
+            BeanUtils.copyProperties(relance, relanceWS);
+        }
         relanceResponse.setRelance(relanceWS);
         return relanceResponse;
     }
@@ -46,12 +49,15 @@ public class RelanceEndPoint {
         GetRelanceResponse relanceResponse = new GetRelanceResponse();
         List<Relance> relances = this.relanceService.findAll();
         List<RelanceWS> relanceWSList = new ArrayList<>();
-        for(Relance relance : relances){
-            RelanceWS relanceWS = new RelanceWS();
-            BeanUtils.copyProperties(relance, relanceWS);
-            relanceWSList.add(relanceWS);
+        if (relances != null ){
+            for(Relance relance : relances){
+                RelanceWS relanceWS = new RelanceWS();
+                BeanUtils.copyProperties(relance, relanceWS);
+                relanceWSList.add(relanceWS);
+            }
+            relanceResponse.getRelance().addAll(relanceWSList);
         }
-        relanceResponse.getRelance().addAll(relanceWSList);
+
         return relanceResponse;
     }
 
@@ -60,11 +66,16 @@ public class RelanceEndPoint {
     public GetRelanceCreateResponse getCreateRelance(@RequestPayload GetRelanceCreateRequest request){
         GetRelanceCreateResponse relanceResponse = new GetRelanceCreateResponse();
         PretWS pretWS = request.getPret();
+        RelanceWS relanceWS = null;
         Pret pret = new PretImpl();
-        BeanUtils.copyProperties(pretWS, pret);
-        Relance relance = this.relanceService.createRelance(pret, request.getDateFin());
-        RelanceWS relanceWS = new RelanceWS();
-        BeanUtils.copyProperties(relance, relanceWS);
+        if (pretWS != null){
+            BeanUtils.copyProperties(pretWS, pret);
+            Relance relance = this.relanceService.createRelance(pret, request.getDateFin());
+            if (relance != null){
+                relanceWS = new RelanceWS();
+                BeanUtils.copyProperties(relance, relanceWS);
+            }
+        }
         relanceResponse.setRelance(relanceWS);
         return relanceResponse;
     }
@@ -75,10 +86,15 @@ public class RelanceEndPoint {
         GetRelanceByPretResponse relanceResponse = new GetRelanceByPretResponse();
         PretWS pretWS = request.getPret();
         Pret pret = new PretImpl();
-        BeanUtils.copyProperties(pretWS, pret);
-        Relance relance = this.relanceService.findByPret(pret);
-        RelanceWS relanceWS = new RelanceWS();
-        BeanUtils.copyProperties(relance, relanceWS);
+        RelanceWS relanceWS = null;
+        if (pretWS != null){
+            BeanUtils.copyProperties(pretWS, pret);
+            Relance relance = this.relanceService.findByPret(pret);
+            if( relance != null){
+                relanceWS = new RelanceWS();
+                BeanUtils.copyProperties(relance, relanceWS);
+            }
+        }
         relanceResponse.setRelance(relanceWS);
         return relanceResponse;
     }
@@ -89,13 +105,15 @@ public class RelanceEndPoint {
         GetRelanceByUsagerResponse relanceResponse = new GetRelanceByUsagerResponse();
         UsagerWS usagerWS = request.getUsager();
         Usager usager = new UsagerImpl();
-        BeanUtils.copyProperties(usagerWS, usager);
-        List<Relance> relances = this.relanceService.findAllByUsager(usager);
         List<RelanceWS> relanceWSList = new ArrayList<>();
-        for(Relance relance : relances){
-            RelanceWS relanceWS = new RelanceWS();
-            BeanUtils.copyProperties(relance, relanceWS);
-            relanceWSList.add(relanceWS);
+        if( usagerWS != null ){
+            BeanUtils.copyProperties(usagerWS, usager);
+            List<Relance> relances = this.relanceService.findAllByUsager(usager);
+            for(Relance relance : relances){
+                RelanceWS relanceWS = new RelanceWS();
+                BeanUtils.copyProperties(relance, relanceWS);
+                relanceWSList.add(relanceWS);
+            }
         }
         relanceResponse.getRelance().addAll(relanceWSList);
         return relanceResponse;

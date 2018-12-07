@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2018.12.06 à 04:16:51 PM CET 
+// Généré le : 2018.12.07 à 01:33:39 PM CET 
 //
 
 
@@ -43,7 +43,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "getOuvrageByTitreResponse")
 public class GetOuvrageByTitreResponse {
 
-    @XmlElement(required = true)
+    @XmlElement(required = true, nillable = true)
     protected List<OuvrageWS> ouvrageWS;
 
     /**

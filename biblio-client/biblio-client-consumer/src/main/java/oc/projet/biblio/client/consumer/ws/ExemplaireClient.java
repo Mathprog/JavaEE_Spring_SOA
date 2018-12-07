@@ -8,7 +8,6 @@ import java.util.List;
 
 public class ExemplaireClient extends WebServiceGatewaySupport {
 
-
     public List<ExemplaireWS> getExemplaireClientRequest(){
         GetExemplaireRequest exemplaireRequest = new GetExemplaireRequest();
 

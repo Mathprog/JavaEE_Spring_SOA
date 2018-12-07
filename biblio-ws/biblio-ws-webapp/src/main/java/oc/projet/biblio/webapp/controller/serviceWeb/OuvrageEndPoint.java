@@ -46,8 +46,11 @@ public class OuvrageEndPoint {
     public GetOuvrageByIdResponse getOuvrageById(@RequestPayload GetOuvrageByIdRequest request) {
         GetOuvrageByIdResponse ouvrageResponseWS = new GetOuvrageByIdResponse();
         Ouvrage ouvrage = this.ouvrageService.find(request.getId());
-        OuvrageWS ouvrageWS  = new OuvrageWS();
-        BeanUtils.copyProperties(ouvrage, ouvrageWS);
+        OuvrageWS ouvrageWS  = null;
+        if( ouvrage != null){
+            ouvrageWS  = new OuvrageWS();
+            BeanUtils.copyProperties(ouvrage, ouvrageWS);
+        }
         ouvrageResponseWS.setOuvrageWS(ouvrageWS);
         return ouvrageResponseWS;
     }
@@ -57,8 +60,11 @@ public class OuvrageEndPoint {
     public GetOuvrageCreateResponse getOuvrageCreate(@RequestPayload GetOuvrageCreateRequest request){
         GetOuvrageCreateResponse ouvrageResponse = new GetOuvrageCreateResponse();
         Ouvrage ouvrage = this.ouvrageService.createOuvrate(request.getTitre());
-        OuvrageWS ouvrageWS = new OuvrageWS();
-        BeanUtils.copyProperties(ouvrage, ouvrageWS);
+        OuvrageWS ouvrageWS = null;
+        if( ouvrage != null ){
+            ouvrageWS = new OuvrageWS();
+            BeanUtils.copyProperties(ouvrage, ouvrageWS);
+        }
         ouvrageResponse.setOuvrageWS(ouvrageWS);
         return ouvrageResponse;
     }

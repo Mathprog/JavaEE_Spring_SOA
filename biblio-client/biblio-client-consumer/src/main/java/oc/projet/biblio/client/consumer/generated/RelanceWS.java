@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.11 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2018.12.06 à 05:10:25 PM CET 
+// Généré le : 2018.12.07 à 01:35:29 PM CET 
 //
 
 
@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="pret" type="{http://biblio.io/api/biblio-web-service}pretWS" minOccurs="0"/&gt;
+ *         &lt;element name="pret" type="{http://biblio.io/api/biblio-web-service}pretWS"/&gt;
  *         &lt;element name="dateFin" type="{http://www.w3.org/2001/XMLSchema}date"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
@@ -47,6 +47,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class RelanceWS {
 
     protected int id;
+    @XmlElement(required = true)
     protected PretWS pret;
     @XmlElement(required = true, type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)

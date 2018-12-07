@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2018.12.06 à 04:16:51 PM CET 
+// Généré le : 2018.12.07 à 01:33:39 PM CET 
 //
 
 
@@ -10,6 +10,7 @@ package io.biblio.api.biblio_web_service;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -24,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="ouvrage" type="{http://biblio.io/api/biblio-web-service}ouvrageWS" minOccurs="0"/>
+ *         &lt;element name="ouvrage" type="{http://biblio.io/api/biblio-web-service}ouvrageWS"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -41,6 +42,7 @@ import javax.xml.bind.annotation.XmlType;
 public class ExemplaireWS {
 
     protected int id;
+    @XmlElement(required = true)
     protected OuvrageWS ouvrage;
 
     /**

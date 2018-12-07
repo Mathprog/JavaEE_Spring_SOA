@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.11 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2018.12.06 à 05:10:25 PM CET 
+// Généré le : 2018.12.07 à 01:35:29 PM CET 
 //
 
 
@@ -28,8 +28,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="exemplaire" type="{http://biblio.io/api/biblio-web-service}exemplaireWS" minOccurs="0"/&gt;
- *         &lt;element name="ouvrage" type="{http://biblio.io/api/biblio-web-service}ouvrageWS" minOccurs="0"/&gt;
+ *         &lt;element name="exemplaire" type="{http://biblio.io/api/biblio-web-service}exemplaireWS"/&gt;
+ *         &lt;element name="ouvrage" type="{http://biblio.io/api/biblio-web-service}ouvrageWS"/&gt;
+ *         &lt;element name="relance" type="{http://biblio.io/api/biblio-web-service}relanceWS"/&gt;
  *         &lt;element name="datePret" type="{http://www.w3.org/2001/XMLSchema}date"/&gt;
  *         &lt;element name="dateFin" type="{http://www.w3.org/2001/XMLSchema}date"/&gt;
  *       &lt;/sequence&gt;
@@ -45,14 +46,19 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
     "id",
     "exemplaire",
     "ouvrage",
+    "relance",
     "datePret",
     "dateFin"
 })
 public class PretWS {
 
     protected int id;
+    @XmlElement(required = true)
     protected ExemplaireWS exemplaire;
+    @XmlElement(required = true)
     protected OuvrageWS ouvrage;
+    @XmlElement(required = true)
+    protected RelanceWS relance;
     @XmlElement(required = true, type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "date")
@@ -124,6 +130,30 @@ public class PretWS {
      */
     public void setOuvrage(OuvrageWS value) {
         this.ouvrage = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété relance.
+     * 
+     * @return
+     *     possible object is
+     *     {@link RelanceWS }
+     *     
+     */
+    public RelanceWS getRelance() {
+        return relance;
+    }
+
+    /**
+     * Définit la valeur de la propriété relance.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link RelanceWS }
+     *     
+     */
+    public void setRelance(RelanceWS value) {
+        this.relance = value;
     }
 
     /**

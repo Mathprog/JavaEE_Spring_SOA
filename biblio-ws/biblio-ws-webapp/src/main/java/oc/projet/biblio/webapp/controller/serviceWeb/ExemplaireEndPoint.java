@@ -41,7 +41,9 @@ public class ExemplaireEndPoint {
             ExemplaireWS exemplaireWS = new ExemplaireWS();
             OuvrageWS ouvrageWS = new OuvrageWS();
             Ouvrage ouvrage = exemplaire.getOuvrage();
-            BeanUtils.copyProperties(ouvrage, ouvrageWS);
+            if( ouvrage != null){
+                BeanUtils.copyProperties(ouvrage, ouvrageWS);
+            }
             BeanUtils.copyProperties(exemplaire, exemplaireWS);
             exemplaireWS.setOuvrage(ouvrageWS);
             exemplaireWSList.add(exemplaireWS);
@@ -56,8 +58,11 @@ public class ExemplaireEndPoint {
     public GetExemplaireByIdResponse getExemplaireById (@RequestPayload GetExemplaireByIdRequest request){
         GetExemplaireByIdResponse exemplaireResponse = new GetExemplaireByIdResponse();
         Exemplaire exemplaire = this.exemplaireService.find(request.getId());
-        ExemplaireWS exemplaireWS = new ExemplaireWS();
-        BeanUtils.copyProperties(exemplaire, exemplaireWS);
+        ExemplaireWS exemplaireWS = null;
+        if (exemplaire != null){
+            exemplaireWS = new ExemplaireWS();
+            BeanUtils.copyProperties(exemplaire, exemplaireWS);
+        }
         exemplaireResponse.setExemplaireWS(exemplaireWS);
         return exemplaireResponse;
     }
@@ -67,8 +72,12 @@ public class ExemplaireEndPoint {
     public GetExemplaireByBookResponse getAllExemplaireByBook(@RequestPayload GetExemplaireByBookRequest request){
         GetExemplaireByBookResponse exemplairesResponse = new GetExemplaireByBookResponse();
         OuvrageWS ouvrageWS = request.getBook();
-        Ouvrage ouvrage = new OuvrageImpl();
-        BeanUtils.copyProperties(ouvrageWS, ouvrage);
+        Ouvrage ouvrage = null;
+        if (ouvrageWS != null){
+            ouvrage = new OuvrageImpl();
+            BeanUtils.copyProperties(ouvrageWS, ouvrage);
+        }
+
         List<Exemplaire> exemplairesFound = this.exemplaireService.findAllByBook( ouvrage);
         List<ExemplaireWS> exemplaireWSList = new ArrayList<>();
         for (Exemplaire exemplaire : exemplairesFound){
@@ -86,8 +95,11 @@ public class ExemplaireEndPoint {
     public GetExemplaireByUsagerResponse getAllExemplaireByUsager(@RequestPayload GetExemplaireByUsagerRequest request){
         GetExemplaireByUsagerResponse exemplairesResponse = new GetExemplaireByUsagerResponse();
         UsagerWS usagerWS = request.getUsager();
-        Usager usager = new UsagerImpl();
-        BeanUtils.copyProperties(usagerWS, usager);
+        Usager usager = null;
+        if (usagerWS != null ){
+            usager = new UsagerImpl();
+            BeanUtils.copyProperties(usagerWS, usager);
+        }
         List<Exemplaire> exemplairesFound = this.exemplaireService.findAllByUsager( usager);
         List<ExemplaireWS> exemplaireWSList = new ArrayList<>();
         for (Exemplaire exemplaire : exemplairesFound){
@@ -107,12 +119,18 @@ public class ExemplaireEndPoint {
     public GetExemplaireCreateResponse getCreateBook(@RequestPayload GetExemplaireCreateRequest request){
         GetExemplaireCreateResponse exemplaireResponse = new GetExemplaireCreateResponse();
         OuvrageWS ouvrageWS = request.getOuvrage();
-        Ouvrage ouvrage = new OuvrageImpl();
-        BeanUtils.copyProperties(ouvrageWS, ouvrage);
-        Exemplaire exemplaire = this.exemplaireService.createExemplaire(ouvrage);
-        ExemplaireWS exemplaireWS = new ExemplaireWS();
-        BeanUtils.copyProperties(exemplaire, exemplaireWS);
-        exemplaireWS.setOuvrage(ouvrageWS);
+        Ouvrage ouvrage = null;
+        ExemplaireWS exemplaireWS = null;
+        if( ouvrageWS != null){
+            ouvrage = new OuvrageImpl();
+            BeanUtils.copyProperties(ouvrageWS, ouvrage);
+            Exemplaire exemplaire = this.exemplaireService.createExemplaire(ouvrage);
+            if (exemplaire != null){
+                exemplaireWS = new ExemplaireWS();
+                BeanUtils.copyProperties(exemplaire, exemplaireWS);
+                exemplaireWS.setOuvrage(ouvrageWS);
+            }
+        }
         exemplaireResponse.setExemplaireWS(exemplaireWS);
         return exemplaireResponse;
     }
@@ -122,15 +140,23 @@ public class ExemplaireEndPoint {
     public GetExemplaireByPretResponse getExemplaireById (@RequestPayload GetExemplaireByPretRequest request){
         GetExemplaireByPretResponse exemplaireResponse = new GetExemplaireByPretResponse();
         PretWS pretWS = request.getPret();
-        Pret pret = new PretImpl();
-        BeanUtils.copyProperties(pretWS, pret);
-        Exemplaire exemplaire = this.exemplaireService.findByPret(pret);
-        Ouvrage ouvrage = exemplaire.getOuvrage();
-        OuvrageWS ouvrageWS = new OuvrageWS();
-        BeanUtils.copyProperties(ouvrage, ouvrageWS);
-        ExemplaireWS exemplaireWS = new ExemplaireWS();
-        BeanUtils.copyProperties(exemplaire, exemplaireWS);
-        exemplaireWS.setOuvrage(ouvrageWS);
+        OuvrageWS ouvrageWS = null;
+        ExemplaireWS exemplaireWS = null;
+        Pret pret = null;
+        if( pretWS != null){
+            pret = new PretImpl();
+            BeanUtils.copyProperties(pretWS, pret);
+            Exemplaire exemplaire = this.exemplaireService.findByPret(pret);
+            Ouvrage ouvrage = exemplaire.getOuvrage();
+            if( ouvrage != null){
+                ouvrageWS = new OuvrageWS();
+                BeanUtils.copyProperties(ouvrage, ouvrageWS);
+            }
+            exemplaireWS = new ExemplaireWS();
+            BeanUtils.copyProperties(exemplaire, exemplaireWS);
+            exemplaireWS.setOuvrage(ouvrageWS);
+
+        }
         exemplaireResponse.setExemplaireWS(exemplaireWS);
         return exemplaireResponse;
     }

@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.11 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2018.12.06 à 05:10:25 PM CET 
+// Généré le : 2018.12.07 à 01:35:29 PM CET 
 //
 
 
@@ -41,23 +41,32 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class UsagerWS {
 
-    protected int id;
-    @XmlElement(required = true)
+    @XmlElement(required = true, type = Integer.class, nillable = true)
+    protected Integer id;
+    @XmlElement(required = true, nillable = true)
     protected String email;
 
     /**
      * Obtient la valeur de la propriété id.
      * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * Définit la valeur de la propriété id.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
      */
-    public void setId(int value) {
+    public void setId(Integer value) {
         this.id = value;
     }
 

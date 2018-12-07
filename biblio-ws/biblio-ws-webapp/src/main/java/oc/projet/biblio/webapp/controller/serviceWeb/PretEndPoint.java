@@ -35,8 +35,11 @@ public class PretEndPoint {
     public GetPretByIdResponse getPretById(@RequestPayload GetPretByIdRequest request){
         GetPretByIdResponse pretResponse = new GetPretByIdResponse();
         Pret pret = this.pretService.find(request.getId());
-        PretWS pretWS = new PretWS();
-        BeanUtils.copyProperties(pret, pretWS);
+        PretWS pretWS = null;
+        if (pret != null){
+            pretWS = new PretWS();
+            BeanUtils.copyProperties(pret, pretWS);
+        }
         pretResponse.setPret(pretWS);
         return pretResponse;
     }
@@ -63,14 +66,22 @@ public class PretEndPoint {
             GetPretCreateResponse pretCreateResponse = new GetPretCreateResponse();
             ExemplaireWS exemplaireWS = request.getExemplaire();
             UsagerWS usagerWS = request.getUsager();
-            PretWS pretWS = new PretWS();
+            PretWS pretWS = null;
 
             Exemplaire exemplaire = new ExemplaireImpl();
             Usager usager = new UsagerImpl();
-            BeanUtils.copyProperties(exemplaireWS, exemplaire);
-            BeanUtils.copyProperties(usagerWS, usager);
+            if( exemplaireWS != null){
+                BeanUtils.copyProperties(exemplaireWS, exemplaire);
+            }
+            if (usagerWS != null ){
+                BeanUtils.copyProperties(usagerWS, usager);
+            }
+
             Pret pret = this.pretService.createPret(exemplaire, usager, request.getDatePret(), request.getDateFin());
-            BeanUtils.copyProperties(pret, pretWS);
+            if( pret != null){
+                pretWS = new PretWS();
+                BeanUtils.copyProperties(pret, pretWS);
+            }
             pretCreateResponse.setPret(pretWS);
             return pretCreateResponse;
     }
@@ -80,11 +91,18 @@ public class PretEndPoint {
     public GetPretByExemplaireResponse getPretByExemplaire(@RequestPayload GetPretByExemplaireRequest request){
         GetPretByExemplaireResponse pretResponse = new GetPretByExemplaireResponse();
         ExemplaireWS exemplaireWS = request.getExemplaire();
-        Exemplaire exemplaire = new ExemplaireImpl();
-        BeanUtils.copyProperties(exemplaireWS, exemplaire);
-        Pret pret = this.pretService.findByExemplaire(exemplaire);
-        PretWS pretWS = new PretWS();
-        BeanUtils.copyProperties(pret, pretWS);
+        Exemplaire exemplaire = null;
+        PretWS pretWS = null;
+        if (exemplaireWS != null){
+            exemplaire = new ExemplaireImpl();
+            BeanUtils.copyProperties(exemplaireWS, exemplaire);
+        }
+
+        if( exemplaire != null){
+            Pret pret = this.pretService.findByExemplaire(exemplaire);
+            pretWS = new PretWS();
+            BeanUtils.copyProperties(pret, pretWS);
+        }
         pretResponse.setPret(pretWS);
         return pretResponse;
     }
@@ -95,16 +113,17 @@ public class PretEndPoint {
         GetPretByUsagerResponse pretResponse = new GetPretByUsagerResponse();
         UsagerWS usagerWS = request.getUsager();
         Usager usager = new UsagerImpl();
-        BeanUtils.copyProperties(usagerWS, usager);
-        List<Pret> prets = this.pretService.findAllByUsager(usager);
-
-        List<PretWS> pretWSList = new ArrayList<>();
-        for(Pret pret : prets){
-            PretWS pretWS = new PretWS();
-            BeanUtils.copyProperties(pret, pretWS);
-            pretWSList.add(pretWS);
+        if( usagerWS != null){
+            BeanUtils.copyProperties(usagerWS, usager);
+            List<Pret> prets = this.pretService.findAllByUsager(usager);
+            List<PretWS> pretWSList = new ArrayList<>();
+            for(Pret pret : prets){
+                PretWS pretWS = new PretWS();
+                BeanUtils.copyProperties(pret, pretWS);
+                pretWSList.add(pretWS);
+            }
+            pretResponse.getPret().addAll(pretWSList);
         }
-        pretResponse.getPret().addAll(pretWSList);
         return pretResponse;
     }
 }
