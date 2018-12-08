@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2018.12.07 à 01:33:39 PM CET 
+// Généré le : 2018.12.07 à 08:22:45 PM CET 
 //
 
 
@@ -26,6 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="titre" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="nbDispo" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,13 +38,15 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ouvrageWS", propOrder = {
     "id",
-    "titre"
+    "titre",
+    "nbDispo"
 })
 public class OuvrageWS {
 
     protected int id;
     @XmlElement(required = true)
     protected String titre;
+    protected Long nbDispo;
 
     /**
      * Obtient la valeur de la propriété id.
@@ -83,6 +86,30 @@ public class OuvrageWS {
      */
     public void setTitre(String value) {
         this.titre = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété nbDispo.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getNbDispo() {
+        return nbDispo;
+    }
+
+    /**
+     * Définit la valeur de la propriété nbDispo.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setNbDispo(Long value) {
+        this.nbDispo = value;
     }
 
 }

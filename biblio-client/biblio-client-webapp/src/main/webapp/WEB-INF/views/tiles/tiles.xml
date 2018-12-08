@@ -37,4 +37,10 @@
         <put-attribute name="body"
                        value="/WEB-INF/views/pages/pretsDetails.jsp" />
     </definition>
+
+    <definition name="relance" extends="template-def">
+        <put-attribute name="title" value="Etat de ma relance" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/pages/relance.jsp" />
+    </definition>
 </tiles-definitions>
