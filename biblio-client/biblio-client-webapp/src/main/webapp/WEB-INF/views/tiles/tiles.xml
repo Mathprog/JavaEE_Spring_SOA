@@ -43,4 +43,15 @@
         <put-attribute name="body"
                        value="/WEB-INF/views/pages/relance.jsp" />
     </definition>
+    <definition name="recherche" extends="template-def">
+        <put-attribute name="title" value="Recherche de livres" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/pages/recherche.jsp" />
+    </definition>
+
+    <definition name="recherche_res" extends="template-def">
+        <put-attribute name="title" value="Résultats de la recherche" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/pages/recherche_res.jsp" />
+    </definition>
 </tiles-definitions>
