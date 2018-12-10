@@ -8,18 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 
-
-Infos détaillés :
-<form method = "POST" action = "${contextPath}/usager/prets/details">
-    <table>
-        <tr>
-            <td><label >Name</label></td>
-            <td><input name = "email" /></td>
-        </tr>
-        <tr>
-            <td colspan = "2">
-                <input type = "submit" value = "Submit"/>
-            </td>
-        </tr>
-    </table>
-</form>
+<div class="row">
+    <form class="col s12" method = "POST" action = "${contextPath}/usager/prets/details">
+        <div class="row">
+            <div class="input-field col s6">
+                <label>Name</label>
+                <input placeholder="Votre email." name = "email" type="text" />
+            </div>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+</div>

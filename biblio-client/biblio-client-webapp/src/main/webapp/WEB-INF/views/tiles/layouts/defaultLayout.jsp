@@ -16,17 +16,30 @@
 <head>
     <meta charset="UTF-8">
     <title><tiles:getAsString name="title" /></title>
-    <link href="<c:url value='/static/css/app.css' />" rel="stylesheet" type="text/css">
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="<c:url value='/static/css/materialize.min.css' />" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="<c:url value='/static/css/app.css' />" type="text/css" rel="stylesheet" media="screen,projection"/>
+
 </head>
 
 <body>
-<div class="flex-container">
-    <tiles:insertAttribute name="header" />
-    <tiles:insertAttribute name="menu" />
-    <article class="article">
-        <tiles:insertAttribute name="body" />
-    </article>
-    <tiles:insertAttribute name="footer" />
-</div>
+        <tiles:insertAttribute name="menu" />
+        <tiles:insertAttribute name="header" />
+
+            <div class="container demo">
+                <div class="section">
+            <tiles:insertAttribute name="body" />
+                </div>
+            </div>
+        <tiles:insertAttribute name="footer" />
+
+        <!--  Scripts-->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="<c:url value='/static/js/materialize.min.js' />"></script>
+        <script src="<c:url value='/static/js/init.js' />"></script>
+
+
 </body>
 </html>

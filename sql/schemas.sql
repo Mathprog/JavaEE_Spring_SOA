@@ -11,7 +11,6 @@ CREATE TABLE javaee.ouvrage
 (
 id int NOT NULL auto_increment,
 titre varchar(255) NOT NULL,
-nb_dispo int,
 PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 

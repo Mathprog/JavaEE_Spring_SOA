@@ -11,7 +11,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
-<nav class="nav">
+<nav class="nav light-blue lighten-1" role="navigation">
     <a href="${contextPath}/"></a>
     <ul id="menu">
         <li><a href="${contextPath}/">Home</a></li>
