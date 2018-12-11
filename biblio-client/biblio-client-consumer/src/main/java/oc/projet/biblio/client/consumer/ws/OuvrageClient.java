@@ -59,7 +59,7 @@ public class OuvrageClient extends WebServiceGatewaySupport {
         GetOuvrageByTitreResponse ouvrageByTitreResponse = (GetOuvrageByTitreResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", ouvrageByTitreRequest,
                         new SoapActionCallback(
-                                "http://biblio.io/api/biblio-web-service/GetOuvrageCreateRequest"));
+                                "http://biblio.io/api/biblio-web-service/GetOuvrageByTitreRequest"));
 
         return ouvrageByTitreResponse.getOuvrageWS();
     }
@@ -70,7 +70,7 @@ public class OuvrageClient extends WebServiceGatewaySupport {
         GetOuvrageByDispoResponse ouvrageByNoDispoResponse = (GetOuvrageByDispoResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", ouvrageByDispoRequest,
                         new SoapActionCallback(
-                                "http://biblio.io/api/biblio-web-service/GetOuvrageCreateRequest"));
+                                "http://biblio.io/api/biblio-web-service/GetOuvrageByDispoRequest"));
 
         return ouvrageByNoDispoResponse.getOuvrageWS();
     }
@@ -81,7 +81,7 @@ public class OuvrageClient extends WebServiceGatewaySupport {
         GetOuvrageByNoDispoResponse ouvrageByNoDispoResponse = (GetOuvrageByNoDispoResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", ouvrageByNoDispoRequest,
                         new SoapActionCallback(
-                                "http://biblio.io/api/biblio-web-service/GetOuvrageCreateRequest"));
+                                "http://biblio.io/api/biblio-web-service/GetOuvrageByNoDispoRequest"));
 
         for(OuvrageWS ouvrageWS : ouvrageByNoDispoResponse.getOuvrageWS()){
             if(ouvrageWS.getImageBin() != null){

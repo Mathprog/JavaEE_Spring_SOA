@@ -25,7 +25,7 @@ public class ExemplaireClient extends WebServiceGatewaySupport {
         GetExemplaireByIdResponse  exemplaireByIdResponse = (GetExemplaireByIdResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", exemplaireByIdRequest,
                         new SoapActionCallback(
-                                "http://biblio.io/api/biblio-web-service/GetExemplaireRequest"));
+                                "http://biblio.io/api/biblio-web-service/GetExemplaireByIdRequest"));
 
         return exemplaireByIdResponse.getExemplaireWS();
     }
@@ -37,7 +37,7 @@ public class ExemplaireClient extends WebServiceGatewaySupport {
         GetExemplaireByBookResponse getExemplaireByBookResponse = (GetExemplaireByBookResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", exemplaireByBookRequest,
                         new SoapActionCallback(
-                                "http://biblio.io/api/biblio-web-service/GetExemplaireRequest"));
+                                "http://biblio.io/api/biblio-web-service/GetExemplaireByBookRequest"));
 
         return getExemplaireByBookResponse.getExemplaireWS();
     }
@@ -49,7 +49,7 @@ public class ExemplaireClient extends WebServiceGatewaySupport {
         GetExemplaireCreateResponse getExemplaireCreateResponse = (GetExemplaireCreateResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", getExemplaireCreateRequest,
                         new SoapActionCallback(
-                                "http://biblio.io/api/biblio-web-service/GetExemplaireRequest"));
+                                "http://biblio.io/api/biblio-web-service/GetExemplaireCreateRequest"));
 
         return getExemplaireCreateResponse.getExemplaireWS();
     }
@@ -61,7 +61,7 @@ public class ExemplaireClient extends WebServiceGatewaySupport {
         GetExemplaireByUsagerResponse getExemplaireByUsagerResponse = (GetExemplaireByUsagerResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", exemplaireByUsagerRequest,
                         new SoapActionCallback(
-                                "http://biblio.io/api/biblio-web-service/GetExemplaireRequest"));
+                                "http://biblio.io/api/biblio-web-service/GetExemplaireByUsagerRequest"));
 
         return getExemplaireByUsagerResponse.getExemplaireWS();
 
@@ -74,7 +74,7 @@ public class ExemplaireClient extends WebServiceGatewaySupport {
         GetExemplaireByPretResponse relanceByPretResponse = (GetExemplaireByPretResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", exemplaireByPretRequest,
                         new SoapActionCallback(
-                                "http://biblio.io/api/biblio-web-service/GetExemplaireRequest"));
+                                "http://biblio.io/api/biblio-web-service/GetExemplaireByPretRequest"));
 
         return relanceByPretResponse.getExemplaireWS();
     }

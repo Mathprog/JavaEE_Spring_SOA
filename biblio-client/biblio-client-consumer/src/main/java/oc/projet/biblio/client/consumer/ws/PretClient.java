@@ -15,7 +15,7 @@ public class PretClient extends WebServiceGatewaySupport{
         GetPretsResponse pretResponse = (GetPretsResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", exemplaireRequest,
                         new SoapActionCallback(
-                                "http://biblio.io/api/biblio-web-service/GetExemplaireRequest"));
+                                "http://biblio.io/api/biblio-web-service/GetPretsRequest"));
 
         return pretResponse.getPret();
     }
@@ -27,7 +27,7 @@ public class PretClient extends WebServiceGatewaySupport{
         GetPretByIdResponse exemplaireByIdResponse = (GetPretByIdResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", pretByIdRequest,
                         new SoapActionCallback(
-                                "http://biblio.io/api/biblio-web-service/GetExemplaireRequest"));
+                                "http://biblio.io/api/biblio-web-service/GetPretByIdRequest"));
         return exemplaireByIdResponse.getPret();
     }
 
@@ -41,7 +41,7 @@ public class PretClient extends WebServiceGatewaySupport{
         GetPretCreateResponse pretCreateResponse = (GetPretCreateResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", pretCreateRequest,
                         new SoapActionCallback(
-                                "http://biblio.io/api/biblio-web-service/GetExemplaireRequest"));
+                                "http://biblio.io/api/biblio-web-service/GetPretCreateRequest"));
         return pretCreateResponse.getPret();
     }
 
@@ -52,7 +52,7 @@ public class PretClient extends WebServiceGatewaySupport{
         GetPretByExemplaireResponse exemplaireResponse = (GetPretByExemplaireResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", exemplaireRequest,
                         new SoapActionCallback(
-                                "http://biblio.io/api/biblio-web-service/GetExemplaireRequest"));
+                                "http://biblio.io/api/biblio-web-service/GetPretByExemplaireRequest"));
         return exemplaireResponse.getPret();
     }
 
@@ -63,7 +63,7 @@ public class PretClient extends WebServiceGatewaySupport{
         GetPretByUsagerResponse pretByUsagerResponse = (GetPretByUsagerResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", pretByUsagerRequest,
                         new SoapActionCallback(
-                                "http://biblio.io/api/biblio-web-service/GetExemplaireRequest"));
+                                "http://biblio.io/api/biblio-web-service/GetPretByUsagerRequest"));
         return pretByUsagerResponse.getPret();
     }
 

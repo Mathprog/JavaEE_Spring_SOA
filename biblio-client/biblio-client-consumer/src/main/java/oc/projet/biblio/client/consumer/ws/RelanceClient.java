@@ -16,7 +16,7 @@ public class RelanceClient extends WebServiceGatewaySupport {
         GetRelanceResponse relanceResponse = (GetRelanceResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", relanceRequest,
                         new SoapActionCallback(
-                                "http://biblio.io/api/biblio-web-service/GetExemplaireRequest"));
+                                "http://biblio.io/api/biblio-web-service/GetRelanceRequest"));
 
         return relanceResponse.getRelance();
     }
@@ -28,7 +28,7 @@ public class RelanceClient extends WebServiceGatewaySupport {
         GetRelanceByIdResponse relanceByIdResponse = (GetRelanceByIdResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", relanceByIdRequest,
                         new SoapActionCallback(
-                                "http://biblio.io/api/biblio-web-service/GetExemplaireRequest"));
+                                "http://biblio.io/api/biblio-web-service/GetRelanceByIdRequest"));
 
         return relanceByIdResponse.getRelance();
     }
@@ -41,7 +41,7 @@ public class RelanceClient extends WebServiceGatewaySupport {
         GetRelanceCreateResponse relanceCreateResponse = (GetRelanceCreateResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", relanceCreateRequest,
                         new SoapActionCallback(
-                                "http://biblio.io/api/biblio-web-service/GetExemplaireRequest"));
+                                "http://biblio.io/api/biblio-web-service/GetRelanceCreateRequest"));
 
         return relanceCreateResponse.getRelance();
     }
@@ -53,7 +53,7 @@ public class RelanceClient extends WebServiceGatewaySupport {
         GetRelanceByUsagerResponse relanceByUsagerResponse = (GetRelanceByUsagerResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", relanceByUsagerRequest,
                         new SoapActionCallback(
-                                "http://biblio.io/api/biblio-web-service/GetExemplaireRequest"));
+                                "http://biblio.io/api/biblio-web-service/GetRelanceByUsagerRequest"));
 
         return relanceByUsagerResponse.getRelance();
     }
@@ -65,7 +65,7 @@ public class RelanceClient extends WebServiceGatewaySupport {
         GetRelanceByPretResponse relanceByPretResponse = (GetRelanceByPretResponse) getWebServiceTemplate()
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", relanceByPretRequest,
                         new SoapActionCallback(
-                                "http://biblio.io/api/biblio-web-service/GetExemplaireRequest"));
+                                "http://biblio.io/api/biblio-web-service/GetRelanceByPretRequest"));
 
         return relanceByPretResponse.getRelance();
     }

@@ -8,10 +8,13 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.config.annotation.WsConfigurerAdapter;
+import org.springframework.ws.server.EndpointInterceptor;
 import org.springframework.ws.server.endpoint.adapter.DefaultMethodEndpointAdapter;
 import org.springframework.ws.server.endpoint.adapter.method.MarshallingPayloadMethodProcessor;
 import org.springframework.ws.server.endpoint.adapter.method.MethodArgumentResolver;
 import org.springframework.ws.server.endpoint.adapter.method.MethodReturnValueHandler;
+import org.springframework.ws.soap.security.wss4j2.Wss4jSecurityInterceptor;
+import org.springframework.ws.soap.security.wss4j2.callback.SimplePasswordValidationCallbackHandler;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.xml.xsd.SimpleXsdSchema;
@@ -19,10 +22,34 @@ import org.springframework.xml.xsd.XsdSchema;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 @EnableWs
 @Configuration
 public class WSConfig extends WsConfigurerAdapter {
+
+    @Bean
+    public SimplePasswordValidationCallbackHandler securityCallbackHandler(){
+        SimplePasswordValidationCallbackHandler callbackHandler = new SimplePasswordValidationCallbackHandler();
+        Properties users = new Properties();
+        users.setProperty("admin", "secret");
+        callbackHandler.setUsers(users);
+        return callbackHandler;
+    }
+
+    @Bean
+    public Wss4jSecurityInterceptor securityInterceptor(){
+        Wss4jSecurityInterceptor securityInterceptor = new Wss4jSecurityInterceptor();
+        securityInterceptor.setValidationActions("Timestamp UsernameToken");
+        securityInterceptor.setValidationCallbackHandler(securityCallbackHandler());
+        return securityInterceptor;
+    }
+
+    @Override
+    public void addInterceptors(List<EndpointInterceptor> interceptors) {
+        interceptors.add(securityInterceptor());
+    }
+
     @Bean
     public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext) {
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
@@ -30,7 +57,6 @@ public class WSConfig extends WsConfigurerAdapter {
         servlet.setTransformWsdlLocations(true);
         return new ServletRegistrationBean(servlet, "/soapws/*");
     }
-
     @Bean
     public Jaxb2Marshaller marshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
