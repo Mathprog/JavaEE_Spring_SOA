@@ -1,7 +1,7 @@
 CREATE TABLE javaee.usager 
 (
 id int NOT NULL AUTO_INCREMENT,
-email varchar(255) NOT NULL,
+email varchar(255) NOT NULL UNIQUE,
 PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
@@ -11,6 +11,9 @@ CREATE TABLE javaee.ouvrage
 (
 id int NOT NULL auto_increment,
 titre varchar(255) NOT NULL,
+auteur CHAR(80),
+resume varchar(500),
+image char(80),
 PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
@@ -74,14 +77,18 @@ HAVING nb_ex = (SELECT COUNT(*) FROM javaee.exemplaire e2
                                 
 SELECT *, COUNT(e.id) AS nb_ex 
 FROM javaee.ouvrage o 
-JOIN javaee.exemplaire e ON o.id = e.ouvrage_id
-WHERE e.pret_id IS NULL
-HAVING nb_ex > 0;
+LEFT JOIN javaee.exemplaire e ON o.id = e.ouvrage_id
+WHERE o.titre LIKE "%Spring%"
+GROUP BY o.id;
+
 
 ALTER TABLE javaee.ouvrage DROP COLUMN ouvrage;
 ALTER TABLE javaee.usager ADD unique (email);
 ALTER TABLE javaee.ouvrage ALTER titre SET DEFAULT NULL;
 ALTER TABLE javaee.exemplaire ADD COLUMN pret_id integer NULL;
+ALTER TABLE javaee.ouvrage ADD COLUMN auteur CHAR(80) NULL;
+ALTER TABLE javaee.ouvrage ADD COLUMN resume VARCHAR(500) NULL;
+ALTER TABLE javaee.ouvrage ADD COLUMN image VARCHAR(500) NULL;
 ALTER TABLE javaee.exemplaire ENGINE = InnoDB;
 ALTER TABLE javaee.pret ENGINE = InnoDB;
 ALTER TABLE javaee.usager ENGINE = InnoDB;

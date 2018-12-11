@@ -68,6 +68,16 @@
     </dependency>
 
       <dependency>
+          <groupId>commons-io</groupId>
+          <artifactId>commons-io</artifactId>
+      </dependency>
+      <!--  needed for multipart requests  -->
+      <dependency>
+          <groupId>commons-fileupload</groupId>
+          <artifactId>commons-fileupload</artifactId>
+      </dependency>
+
+      <dependency>
       <groupId>wsdl4j</groupId>
       <artifactId>wsdl4j</artifactId>
         </dependency>

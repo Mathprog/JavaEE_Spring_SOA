@@ -2,8 +2,8 @@ package oc.projet.biblio.consumer.entity.impl;
 
 import oc.projet.biblio.model.entity.Exemplaire;
 import oc.projet.biblio.model.entity.Ouvrage;
-
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -37,9 +37,33 @@ import java.util.Set;
         ),
         @NamedQuery(
                 name = OuvrageImpl.QN.FIND_ALL_BY_RESEARCH,
-                query = "SELECT o " +
+                query = "SELECT o, COUNT(e) " +
                         "FROM OuvrageImpl o " +
-                        "WHERE o.titre LIKE :liketitre"
+                        "LEFT JOIN o.exemplaires e " +
+                        "WHERE o.titre LIKE :liketitre " +
+                        "GROUP BY o"
+        ),
+        @NamedQuery(
+                name=OuvrageImpl.QN.FIND_ALL_DISPO_BY_RESEARCH,
+                query="SELECT o, COUNT(e)" +
+                        "FROM OuvrageImpl o " +
+                        "JOIN o.exemplaires e " +
+                        "WHERE e.pret IS NULL AND o.titre LIKE :liketitre " +
+                        "GROUP BY o "+
+                        "HAVING COUNT(e) > 0"
+        ),
+        @NamedQuery(
+                name=OuvrageImpl.QN.FIND_ALL_NOT_DISPO_BY_RESEARCH,
+                query="SELECT o " +
+                        "FROM OuvrageImpl o " +
+                        "JOIN o.exemplaires e "+
+                        "WHERE e.pret IS NOT NULL AND o.titre LIKE :liketitre "+
+                        "GROUP BY o " +
+                        "HAVING COUNT(e) = ( " +
+                        "SELECT COUNT(e2) " +
+                        "FROM ExemplaireImpl e2 " +
+                        "JOIN e2.ouvrage o2 " +
+                        "WHERE o = o2)"
         )
 })
 public class OuvrageImpl implements Ouvrage {
@@ -49,6 +73,8 @@ public class OuvrageImpl implements Ouvrage {
         public static final String FIND_ALL_DISPO = "OuvrageImpl.findAllWithDispo";
         public static final String FIND_ALL_NOT_DISPO = "OuvrageImpl.findAllWithNoDispo";
         public static final String FIND_ALL_BY_RESEARCH = "OuvrageImpl.findAllByResearch";
+        public static final String FIND_ALL_DISPO_BY_RESEARCH = "OuvrageImpl.findAllWithDispoBySearch";
+        public static final String FIND_ALL_NOT_DISPO_BY_RESEARCH = "OuvrageImpl.findAllWithNoDispoByResearch";
     }
 
 
@@ -60,8 +86,20 @@ public class OuvrageImpl implements Ouvrage {
     @Column(name="titre", length = 255)
     private String titre;
 
+    @Column(name="auteur", length = 80)
+    private String auteur;
+
+    @Column(name = "resume", length = 500)
+    private String resume;
+
+    @Column(name = "image", length = 80)
+    private String image;
+
+    @Column(name = "date")
+    private LocalDate date;
+
     @Transient
-    private Long nbDispo;
+    private Long nbDispo = 0L;
 
     @OneToMany(mappedBy = "ouvrage", fetch = FetchType.LAZY, targetEntity = ExemplaireImpl.class)
     private Set<Exemplaire> exemplaires;
@@ -104,5 +142,45 @@ public class OuvrageImpl implements Ouvrage {
     @Override
     public void setExemplaires(Set<Exemplaire> exemplaires) {
         this.exemplaires = exemplaires;
+    }
+
+    @Override
+    public String getAuteur() {
+        return auteur;
+    }
+
+    @Override
+    public void setAuteur(String auteur) {
+        this.auteur = auteur;
+    }
+
+    @Override
+    public String getResume() {
+        return resume;
+    }
+
+    @Override
+    public void setResume(String resume) {
+        this.resume = resume;
+    }
+
+    @Override
+    public String getImage() {
+        return image;
+    }
+
+    @Override
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    @Override
+    public LocalDate getDate() {
+        return date;
+    }
+
+    @Override
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }

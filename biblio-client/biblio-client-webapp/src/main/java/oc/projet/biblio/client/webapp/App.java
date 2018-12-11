@@ -7,6 +7,8 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.PropertySource;
 
+import java.nio.file.Paths;
+
 /**
  * Hello world!
  *
@@ -22,7 +24,7 @@ public class App extends SpringBootServletInitializer {
     }
 
     public static void main(String[] args) {
-
         SpringApplication.run(App.class, args);
+        System.err.println(Paths.get(System.getProperty("java.io.tmpdir")));
     }
 }

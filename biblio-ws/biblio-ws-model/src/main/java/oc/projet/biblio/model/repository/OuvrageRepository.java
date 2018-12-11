@@ -11,7 +11,7 @@ public interface OuvrageRepository {
 
     List<Ouvrage> findAll();
     Ouvrage create(String nom);
-    List<Object[]> findAllWithDispo();
+    List<Ouvrage> findAllWithDispo();
 
     @Transactional(readOnly = true)
     List<Ouvrage> findAllWithNoDispo();

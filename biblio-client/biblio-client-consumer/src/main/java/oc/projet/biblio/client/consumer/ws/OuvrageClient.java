@@ -3,7 +3,12 @@ package oc.projet.biblio.client.consumer.ws;
 import oc.projet.biblio.client.consumer.generated.*;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
+import org.springframework.ws.soap.saaj.SaajSoapMessageFactory;
 
+import javax.activation.DataHandler;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.List;
 
 public class OuvrageClient extends WebServiceGatewaySupport {
@@ -15,6 +20,8 @@ public class OuvrageClient extends WebServiceGatewaySupport {
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", ouvrageRequest,
                         new SoapActionCallback(
                                 "http://biblio.io/api/biblio-web-service/GetOuvrageRequest"));
+
+
 
         return ouvrageResponse.getOuvrageWS();
     }
@@ -75,6 +82,18 @@ public class OuvrageClient extends WebServiceGatewaySupport {
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", ouvrageByNoDispoRequest,
                         new SoapActionCallback(
                                 "http://biblio.io/api/biblio-web-service/GetOuvrageCreateRequest"));
+
+        for(OuvrageWS ouvrageWS : ouvrageByNoDispoResponse.getOuvrageWS()){
+            if(ouvrageWS.getImageBin() != null){
+                String base64DataString = null;
+                //base64DataString = new String(ouvrageWS.getImageBin() , StandardCharsets.UTF_8);
+                base64DataString = Base64.getEncoder().withoutPadding().encodeToString(ouvrageWS.getImageBin());
+                //System.out.println(base64DataString);
+                ouvrageWS.setImageBase64DataString(base64DataString);
+                //ouvrageWS.setImageBin(null);
+            }
+
+        }
 
         return ouvrageByNoDispoResponse.getOuvrageWS();
     }

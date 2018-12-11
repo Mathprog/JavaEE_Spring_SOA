@@ -12,11 +12,11 @@
     <form class="col s12" method = "POST" action = "${contextPath}/usager/prets/details">
         <div class="row">
             <div class="input-field col s6">
-                <label>Name</label>
+                <label>Votre mail :</label>
                 <input placeholder="Votre email." name = "email" type="text" />
             </div>
         </div>
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <button class="btn waves-effect waves-light" type="submit" name="action">Mes prêts
             <i class="material-icons right">send</i>
         </button>
     </form>

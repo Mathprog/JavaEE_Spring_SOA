@@ -1,5 +1,6 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://biblio.io/api/biblio-web-service"
-           targetNamespace="http://biblio.io/api/biblio-web-service" elementFormDefault="qualified">
+           targetNamespace="http://biblio.io/api/biblio-web-service" elementFormDefault="qualified"
+           xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
 
 
     <!--
@@ -23,6 +24,11 @@
         <xs:sequence>
             <xs:element name="id" type="xs:int"/>
             <xs:element name="titre" type="xs:string"/>
+            <xs:element name="auteur" type="xs:string"/>
+            <xs:element name="resume" type="xs:string"/>
+            <xs:element name="date" type="xs:date"/>
+            <xs:element name="imageBin" type="xs:base64Binary" />
+            <xs:element name="ImageBase64DataString" type="xs:string" />
             <xs:element name="nbDispo" type="xs:long" minOccurs="0" />
         </xs:sequence>
     </xs:complexType>

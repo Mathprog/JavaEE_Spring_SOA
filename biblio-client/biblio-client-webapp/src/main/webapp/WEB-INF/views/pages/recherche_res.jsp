@@ -12,5 +12,5 @@
 
 
 <c:forEach items="${ ouvrages }" var="ouvrage" varStatus="status">
-    <p>Ouvrage  <c:out value="${ ouvrage.titre }" /></p>
+    <p>Ouvrage  <c:out value="${ ouvrage.titre }" />, nb exemplaire dispos :  <c:out value="${ ouvrage.nbDispo }" /></p>
 </c:forEach>

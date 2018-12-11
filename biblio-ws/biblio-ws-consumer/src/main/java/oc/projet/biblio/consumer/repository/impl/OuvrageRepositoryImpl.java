@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -40,8 +41,10 @@ public class OuvrageRepositoryImpl implements OuvrageRepository {
     }
 
     @Override
-    public List<Object[]> findAllWithDispo(){
-        return entityManager.createNamedQuery(OuvrageImpl.QN.FIND_ALL_DISPO, Object[].class).getResultList();
+    public List<Ouvrage> findAllWithDispo(){
+        List<Object[]> ouvrages = entityManager.createNamedQuery(OuvrageImpl.QN.FIND_ALL_DISPO, Object[].class).getResultList();
+
+        return this.utilsCount(ouvrages);
     }
 
     @Override
@@ -51,6 +54,20 @@ public class OuvrageRepositoryImpl implements OuvrageRepository {
 
     @Override
     public List<Ouvrage> findAllOuvrageByResearch(String titre){
-        return entityManager.createNamedQuery(OuvrageImpl.QN.FIND_ALL_BY_RESEARCH, Ouvrage.class).setParameter("liketitre", "%" + titre + "%").getResultList();
+        List<Object[]> ouvragesDispos = entityManager.createNamedQuery(OuvrageImpl.QN.FIND_ALL_DISPO_BY_RESEARCH, Object[].class).setParameter("liketitre" , "%" + titre + "%").getResultList();
+        List<Ouvrage> ouvragesNotDispos = entityManager.createNamedQuery(OuvrageImpl.QN.FIND_ALL_NOT_DISPO_BY_RESEARCH, Ouvrage.class).setParameter("liketitre" , "%" + titre + "%").getResultList();
+        List<Ouvrage> result = utilsCount(ouvragesDispos);
+        result.addAll(ouvragesNotDispos);
+        return result;
+    }
+
+    private List<Ouvrage> utilsCount(List<Object[]> ouvrages){
+        List<Ouvrage> ouvragesReturn = new ArrayList<>();
+        for (Object[] o : ouvrages){
+            Ouvrage ouvrage = (Ouvrage) o[0];
+            ouvrage.setNbDispo((Long) o[1]);
+            ouvragesReturn.add(ouvrage);
+        }
+        return ouvragesReturn;
     }
 }

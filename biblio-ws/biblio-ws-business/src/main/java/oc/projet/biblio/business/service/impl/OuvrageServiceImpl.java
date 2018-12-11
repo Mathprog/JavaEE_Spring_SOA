@@ -35,14 +35,7 @@ public class OuvrageServiceImpl implements OuvrageService {
 
     @Override
     public List<Ouvrage> findAllWithDispo(){
-        List<Object[]> ouvrages = this.ouvrageRepository.findAllWithDispo();
-        List<Ouvrage> ouvragesReturn = new ArrayList<>();
-        for (Object[] o : ouvrages){
-            Ouvrage ouvrage = (Ouvrage) o[0];
-            ouvrage.setNbDispo((Long) o[1]);
-            ouvragesReturn.add(ouvrage);
-        }
-        return ouvragesReturn;
+        return this.ouvrageRepository.findAllWithDispo();
     }
 
     @Override

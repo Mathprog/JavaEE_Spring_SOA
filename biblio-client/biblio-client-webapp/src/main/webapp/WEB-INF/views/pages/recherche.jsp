@@ -8,18 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 
-
-Infos détaillés :
-<form method = "POST" action = "${contextPath}/ouvrages/recherche">
-    <table>
-        <tr>
-            <td><label >Titre</label></td>
-            <td><input name = "titre" /></td>
-        </tr>
-        <tr>
-            <td colspan = "2">
-                <input type = "submit" value = "Rechercher"/>
-            </td>
-        </tr>
-    </table>
-</form>
+<div class="row">
+    <form class="col s12" method = "POST" action = "${contextPath}/ouvrages/recherche">
+        <div class="row">
+            <div class="input-field col s6">
+                <label >Titre</label>
+                <input placeholder="Titre souhaité." name = "titre" type="text" />
+            </div>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Rechercher
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+</div>

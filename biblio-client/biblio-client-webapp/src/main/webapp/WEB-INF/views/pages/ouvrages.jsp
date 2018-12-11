@@ -11,23 +11,37 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<h2>Tous les ouvrages :</h2>
 
-<c:forEach items="${ ouvrages }" var="ouvrage" varStatus="status">
-    <p>Ouvrage  <c:out value="${ ouvrage.titre }" /></p>
-</c:forEach>
-
-<h2>Ouvrage disponibles :</h2>
-
+<div class="row">
 <c:forEach items="${ ouvragesDispos }" var="ouvrageDispo" varStatus="status">
-    <p>Ouvrage : <c:out value="${ ouvrageDispo.titre }"/>, Dispo : <c:out value="${ ouvrageDispo.nbDispo }"/></p>
+
+        <div class="col s6 m3">
+            <div class="card">
+                <div class="card-image">
+                    <img src="data:image/jpeg;base64,<c:out value="${ ouvrageDispo.imageBase64DataString}"/>">
+                </div>
+                <div class="card-content">
+                    <span class="card-title"><c:out value="${ ouvrageDispo.titre }"/></span>
+                    <p><c:out value="${ ouvrageDispo.nbDispo }"/> exemplaires disponibles.</p>
+                </div>
+            </div>
+        </div>
 </c:forEach>
 
-<h2> Ouvrage non disponible : </h2>
 
 <c:forEach items="${ ouvragesNonDispos }" var="ouvrageNonDispo" varStatus="status">
-    <p>Ouvrage : <c:out value="${ ouvrageNonDispo.titre }"/></p>
+        <div class="col s6 m3">
+            <div class="card">
+                <div class="card-image">
+                    <img src="data:image/jpeg;base64,<c:out value="${ ouvrageNonDispo.imageBase64DataString}"/>">
+                </div>
+                <div class="card-content">
+                    <span class="card-title"><c:out value="${ ouvrageNonDispo.titre }"/></span>
+                    <p><c:out value="${ ouvrageNonDispo.nbDispo }"/> exemplaires disponibles.</p>
+                </div>
+            </div>
+        </div>
 </c:forEach>
 
-
+</div>
 

@@ -1,5 +1,6 @@
 package oc.projet.biblio.model.entity;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 public interface Ouvrage {
@@ -18,4 +19,20 @@ public interface Ouvrage {
     Set<Exemplaire> getExemplaires();
 
     void setExemplaires(Set<Exemplaire> exemplaires);
+
+    String getAuteur();
+
+    void setAuteur(String auteur);
+
+    String getResume();
+
+    void setResume(String resume);
+
+    abstract String getImage();
+
+    abstract void setImage(String image);
+
+    LocalDate getDate();
+
+    void setDate(LocalDate date);
 }

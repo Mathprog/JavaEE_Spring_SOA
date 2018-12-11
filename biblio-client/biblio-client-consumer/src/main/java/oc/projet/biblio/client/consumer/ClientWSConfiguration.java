@@ -14,8 +14,10 @@ public class ClientWSConfiguration {
         // this package must match the package in the <generatePackage> specified in
         // pom.xml
         marshaller.setContextPath("oc.projet.biblio.client.consumer.generated");
+        marshaller.setMtomEnabled(true); // IMPORTANT
         return marshaller;
     }
+
 
    @Bean
     public UsagerClient usagerClient(Jaxb2Marshaller marshaller) {
