@@ -8,7 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 
 
 @SpringBootApplication(scanBasePackages="oc.projet.biblio")
-@PropertySource("classpath:application.properties")
+@PropertySource("classpath:application-dev.properties")
 public class Application extends SpringBootServletInitializer {
 
     @Override

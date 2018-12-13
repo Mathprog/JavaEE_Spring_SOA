@@ -4,6 +4,7 @@ import oc.projet.biblio.model.entity.Relance;
 import oc.projet.biblio.model.entity.Pret;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 
@@ -28,7 +29,7 @@ import java.time.LocalDate;
 })
 @Entity
 @Table(name= "relance")
-public class RelanceImpl implements Relance {
+public class RelanceImpl implements Relance, Serializable {
 
     public static class QN {
         public static final String FIND_ALL = "RelanceImpl.findAll";
@@ -47,6 +48,14 @@ public class RelanceImpl implements Relance {
     @OneToOne(fetch = FetchType.LAZY, targetEntity = PretImpl.class)
     @JoinColumn(name = "pret_id")
     private Pret pret;
+
+    public RelanceImpl() {
+    }
+
+    public RelanceImpl(LocalDate dateFin, Pret pret) {
+        this.dateFin = dateFin;
+        this.pret = pret;
+    }
 
     @Override
     public int getId() {

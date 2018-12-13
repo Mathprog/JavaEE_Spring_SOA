@@ -11,6 +11,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<c:forEach items="${ ouvrages }" var="ouvrage" varStatus="status">
-    <p>Ouvrage  <c:out value="${ ouvrage.titre }" />, nb exemplaire dispos :  <c:out value="${ ouvrage.nbDispo }" /></p>
-</c:forEach>
+<div class="row">
+    <c:forEach items="${ ouvrages }" var="ouvrageDispo" varStatus="status">
+
+    <div class="col s6 m3">
+        <div class="card">
+            <div class="card-image">
+                <img src="data:image/jpeg;base64,<c:out value="${ ouvrageDispo.imageBase64DataString}"/>">
+            </div>
+            <div class="card-content">
+                <span class="card-title"><c:out value="${ ouvrageDispo.titre }"/></span>
+                <p> Ecrit par : <i><c:out value="${ ouvrageDispo.auteur }"/></i></p>
+                <p><c:out value="${ ouvrageDispo.resume }"/></p>
+                <p><c:out value="${ ouvrageDispo.nbDispo }" /> exemplaires disponibles.</p>
+            </div>
+        </div>
+    </div>
+    </c:forEach>
+</div>

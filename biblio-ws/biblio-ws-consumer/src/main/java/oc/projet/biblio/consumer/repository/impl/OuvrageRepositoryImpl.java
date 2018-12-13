@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,13 +30,15 @@ public class OuvrageRepositoryImpl implements OuvrageRepository {
     @Override
     public List<Ouvrage> findAll() {
         return entityManager.createNamedQuery(OuvrageImpl.QN.FIND_ALL, Ouvrage.class).getResultList();
-
     }
 
     @Override
-    public Ouvrage create(String titre) {
+    public Ouvrage create(String titre, String resume, String auteur, String imageName, LocalDate publication) {
         Ouvrage ouvrage = new OuvrageImpl();
         ouvrage.setTitre(titre);
+        ouvrage.setAuteur(auteur);
+        ouvrage.setResume(resume);
+        ouvrage.setImage(imageName);
         entityManager.persist(ouvrage);
         return ouvrage;
     }

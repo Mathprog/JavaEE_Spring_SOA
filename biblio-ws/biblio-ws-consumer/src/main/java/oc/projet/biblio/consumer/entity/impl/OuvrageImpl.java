@@ -3,6 +3,9 @@ package oc.projet.biblio.consumer.entity.impl;
 import oc.projet.biblio.model.entity.Exemplaire;
 import oc.projet.biblio.model.entity.Ouvrage;
 import javax.persistence.*;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -66,7 +69,7 @@ import java.util.Set;
                         "WHERE o = o2)"
         )
 })
-public class OuvrageImpl implements Ouvrage {
+public class OuvrageImpl implements Ouvrage, Serializable {
 
     public static class QN {
         public static final String FIND_ALL = "OuvrageImpl.findAll";
@@ -84,18 +87,23 @@ public class OuvrageImpl implements Ouvrage {
     private Integer id;
 
     @Column(name="titre", length = 255)
+    @Size(min=2, max = 255)
     private String titre;
 
     @Column(name="auteur", length = 80)
+    @Size(min=2, max = 80)
     private String auteur;
 
     @Column(name = "resume", length = 500)
+    @Size(min = 2, max = 500)
     private String resume;
 
     @Column(name = "image", length = 80)
+    @Size(min = 2, max = 80)
     private String image;
 
     @Column(name = "date")
+    @Past
     private LocalDate date;
 
     @Transient
@@ -103,6 +111,19 @@ public class OuvrageImpl implements Ouvrage {
 
     @OneToMany(mappedBy = "ouvrage", fetch = FetchType.LAZY, targetEntity = ExemplaireImpl.class)
     private Set<Exemplaire> exemplaires;
+
+    public OuvrageImpl() {
+    }
+
+    public OuvrageImpl(String titre, String auteur, String resume, String image, LocalDate date, Long nbDispo, Set<Exemplaire> exemplaires) {
+        this.titre = titre;
+        this.auteur = auteur;
+        this.resume = resume;
+        this.image = image;
+        this.date = date;
+        this.nbDispo = nbDispo;
+        this.exemplaires = exemplaires;
+    }
 
     @Override
     public Integer getId() {

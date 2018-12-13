@@ -22,7 +22,9 @@
                 </div>
                 <div class="card-content">
                     <span class="card-title"><c:out value="${ ouvrageDispo.titre }"/></span>
-                    <p><c:out value="${ ouvrageDispo.nbDispo }"/> exemplaires disponibles.</p>
+                    <p> Ecrit par : <i><c:out value="${ ouvrageDispo.auteur }"/></i></p>
+                    <p><c:out value="${ ouvrageDispo.resume }"/></p>
+                    <p><c:out value="${ ouvrageDispo.nbDispo }" /> exemplaires disponibles.</p>
                 </div>
             </div>
         </div>
@@ -37,6 +39,8 @@
                 </div>
                 <div class="card-content">
                     <span class="card-title"><c:out value="${ ouvrageNonDispo.titre }"/></span>
+                    <p> Ecrit par : <i><c:out value="${ ouvrageNonDispo.auteur }"/></i></p>
+                    <p><c:out value="${ ouvrageNonDispo.resume }"/></p>
                     <p><c:out value="${ ouvrageNonDispo.nbDispo }"/> exemplaires disponibles.</p>
                 </div>
             </div>

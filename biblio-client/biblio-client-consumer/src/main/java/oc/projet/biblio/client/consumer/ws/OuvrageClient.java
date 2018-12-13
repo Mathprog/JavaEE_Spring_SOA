@@ -82,19 +82,6 @@ public class OuvrageClient extends WebServiceGatewaySupport {
                 .marshalSendAndReceive("http://localhost:8080/soapws/bibliosoap", ouvrageByNoDispoRequest,
                         new SoapActionCallback(
                                 "http://biblio.io/api/biblio-web-service/GetOuvrageByNoDispoRequest"));
-
-        for(OuvrageWS ouvrageWS : ouvrageByNoDispoResponse.getOuvrageWS()){
-            if(ouvrageWS.getImageBin() != null){
-                String base64DataString = null;
-                //base64DataString = new String(ouvrageWS.getImageBin() , StandardCharsets.UTF_8);
-                base64DataString = Base64.getEncoder().withoutPadding().encodeToString(ouvrageWS.getImageBin());
-                //System.out.println(base64DataString);
-                ouvrageWS.setImageBase64DataString(base64DataString);
-                //ouvrageWS.setImageBin(null);
-            }
-
-        }
-
         return ouvrageByNoDispoResponse.getOuvrageWS();
     }
 

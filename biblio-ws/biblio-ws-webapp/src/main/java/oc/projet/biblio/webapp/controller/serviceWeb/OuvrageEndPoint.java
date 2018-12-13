@@ -13,13 +13,12 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import javax.imageio.ImageIO;
-import javax.print.attribute.standard.MediaSize;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.List;
 
@@ -61,7 +60,7 @@ public class OuvrageEndPoint {
     @ResponsePayload
     public GetOuvrageCreateResponse getOuvrageCreate(@RequestPayload GetOuvrageCreateRequest request){
         GetOuvrageCreateResponse ouvrageResponse = new GetOuvrageCreateResponse();
-        Ouvrage ouvrage = this.ouvrageService.createOuvrate(request.getTitre());
+        Ouvrage ouvrage = this.ouvrageService.createOuvrate(request.getTitre(), request.getResume(), request.getAuteur() , request.getImageName() , LocalDate.now().minusYears(8));
         OuvrageWS ouvrageWS = null;
         if( ouvrage != null ){
             ouvrageWS = new OuvrageWS();

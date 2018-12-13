@@ -13,6 +13,8 @@
 
 <div class="row">
 <table class="col s12">
+
+    <p><c:out value="${ message }" /></p>
     <thead>
     <tr>
         <th>Titre</th>
@@ -24,35 +26,34 @@
     <tbody>
         <c:forEach items="${ prets }" var="pret" varStatus="status">
             <tr>
-                <td><c:out value="${ pret.exemplaire.ouvrage.titre }" /> !</td>
-                <td>date d'emprunt : <date:localDate date="${pret.datePret}"  pattern="dd/MM/yyyy"/> </td>
-                <td>date de fin : <date:localDate date="${pret.dateFin}" pattern="dd/MM/yyyy"/></td>
+                <td><c:out value="${ pret.exemplaire.ouvrage.titre }" /></td>
+                <td><date:localDate date="${pret.datePret}"  pattern="dd/MM/yyyy"/> </td>
+                <td><date:localDate date="${pret.dateFin}" pattern="dd/MM/yyyy"/></td>
                 <c:choose>
                     <c:when test="${empty pret.relance}">
-                <td> Demander une prolongation de :
-                        <form method = "POST" action = "${contextPath}/relance/add">
-                            <table>
-                                <tr>
-                                    <td><label >Semaines</label></td>
-                                    <td><select name="weeks">
-                                        <option value="1">1 semaine</option>
-                                        <option value="2">2 semaines</option>
-                                        <option value="3">3 semaines</option>
-                                        <option value="4">4 semaines</option>
-                                    </select></td>
-                                </tr>
-                                <input type="hidden" name="pretId" value="${pret.id}"/>
-                                <tr>
-                                    <td colspan = "2">
-                                        <input type = "submit" value = "Prolonger mon prêt"/>
-                                    </td>
-                                </tr>
-                            </table>
+                <td>
+                        <form class="col m6 s12" method = "POST" action = "${contextPath}/relance/add">
+                            <div class="row" style="margin-bottom: 0;">
+                                <div class="input-field col s12">
+                                    <select id="relance" name="weeks"  class="browser-default col s6">
+                                        <option value="0">Semaines</option>
+                                        <option value="1">1 Semaine</option>
+                                        <option value="2">2 Semaines</option>
+                                        <option value="3">3 Semaines</option>
+                                        <option value="4">4 Semaines</option>
+                                    </select>
+
+                                    <input type="hidden" name="pretId" value="${pret.id}"/>
+                                <button class="btn waves-effect waves-light col s6" type="submit" name="action">Relance
+                                    <i class="material-icons right">send</i>
+                                </button>
+                                </div>
+                            </div>
                         </form>
                 </td>
                     </c:when>
                     <c:otherwise>
-                        <td>Relance jusqu'au : <date:localDate date="${pret.relance.dateFin}"  pattern="dd/MM/yyyy"/></td>
+                        <td> <date:localDate date="${pret.relance.dateFin}"  pattern="dd/MM/yyyy"/></td>
                     </c:otherwise>
                 </c:choose>
             </tr>

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -24,8 +24,8 @@ public class OuvrageServiceImpl implements OuvrageService {
     }
 
     @Override
-    public Ouvrage createOuvrate(String titre) {
-        return this.ouvrageRepository.create(titre);
+    public Ouvrage createOuvrate(String titre, String resume, String auteur, String image, LocalDate publication) {
+        return this.ouvrageRepository.create(titre, resume , auteur ,image ,publication );
     }
 
     @Override

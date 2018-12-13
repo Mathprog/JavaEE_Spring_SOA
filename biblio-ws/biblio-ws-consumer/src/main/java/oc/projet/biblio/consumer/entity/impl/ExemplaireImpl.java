@@ -7,6 +7,7 @@ import oc.projet.biblio.model.entity.Pret;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @NamedQueries({
         @NamedQuery(
@@ -37,7 +38,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="exemplaire")
-public class ExemplaireImpl implements Exemplaire {
+public class ExemplaireImpl implements Exemplaire, Serializable {
 
     public static class QN {
         public static final String FIND_ALL = "ExemplaireImpl.findAll";
@@ -62,6 +63,15 @@ public class ExemplaireImpl implements Exemplaire {
     @OneToOne(fetch = FetchType.LAZY, targetEntity = PretImpl.class, optional = true)
     @JoinColumn(name = "pret_id", nullable = true)
     private Pret pret;
+
+
+    public ExemplaireImpl() {
+    }
+
+    public ExemplaireImpl(Ouvrage ouvrage, Pret pret) {
+        this.ouvrage = ouvrage;
+        this.pret = pret;
+    }
 
     @Override
     public Integer getId() {

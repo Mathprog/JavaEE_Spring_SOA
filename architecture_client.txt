@@ -17,3 +17,4 @@ mvn -B archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -Darche
 mvn -B archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.1 -DgroupId=oc.projet.biblio.client -DartifactId=biblio-client-model -Dpackage=oc.projet.biblio.client.model
 
 mvn clean install -Djavax.xml.accessExternalSchema=all -DskipTests
+C:\Users\mathi\AppData\Local\Temp

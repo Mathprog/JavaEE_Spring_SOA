@@ -5,6 +5,7 @@ import oc.projet.biblio.model.entity.Usager;
 import oc.projet.biblio.model.entity.Pret;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 
@@ -54,7 +55,7 @@ import java.util.Set;
 
 
 })
-public class UsagerImpl implements Usager {
+public class UsagerImpl implements Usager, Serializable {
 
     public static class QN {
         public static final String FIND_BY_EMAIL = "UsagerImpl.findByEmail";
@@ -75,6 +76,14 @@ public class UsagerImpl implements Usager {
 
     @OneToMany(mappedBy = "usager", fetch = FetchType.LAZY, targetEntity = PretImpl.class)
     private Set<Pret> prets;
+
+    public UsagerImpl() {
+    }
+
+    public UsagerImpl(String email, Set<Pret> prets) {
+        this.email = email;
+        this.prets = prets;
+    }
 
     @Override
     public Integer getId() {

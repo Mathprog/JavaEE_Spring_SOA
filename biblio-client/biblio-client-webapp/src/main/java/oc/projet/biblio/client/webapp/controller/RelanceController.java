@@ -30,12 +30,17 @@ public class RelanceController {
         PretWS pretWS = pretService.find(pretId);
         RelanceWS relanceWS = null;
         String message;
-        if( pretWS != null) {
-            relanceWS = this.relanceService.createRelance(pretWS, pretWS.getDateFin().plusWeeks(weeks));
-            message = "Votre relance a bien été enregistrée. ";
+        if(weeks != 0){
+            if( pretWS != null) {
+                relanceWS = this.relanceService.createRelance(pretWS, pretWS.getDateFin().plusWeeks(weeks));
+                message = "Votre relance a bien été enregistrée. ";
+            } else {
+                message = "Erreur, le prêt n'existait pas";
+            }
         } else {
-            message = "Erreur, le prêt n'existait pas";
+            message = "Veuillez saisir un nombre de semaines";
         }
+
 
         modelMap.addAttribute("message", message);
         modelMap.addAttribute("relance", relanceWS);

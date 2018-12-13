@@ -3,6 +3,7 @@ package oc.projet.biblio.model.repository;
 import oc.projet.biblio.model.entity.Ouvrage;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface OuvrageRepository {
@@ -10,7 +11,7 @@ public interface OuvrageRepository {
     Ouvrage find(int id);
 
     List<Ouvrage> findAll();
-    Ouvrage create(String nom);
+    Ouvrage create(String nom, String resume, String auteur, String imageName, LocalDate publication);
     List<Ouvrage> findAllWithDispo();
 
     @Transactional(readOnly = true)

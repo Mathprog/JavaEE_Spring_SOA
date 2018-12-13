@@ -5,7 +5,7 @@ email varchar(255) NOT NULL UNIQUE,
 PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
-
+CREATE VIEW javaee.nbouvrage AS SELECT COUNT(*) FROM javaee.ouvrage;
 
 CREATE TABLE javaee.ouvrage
 (
@@ -88,7 +88,7 @@ ALTER TABLE javaee.ouvrage ALTER titre SET DEFAULT NULL;
 ALTER TABLE javaee.exemplaire ADD COLUMN pret_id integer NULL;
 ALTER TABLE javaee.ouvrage ADD COLUMN auteur CHAR(80) NULL;
 ALTER TABLE javaee.ouvrage ADD COLUMN resume VARCHAR(500) NULL;
-ALTER TABLE javaee.ouvrage ADD COLUMN image VARCHAR(500) NULL;
+ALTER TABLE javaee.ouvrage ADD COLUMN image CHAR(80) NULL;
 ALTER TABLE javaee.exemplaire ENGINE = InnoDB;
 ALTER TABLE javaee.pret ENGINE = InnoDB;
 ALTER TABLE javaee.usager ENGINE = InnoDB;

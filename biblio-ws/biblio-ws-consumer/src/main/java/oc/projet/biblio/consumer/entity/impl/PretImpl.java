@@ -7,6 +7,7 @@ import oc.projet.biblio.model.entity.Usager;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @NamedQueries({
@@ -28,7 +29,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name ="pret")
-public class PretImpl implements Pret {
+public class PretImpl implements Pret, Serializable {
 
     public static class QN {
         public static final String FIND_ALL = "PretImpl.findAll";
@@ -58,6 +59,17 @@ public class PretImpl implements Pret {
 
     @Column(name ="date_fin")
     private LocalDate dateFin;
+
+    public PretImpl() {
+    }
+
+    public PretImpl(Usager usager, Exemplaire exemplaire, Relance relance, LocalDate datePret, LocalDate dateFin) {
+        this.usager = usager;
+        this.exemplaire = exemplaire;
+        this.relance = relance;
+        this.datePret = datePret;
+        this.dateFin = dateFin;
+    }
 
     @Override
     public int getId() {
