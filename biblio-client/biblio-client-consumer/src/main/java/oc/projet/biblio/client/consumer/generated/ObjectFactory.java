@@ -2,13 +2,16 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.11 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2018.12.13 à 08:24:03 PM CET 
+// Généré le : 2018.12.14 à 04:45:04 PM CET 
 //
 
 
 package oc.projet.biblio.client.consumer.generated;
 
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
+import javax.xml.namespace.QName;
 
 
 /**
@@ -28,6 +31,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _OuvrageWSNbDispo_QNAME = new QName("http://biblio.io/api/biblio-web-service", "nbDispo");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: oc.projet.biblio.client.consumer.generated
@@ -546,6 +550,15 @@ public class ObjectFactory {
      */
     public RelanceWSAlone createRelanceWSAlone() {
         return new RelanceWSAlone();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Long }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://biblio.io/api/biblio-web-service", name = "nbDispo", scope = OuvrageWS.class)
+    public JAXBElement<Long> createOuvrageWSNbDispo(Long value) {
+        return new JAXBElement<Long>(_OuvrageWSNbDispo_QNAME, Long.class, OuvrageWS.class, value);
     }
 
 }

@@ -33,12 +33,11 @@ public class OuvrageRepositoryImpl implements OuvrageRepository {
     }
 
     @Override
-    public Ouvrage create(String titre, String resume, String auteur, String imageName, LocalDate publication) {
+    public Ouvrage create(String titre, String resume, String auteur, LocalDate publication) {
         Ouvrage ouvrage = new OuvrageImpl();
         ouvrage.setTitre(titre);
         ouvrage.setAuteur(auteur);
         ouvrage.setResume(resume);
-        ouvrage.setImage(imageName);
         entityManager.persist(ouvrage);
         return ouvrage;
     }

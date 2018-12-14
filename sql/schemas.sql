@@ -14,6 +14,7 @@ titre varchar(255) NOT NULL,
 auteur CHAR(80),
 resume varchar(500),
 image char(80),
+imageb BLOB,
 PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
@@ -82,6 +83,7 @@ WHERE o.titre LIKE "%Spring%"
 GROUP BY o.id;
 
 
+
 ALTER TABLE javaee.ouvrage DROP COLUMN ouvrage;
 ALTER TABLE javaee.usager ADD unique (email);
 ALTER TABLE javaee.ouvrage ALTER titre SET DEFAULT NULL;
@@ -89,6 +91,7 @@ ALTER TABLE javaee.exemplaire ADD COLUMN pret_id integer NULL;
 ALTER TABLE javaee.ouvrage ADD COLUMN auteur CHAR(80) NULL;
 ALTER TABLE javaee.ouvrage ADD COLUMN resume VARCHAR(500) NULL;
 ALTER TABLE javaee.ouvrage ADD COLUMN image CHAR(80) NULL;
+ALTER TABLE javaee.ouvrage ADD COLUMN imageb BLOB NULL;
 ALTER TABLE javaee.exemplaire ENGINE = InnoDB;
 ALTER TABLE javaee.pret ENGINE = InnoDB;
 ALTER TABLE javaee.usager ENGINE = InnoDB;

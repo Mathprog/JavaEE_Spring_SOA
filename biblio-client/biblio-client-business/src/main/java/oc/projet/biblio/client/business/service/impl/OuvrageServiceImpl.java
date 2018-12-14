@@ -56,11 +56,11 @@ public class OuvrageServiceImpl implements OuvrageService{
 
     private List<OuvrageWS> ouvrageWSListTranscode(List<OuvrageWS> ouvrageWSList){
         for(OuvrageWS ouvrageWS : ouvrageWSList){
-            if(ouvrageWS.getImageBin() != null){
+            if(ouvrageWS.getImageb() != null){
                 String base64DataString = null;
-                base64DataString = Base64.getEncoder().withoutPadding().encodeToString(ouvrageWS.getImageBin());
+                base64DataString = Base64.getEncoder().withoutPadding().encodeToString(ouvrageWS.getImageb());
                 ouvrageWS.setImageBase64DataString(base64DataString);
-                ouvrageWS.setImageBin(null);
+                ouvrageWS.setImageb(null);
             }
         }
         return ouvrageWSList;

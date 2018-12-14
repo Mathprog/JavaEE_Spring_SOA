@@ -98,10 +98,6 @@ public class OuvrageImpl implements Ouvrage, Serializable {
     @Size(min = 2, max = 500)
     private String resume;
 
-    @Column(name = "image", length = 80)
-    @Size(min = 2, max = 80)
-    private String image;
-
     @Column(name = "date")
     @Past
     private LocalDate date;
@@ -109,20 +105,22 @@ public class OuvrageImpl implements Ouvrage, Serializable {
     @Transient
     private Long nbDispo = 0L;
 
+    @Lob
+    @Column(name = "imageb", columnDefinition="BLOB")
+    private byte[] imageb;
+
     @OneToMany(mappedBy = "ouvrage", fetch = FetchType.LAZY, targetEntity = ExemplaireImpl.class)
     private Set<Exemplaire> exemplaires;
 
     public OuvrageImpl() {
     }
 
-    public OuvrageImpl(String titre, String auteur, String resume, String image, LocalDate date, Long nbDispo, Set<Exemplaire> exemplaires) {
+    public OuvrageImpl(String titre, String auteur, String resume, LocalDate date, Long nbDispo) {
         this.titre = titre;
         this.auteur = auteur;
         this.resume = resume;
-        this.image = image;
         this.date = date;
         this.nbDispo = nbDispo;
-        this.exemplaires = exemplaires;
     }
 
     @Override
@@ -186,16 +184,6 @@ public class OuvrageImpl implements Ouvrage, Serializable {
     }
 
     @Override
-    public String getImage() {
-        return image;
-    }
-
-    @Override
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    @Override
     public LocalDate getDate() {
         return date;
     }
@@ -203,5 +191,15 @@ public class OuvrageImpl implements Ouvrage, Serializable {
     @Override
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    @Override
+    public byte[] getImageb() {
+        return imageb;
+    }
+
+    @Override
+    public void setImageb(byte[] imageb) {
+        this.imageb = imageb;
     }
 }

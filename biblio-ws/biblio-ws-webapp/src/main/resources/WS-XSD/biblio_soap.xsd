@@ -26,10 +26,10 @@
             <xs:element name="titre" type="xs:string"/>
             <xs:element name="auteur" type="xs:string"/>
             <xs:element name="resume" type="xs:string"/>
-            <xs:element name="date" type="xs:date"/>
-            <xs:element name="imageBin" type="xs:base64Binary" />
-            <xs:element name="ImageBase64DataString" type="xs:string" />
-            <xs:element name="nbDispo" type="xs:long" minOccurs="0" />
+            <xs:element name="date" type="xs:date" nillable="true"/>
+            <xs:element name="imageb" type="xs:base64Binary" nillable="true"/>
+            <xs:element name="ImageBase64DataString" type="xs:string" nillable="true"/>
+            <xs:element name="nbDispo" type="xs:long" minOccurs="0" nillable="true"/>
         </xs:sequence>
     </xs:complexType>
 

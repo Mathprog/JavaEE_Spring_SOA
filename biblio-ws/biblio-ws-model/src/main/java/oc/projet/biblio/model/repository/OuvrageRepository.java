@@ -11,7 +11,7 @@ public interface OuvrageRepository {
     Ouvrage find(int id);
 
     List<Ouvrage> findAll();
-    Ouvrage create(String nom, String resume, String auteur, String imageName, LocalDate publication);
+    Ouvrage create(String nom, String resume, String auteur, LocalDate publication);
     List<Ouvrage> findAllWithDispo();
 
     @Transactional(readOnly = true)

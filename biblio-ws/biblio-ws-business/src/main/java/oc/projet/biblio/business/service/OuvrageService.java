@@ -12,7 +12,7 @@ public interface OuvrageService {
 
     Ouvrage find(int id);
 
-    Ouvrage createOuvrate(String titre, String resume, String auteur, String image, LocalDate publication);
+    Ouvrage createOuvrate(String titre, String resume, String auteur, LocalDate publication);
     List<Ouvrage> findAllWithDispo();
 
     List<Ouvrage> findAllWithNoDispo();

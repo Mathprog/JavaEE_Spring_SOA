@@ -28,11 +28,11 @@ public interface Ouvrage {
 
     void setResume(String resume);
 
-    abstract String getImage();
-
-    abstract void setImage(String image);
-
     LocalDate getDate();
 
-    void setDate(LocalDate date);
+     void setDate(LocalDate date);
+
+    byte[] getImageb();
+
+    void setImageb(byte[] imageb);
 }

@@ -12,12 +12,6 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.List;
@@ -60,7 +54,7 @@ public class OuvrageEndPoint {
     @ResponsePayload
     public GetOuvrageCreateResponse getOuvrageCreate(@RequestPayload GetOuvrageCreateRequest request){
         GetOuvrageCreateResponse ouvrageResponse = new GetOuvrageCreateResponse();
-        Ouvrage ouvrage = this.ouvrageService.createOuvrate(request.getTitre(), request.getResume(), request.getAuteur() , request.getImageName() , LocalDate.now().minusYears(8));
+        Ouvrage ouvrage = this.ouvrageService.createOuvrate(request.getTitre(), request.getResume(), request.getAuteur() , LocalDate.now().minusYears(8));
         OuvrageWS ouvrageWS = null;
         if( ouvrage != null ){
             ouvrageWS = new OuvrageWS();
@@ -99,30 +93,12 @@ public class OuvrageEndPoint {
     }
 
 
-    private OuvrageWS getBookImage(OuvrageWS ouvrageWS, String name){
-        byte []  data = null;
-        try{
-            BufferedImage bufferimage =  ImageIO.read(new File(Paths.get(System.getProperty("java.io.tmpdir")).toString() + File.separator + name));
-            ByteArrayOutputStream output = new ByteArrayOutputStream();
-            ImageIO.write(bufferimage, "jpg", output );
-            data = output.toByteArray();
-        } catch (IOException ioe){
-            ioe.printStackTrace();
-        }
-        ouvrageWS.setImageBin(data);
-        return ouvrageWS;
-    }
 
     private List<OuvrageWS> populateReturnList(List<Ouvrage> ouvrageList){
         List<OuvrageWS> ouvrageWSList = new ArrayList<>();
         for (Ouvrage ouvrage : ouvrageList){
             OuvrageWS ouvrageWS = new OuvrageWS();
             BeanUtils.copyProperties(ouvrage, ouvrageWS);
-            if(ouvrage.getImage() != null){
-                if(ouvrage.getImage() != null){
-                    ouvrageWS = this.getBookImage(ouvrageWS, ouvrage.getImage());
-                }
-            }
             ouvrageWSList.add(ouvrageWS);
         }
         return ouvrageWSList;
