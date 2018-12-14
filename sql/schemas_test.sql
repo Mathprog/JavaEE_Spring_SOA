@@ -49,11 +49,3 @@ PRIMARY KEY (id),
 CONSTRAINT FK_ouvrage FOREIGN KEY (ouvrage_id)
     REFERENCES javaee_test.ouvrage(id)
 )ENGINE = InnoDB;
-
-
-DELETE FROM javaee_test.relance WHERE id BETWEEN 1 AND 1000000;
-UPDATE javaee_test.exemplaire set pret_id = NULL  WHERE id BETWEEN 1 AND 1000000;
-DELETE FROM javaee_test.pret WHERE id BETWEEN 1 AND 1000000;
-DELETE FROM javaee_test.exemplaire WHERE id BETWEEN 1 AND 1000000;
-DELETE FROM javaee_test.usager WHERE id BETWEEN 1 AND 100000;
-DELETE FROM javaee_test.ouvrage WHERE id BETWEEN 1 AND 100000;
