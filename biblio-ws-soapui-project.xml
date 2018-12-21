@@ -1,0 +1,1711 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="20eb8bdb-0dc1-47cf-9aea-20a3f2c5f3b8" activeEnvironment="Default" name="biblio-ws" resourceRoot="" soapui-version="5.4.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="30d90405-c768-4bc5-9d46-9574eb694bf5" wsaVersion="NONE" name="BibliosoapPortSoap11" type="wsdl" bindingName="{http://biblio.io/api/biblio-web-service}BibliosoapPortSoap11" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/soapws/bibliosoap.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/soapws/bibliosoap.wsdl"><con:part><con:url>http://localhost:8080/soapws/bibliosoap.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://biblio.io/api/biblio-web-service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://biblio.io/api/biblio-web-service" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://biblio.io/api/biblio-web-service">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://biblio.io/api/biblio-web-service" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <!--============== User ===================-->
+      <xs:complexType name="usagerWS">
+        <xs:sequence>
+          <xs:element name="id" nillable="true" type="xs:int"/>
+          <xs:element name="email" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <!--============== OUVRAGE ===================-->
+      <xs:complexType name="ouvrageWS">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element name="titre" type="xs:string"/>
+          <xs:element name="auteur" type="xs:string"/>
+          <xs:element name="resume" type="xs:string"/>
+          <xs:element name="date" nillable="true" type="xs:date"/>
+          <xs:element name="imageb" nillable="true" type="xs:base64Binary"/>
+          <xs:element name="ImageBase64DataString" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="nbDispo" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <!--============== EXEMPLAIRE ===================-->
+      <xs:complexType name="exemplaireWS">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element name="ouvrage" type="tns:ouvrageWS"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="exemplaireWSAlone">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <!--============== PRET ===================-->
+      <xs:complexType name="pretWS">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element name="exemplaire" type="tns:exemplaireWS"/>
+          <xs:element name="ouvrage" type="tns:ouvrageWS"/>
+          <xs:element name="relance" type="tns:relanceWS"/>
+          <xs:element name="datePret" type="xs:date"/>
+          <xs:element name="dateFin" type="xs:date"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="pretWSAlone">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element name="datePret" type="xs:date"/>
+          <xs:element name="dateFin" type="xs:date"/>
+        </xs:sequence>
+      </xs:complexType>
+      <!--============== RELANCE ===================-->
+      <xs:complexType name="relanceWS">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element name="pret" type="tns:pretWS"/>
+          <xs:element name="dateFin" type="xs:date"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="relanceWSAlone">
+        <xs:sequence>
+          <xs:element name="id" nillable="true" type="xs:int"/>
+          <xs:element name="dateFin" nillable="true" type="xs:date"/>
+        </xs:sequence>
+      </xs:complexType>
+      <!--==============================================================
+      ================= USAGER METHOD ============================
+      =============================================================-->
+      <xs:element name="getUsagerByIdRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getUsagerByIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="usagerWS" nillable="true" type="tns:usagerWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== GET ALL USERS ===================-->
+      <xs:element name="getUsagerRequest">
+        <xs:complexType/>
+      </xs:element>
+      <xs:element name="getUsagerResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="usagerWS" nillable="true" type="tns:usagerWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== CREATE USER ===================-->
+      <xs:element name="getUsagerCreateRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="email" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getUsagerCreateResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="usagerWS" nillable="true" type="tns:usagerWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== GET USER BY EMAIL ===================-->
+      <xs:element name="getUsagerByEmailRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="email" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getUsagerByEmailResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="usagerWS" nillable="true" type="tns:usagerWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== GET USER BY PRET DATE ===================-->
+      <xs:element name="getUsagerByPretDateRequest">
+        <xs:complexType/>
+      </xs:element>
+      <xs:element name="getUsagerByPretDateResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="usagerWS" nillable="true" type="tns:usagerWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== GET USER BY RELANCE DATE ===================-->
+      <xs:element name="getUsagerByRelanceDateRequest">
+        <xs:complexType/>
+      </xs:element>
+      <xs:element name="getUsagerByRelanceDateResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="usagerWS" nillable="true" type="tns:usagerWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--======================================================
+    ================== OUVRAGE METHODS ===================
+    ======================================================-->
+      <!--============== GET OUVRAGE BY ID ===================-->
+      <xs:element name="getOuvrageByIdRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getOuvrageByIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ouvrageWS" nillable="true" type="tns:ouvrageWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== GET ALL OUVRAGES ===================-->
+      <xs:element name="getOuvrageRequest">
+        <xs:complexType/>
+      </xs:element>
+      <xs:element name="getOuvrageResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="ouvrageWS" nillable="true" type="tns:ouvrageWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== CREATE OUVRAGE ===================-->
+      <xs:element name="getOuvrageCreateRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="titre" type="xs:string"/>
+            <xs:element name="auteur" type="xs:string"/>
+            <xs:element name="resume" type="xs:string"/>
+            <xs:element name="date" type="xs:date"/>
+            <xs:element name="ImageName" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getOuvrageCreateResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ouvrageWS" nillable="true" type="tns:ouvrageWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== GET OUVRAGE BY TITRE ===================-->
+      <xs:element name="getOuvrageByTitreRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="titre" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getOuvrageByTitreResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="ouvrageWS" nillable="true" type="tns:ouvrageWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== GET OUVRAGE BY DISPO ===================-->
+      <xs:element name="getOuvrageByDispoRequest">
+        <xs:complexType/>
+      </xs:element>
+      <xs:element name="getOuvrageByDispoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="ouvrageWS" nillable="true" type="tns:ouvrageWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== GET OUVRAGE BY NO DISPO ===================-->
+      <xs:element name="getOuvrageByNoDispoRequest">
+        <xs:complexType/>
+      </xs:element>
+      <xs:element name="getOuvrageByNoDispoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="ouvrageWS" nillable="true" type="tns:ouvrageWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--=======================================================================
+    ======================== EXEMPLAIRES METHODES =========================
+    =======================================================================-->
+      <!--============== GET EXEMPLAIRE BY ID ===================-->
+      <xs:element name="getExemplaireByIdRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getExemplaireByIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="exemplaireWS" nillable="true" type="tns:exemplaireWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== GET EXEMPLAIRE BY BOOK ===================-->
+      <xs:element name="getExemplaireByBookRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="book" type="tns:ouvrageWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getExemplaireByBookResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="exemplaireWS" nillable="true" type="tns:exemplaireWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== GET EXEMPLAIRE BY USAGER ===================-->
+      <xs:element name="getExemplaireByUsagerRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="usager" type="tns:usagerWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getExemplaireByUsagerResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="exemplaireWS" nillable="true" type="tns:exemplaireWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== GET EXEMPLAIRE BY PRET ===================-->
+      <xs:element name="getExemplaireByPretRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="pret" type="tns:pretWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getExemplaireByPretResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="exemplaireWS" nillable="true" type="tns:exemplaireWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== GET ALL EXEMPLAIRES ===================-->
+      <xs:element name="getExemplaireRequest">
+        <xs:complexType/>
+      </xs:element>
+      <xs:element name="getExemplaireResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="exemplaireWS" nillable="true" type="tns:exemplaireWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== CREATE EXEMPLAIRE ===================-->
+      <xs:element name="getExemplaireCreateRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ouvrage" type="tns:ouvrageWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getExemplaireCreateResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="exemplaireWS" nillable="true" type="tns:exemplaireWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--==================================================================
+        ======================= PRET METHODS ======================
+        ===========================================================-->
+      <!--============== GET PRET BY ID ===================-->
+      <xs:element name="getPretByIdRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPretByIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="pret" nillable="true" type="tns:pretWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== GET ALL PRETS ===================-->
+      <xs:element name="getPretsRequest">
+        <xs:complexType/>
+      </xs:element>
+      <xs:element name="getPretsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="pret" nillable="true" type="tns:pretWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== CREATE PRET ===================-->
+      <xs:element name="getPretCreateRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="usager" type="tns:usagerWS"/>
+            <xs:element name="exemplaire" type="tns:exemplaireWS"/>
+            <xs:element name="datePret" type="xs:date"/>
+            <xs:element name="dateFin" type="xs:date"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPretCreateResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="pret" nillable="true" type="tns:pretWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== GET PRET BY EXEMPLAIRE ===================-->
+      <xs:element name="getPretByExemplaireRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="exemplaire" nillable="true" type="tns:exemplaireWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPretByExemplaireResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="pret" nillable="true" type="tns:pretWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== GET PRET BY USAGER ===================-->
+      <xs:element name="getPretByUsagerRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="usager" type="tns:usagerWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPretByUsagerResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="pret" nillable="true" type="tns:pretWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--=====================================================================
+        ====================== RELANCE METHODE ======================
+        ================================================================-->
+      <!--============== GET RELANCE BY ID ===================-->
+      <xs:element name="getRelanceByIdRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getRelanceByIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="relance" nillable="true" type="tns:relanceWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== GET ALL RELANCE ===================-->
+      <xs:element name="getRelanceRequest">
+        <xs:complexType/>
+      </xs:element>
+      <xs:element name="getRelanceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="relance" nillable="true" type="tns:relanceWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== CREATE RELANCE ===================-->
+      <xs:element name="getRelanceCreateRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="pret" type="tns:pretWS"/>
+            <xs:element name="dateFin" type="xs:date"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getRelanceCreateResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="relance" nillable="true" type="tns:relanceWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== GET RELANCE BY PRET ===================-->
+      <xs:element name="getRelanceByPretRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="pret" type="tns:pretWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getRelanceByPretResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="relance" nillable="true" type="tns:relanceWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <!--============== GET RELANCE BY USAGER ===================-->
+      <xs:element name="getRelanceByUsagerRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="usager" type="tns:usagerWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getRelanceByUsagerResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="relance" nillable="true" type="tns:relanceWS"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getUsagerCreateRequest">
+    <wsdl:part element="tns:getUsagerCreateRequest" name="getUsagerCreateRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getExemplaireByBookResponse">
+    <wsdl:part element="tns:getExemplaireByBookResponse" name="getExemplaireByBookResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getExemplaireByPretRequest">
+    <wsdl:part element="tns:getExemplaireByPretRequest" name="getExemplaireByPretRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOuvrageByIdResponse">
+    <wsdl:part element="tns:getOuvrageByIdResponse" name="getOuvrageByIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRelanceByIdRequest">
+    <wsdl:part element="tns:getRelanceByIdRequest" name="getRelanceByIdRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOuvrageByTitreResponse">
+    <wsdl:part element="tns:getOuvrageByTitreResponse" name="getOuvrageByTitreResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsagerCreateResponse">
+    <wsdl:part element="tns:getUsagerCreateResponse" name="getUsagerCreateResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPretsResponse">
+    <wsdl:part element="tns:getPretsResponse" name="getPretsResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRelanceCreateResponse">
+    <wsdl:part element="tns:getRelanceCreateResponse" name="getRelanceCreateResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPretByIdResponse">
+    <wsdl:part element="tns:getPretByIdResponse" name="getPretByIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getExemplaireByBookRequest">
+    <wsdl:part element="tns:getExemplaireByBookRequest" name="getExemplaireByBookRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRelanceByUsagerRequest">
+    <wsdl:part element="tns:getRelanceByUsagerRequest" name="getRelanceByUsagerRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRelanceByPretResponse">
+    <wsdl:part element="tns:getRelanceByPretResponse" name="getRelanceByPretResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOuvrageByNoDispoRequest">
+    <wsdl:part element="tns:getOuvrageByNoDispoRequest" name="getOuvrageByNoDispoRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsagerByRelanceDateResponse">
+    <wsdl:part element="tns:getUsagerByRelanceDateResponse" name="getUsagerByRelanceDateResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsagerByPretDateRequest">
+    <wsdl:part element="tns:getUsagerByPretDateRequest" name="getUsagerByPretDateRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsagerByPretDateResponse">
+    <wsdl:part element="tns:getUsagerByPretDateResponse" name="getUsagerByPretDateResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPretByUsagerRequest">
+    <wsdl:part element="tns:getPretByUsagerRequest" name="getPretByUsagerRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOuvrageCreateResponse">
+    <wsdl:part element="tns:getOuvrageCreateResponse" name="getOuvrageCreateResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getExemplaireByPretResponse">
+    <wsdl:part element="tns:getExemplaireByPretResponse" name="getExemplaireByPretResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPretCreateResponse">
+    <wsdl:part element="tns:getPretCreateResponse" name="getPretCreateResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOuvrageRequest">
+    <wsdl:part element="tns:getOuvrageRequest" name="getOuvrageRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getExemplaireByUsagerRequest">
+    <wsdl:part element="tns:getExemplaireByUsagerRequest" name="getExemplaireByUsagerRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPretByIdRequest">
+    <wsdl:part element="tns:getPretByIdRequest" name="getPretByIdRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOuvrageByNoDispoResponse">
+    <wsdl:part element="tns:getOuvrageByNoDispoResponse" name="getOuvrageByNoDispoResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRelanceByPretRequest">
+    <wsdl:part element="tns:getRelanceByPretRequest" name="getRelanceByPretRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRelanceCreateRequest">
+    <wsdl:part element="tns:getRelanceCreateRequest" name="getRelanceCreateRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getExemplaireRequest">
+    <wsdl:part element="tns:getExemplaireRequest" name="getExemplaireRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsagerRequest">
+    <wsdl:part element="tns:getUsagerRequest" name="getUsagerRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOuvrageByTitreRequest">
+    <wsdl:part element="tns:getOuvrageByTitreRequest" name="getOuvrageByTitreRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getExemplaireResponse">
+    <wsdl:part element="tns:getExemplaireResponse" name="getExemplaireResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOuvrageByIdRequest">
+    <wsdl:part element="tns:getOuvrageByIdRequest" name="getOuvrageByIdRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsagerByIdRequest">
+    <wsdl:part element="tns:getUsagerByIdRequest" name="getUsagerByIdRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOuvrageByDispoRequest">
+    <wsdl:part element="tns:getOuvrageByDispoRequest" name="getOuvrageByDispoRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getExemplaireCreateResponse">
+    <wsdl:part element="tns:getExemplaireCreateResponse" name="getExemplaireCreateResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOuvrageCreateRequest">
+    <wsdl:part element="tns:getOuvrageCreateRequest" name="getOuvrageCreateRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPretByExemplaireResponse">
+    <wsdl:part element="tns:getPretByExemplaireResponse" name="getPretByExemplaireResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsagerByIdResponse">
+    <wsdl:part element="tns:getUsagerByIdResponse" name="getUsagerByIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRelanceByUsagerResponse">
+    <wsdl:part element="tns:getRelanceByUsagerResponse" name="getRelanceByUsagerResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getExemplaireByIdRequest">
+    <wsdl:part element="tns:getExemplaireByIdRequest" name="getExemplaireByIdRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsagerResponse">
+    <wsdl:part element="tns:getUsagerResponse" name="getUsagerResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOuvrageResponse">
+    <wsdl:part element="tns:getOuvrageResponse" name="getOuvrageResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsagerByEmailRequest">
+    <wsdl:part element="tns:getUsagerByEmailRequest" name="getUsagerByEmailRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPretByExemplaireRequest">
+    <wsdl:part element="tns:getPretByExemplaireRequest" name="getPretByExemplaireRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRelanceByIdResponse">
+    <wsdl:part element="tns:getRelanceByIdResponse" name="getRelanceByIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPretsRequest">
+    <wsdl:part element="tns:getPretsRequest" name="getPretsRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsagerByEmailResponse">
+    <wsdl:part element="tns:getUsagerByEmailResponse" name="getUsagerByEmailResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPretCreateRequest">
+    <wsdl:part element="tns:getPretCreateRequest" name="getPretCreateRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOuvrageByDispoResponse">
+    <wsdl:part element="tns:getOuvrageByDispoResponse" name="getOuvrageByDispoResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRelanceRequest">
+    <wsdl:part element="tns:getRelanceRequest" name="getRelanceRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsagerByRelanceDateRequest">
+    <wsdl:part element="tns:getUsagerByRelanceDateRequest" name="getUsagerByRelanceDateRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPretByUsagerResponse">
+    <wsdl:part element="tns:getPretByUsagerResponse" name="getPretByUsagerResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getExemplaireByIdResponse">
+    <wsdl:part element="tns:getExemplaireByIdResponse" name="getExemplaireByIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRelanceResponse">
+    <wsdl:part element="tns:getRelanceResponse" name="getRelanceResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getExemplaireCreateRequest">
+    <wsdl:part element="tns:getExemplaireCreateRequest" name="getExemplaireCreateRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getExemplaireByUsagerResponse">
+    <wsdl:part element="tns:getExemplaireByUsagerResponse" name="getExemplaireByUsagerResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="BibliosoapPort">
+    <wsdl:operation name="getUsagerCreate">
+      <wsdl:input message="tns:getUsagerCreateRequest" name="getUsagerCreateRequest"></wsdl:input>
+      <wsdl:output message="tns:getUsagerCreateResponse" name="getUsagerCreateResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getExemplaireByBook">
+      <wsdl:input message="tns:getExemplaireByBookRequest" name="getExemplaireByBookRequest"></wsdl:input>
+      <wsdl:output message="tns:getExemplaireByBookResponse" name="getExemplaireByBookResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getExemplaireByPret">
+      <wsdl:input message="tns:getExemplaireByPretRequest" name="getExemplaireByPretRequest"></wsdl:input>
+      <wsdl:output message="tns:getExemplaireByPretResponse" name="getExemplaireByPretResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOuvrageById">
+      <wsdl:input message="tns:getOuvrageByIdRequest" name="getOuvrageByIdRequest"></wsdl:input>
+      <wsdl:output message="tns:getOuvrageByIdResponse" name="getOuvrageByIdResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRelanceById">
+      <wsdl:input message="tns:getRelanceByIdRequest" name="getRelanceByIdRequest"></wsdl:input>
+      <wsdl:output message="tns:getRelanceByIdResponse" name="getRelanceByIdResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOuvrageByTitre">
+      <wsdl:input message="tns:getOuvrageByTitreRequest" name="getOuvrageByTitreRequest"></wsdl:input>
+      <wsdl:output message="tns:getOuvrageByTitreResponse" name="getOuvrageByTitreResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPrets">
+      <wsdl:input message="tns:getPretsRequest" name="getPretsRequest"></wsdl:input>
+      <wsdl:output message="tns:getPretsResponse" name="getPretsResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRelanceCreate">
+      <wsdl:input message="tns:getRelanceCreateRequest" name="getRelanceCreateRequest"></wsdl:input>
+      <wsdl:output message="tns:getRelanceCreateResponse" name="getRelanceCreateResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPretById">
+      <wsdl:input message="tns:getPretByIdRequest" name="getPretByIdRequest"></wsdl:input>
+      <wsdl:output message="tns:getPretByIdResponse" name="getPretByIdResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRelanceByUsager">
+      <wsdl:input message="tns:getRelanceByUsagerRequest" name="getRelanceByUsagerRequest"></wsdl:input>
+      <wsdl:output message="tns:getRelanceByUsagerResponse" name="getRelanceByUsagerResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRelanceByPret">
+      <wsdl:input message="tns:getRelanceByPretRequest" name="getRelanceByPretRequest"></wsdl:input>
+      <wsdl:output message="tns:getRelanceByPretResponse" name="getRelanceByPretResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOuvrageByNoDispo">
+      <wsdl:input message="tns:getOuvrageByNoDispoRequest" name="getOuvrageByNoDispoRequest"></wsdl:input>
+      <wsdl:output message="tns:getOuvrageByNoDispoResponse" name="getOuvrageByNoDispoResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsagerByRelanceDate">
+      <wsdl:input message="tns:getUsagerByRelanceDateRequest" name="getUsagerByRelanceDateRequest"></wsdl:input>
+      <wsdl:output message="tns:getUsagerByRelanceDateResponse" name="getUsagerByRelanceDateResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsagerByPretDate">
+      <wsdl:input message="tns:getUsagerByPretDateRequest" name="getUsagerByPretDateRequest"></wsdl:input>
+      <wsdl:output message="tns:getUsagerByPretDateResponse" name="getUsagerByPretDateResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPretByUsager">
+      <wsdl:input message="tns:getPretByUsagerRequest" name="getPretByUsagerRequest"></wsdl:input>
+      <wsdl:output message="tns:getPretByUsagerResponse" name="getPretByUsagerResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOuvrageCreate">
+      <wsdl:input message="tns:getOuvrageCreateRequest" name="getOuvrageCreateRequest"></wsdl:input>
+      <wsdl:output message="tns:getOuvrageCreateResponse" name="getOuvrageCreateResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPretCreate">
+      <wsdl:input message="tns:getPretCreateRequest" name="getPretCreateRequest"></wsdl:input>
+      <wsdl:output message="tns:getPretCreateResponse" name="getPretCreateResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOuvrage">
+      <wsdl:input message="tns:getOuvrageRequest" name="getOuvrageRequest"></wsdl:input>
+      <wsdl:output message="tns:getOuvrageResponse" name="getOuvrageResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getExemplaireByUsager">
+      <wsdl:input message="tns:getExemplaireByUsagerRequest" name="getExemplaireByUsagerRequest"></wsdl:input>
+      <wsdl:output message="tns:getExemplaireByUsagerResponse" name="getExemplaireByUsagerResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getExemplaire">
+      <wsdl:input message="tns:getExemplaireRequest" name="getExemplaireRequest"></wsdl:input>
+      <wsdl:output message="tns:getExemplaireResponse" name="getExemplaireResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsager">
+      <wsdl:input message="tns:getUsagerRequest" name="getUsagerRequest"></wsdl:input>
+      <wsdl:output message="tns:getUsagerResponse" name="getUsagerResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsagerById">
+      <wsdl:input message="tns:getUsagerByIdRequest" name="getUsagerByIdRequest"></wsdl:input>
+      <wsdl:output message="tns:getUsagerByIdResponse" name="getUsagerByIdResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOuvrageByDispo">
+      <wsdl:input message="tns:getOuvrageByDispoRequest" name="getOuvrageByDispoRequest"></wsdl:input>
+      <wsdl:output message="tns:getOuvrageByDispoResponse" name="getOuvrageByDispoResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getExemplaireCreate">
+      <wsdl:input message="tns:getExemplaireCreateRequest" name="getExemplaireCreateRequest"></wsdl:input>
+      <wsdl:output message="tns:getExemplaireCreateResponse" name="getExemplaireCreateResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPretByExemplaire">
+      <wsdl:input message="tns:getPretByExemplaireRequest" name="getPretByExemplaireRequest"></wsdl:input>
+      <wsdl:output message="tns:getPretByExemplaireResponse" name="getPretByExemplaireResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getExemplaireById">
+      <wsdl:input message="tns:getExemplaireByIdRequest" name="getExemplaireByIdRequest"></wsdl:input>
+      <wsdl:output message="tns:getExemplaireByIdResponse" name="getExemplaireByIdResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsagerByEmail">
+      <wsdl:input message="tns:getUsagerByEmailRequest" name="getUsagerByEmailRequest"></wsdl:input>
+      <wsdl:output message="tns:getUsagerByEmailResponse" name="getUsagerByEmailResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRelance">
+      <wsdl:input message="tns:getRelanceRequest" name="getRelanceRequest"></wsdl:input>
+      <wsdl:output message="tns:getRelanceResponse" name="getRelanceResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BibliosoapPortSoap11" type="tns:BibliosoapPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getUsagerCreate">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getUsagerCreateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUsagerCreateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getExemplaireByBook">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getExemplaireByBookRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getExemplaireByBookResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getExemplaireByPret">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getExemplaireByPretRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getExemplaireByPretResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOuvrageById">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getOuvrageByIdRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getOuvrageByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRelanceById">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getRelanceByIdRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRelanceByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOuvrageByTitre">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getOuvrageByTitreRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getOuvrageByTitreResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPrets">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getPretsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPretsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRelanceCreate">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getRelanceCreateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRelanceCreateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPretById">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getPretByIdRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPretByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRelanceByUsager">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getRelanceByUsagerRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRelanceByUsagerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRelanceByPret">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getRelanceByPretRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRelanceByPretResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOuvrageByNoDispo">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getOuvrageByNoDispoRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getOuvrageByNoDispoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsagerByRelanceDate">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getUsagerByRelanceDateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUsagerByRelanceDateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsagerByPretDate">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getUsagerByPretDateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUsagerByPretDateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPretByUsager">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getPretByUsagerRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPretByUsagerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOuvrageCreate">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getOuvrageCreateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getOuvrageCreateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPretCreate">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getPretCreateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPretCreateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOuvrage">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getOuvrageRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getOuvrageResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getExemplaireByUsager">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getExemplaireByUsagerRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getExemplaireByUsagerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getExemplaire">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getExemplaireRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getExemplaireResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsager">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getUsagerRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUsagerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsagerById">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getUsagerByIdRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUsagerByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOuvrageByDispo">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getOuvrageByDispoRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getOuvrageByDispoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getExemplaireCreate">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getExemplaireCreateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getExemplaireCreateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPretByExemplaire">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getPretByExemplaireRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPretByExemplaireResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getExemplaireById">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getExemplaireByIdRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getExemplaireByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsagerByEmail">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getUsagerByEmailRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUsagerByEmailResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRelance">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getRelanceRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRelanceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BibliosoapPortService">
+    <wsdl:port binding="tns:BibliosoapPortSoap11" name="BibliosoapPortSoap11">
+      <soap:address location="http://localhost:8080/soapws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/soapws</con:endpoint></con:endpoints><con:operation id="91865adf-d0ca-4027-9b7b-697e6c60c5ec" isOneWay="false" action="" name="getExemplaire" bindingOperationName="getExemplaire" type="Request-Response" outputName="getExemplaireResponse" inputName="getExemplaireRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d56d6d9f-4eaa-4699-8293-4f54b3e3b102" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getExemplaireRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getExemplaireRequest"/></con:call></con:operation><con:operation id="bf48d91d-cdb1-4444-9334-fc0902ae134c" isOneWay="false" action="" name="getExemplaireByBook" bindingOperationName="getExemplaireByBook" type="Request-Response" outputName="getExemplaireByBookResponse" inputName="getExemplaireByBookRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="41b1ee81-5997-40a7-8369-5ecbff039e9a" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getExemplaireByBookRequest>\r
+         <bib:book>\r
+            <bib:id>?</bib:id>\r
+            <bib:titre>?</bib:titre>\r
+            <bib:auteur>?</bib:auteur>\r
+            <bib:resume>?</bib:resume>\r
+            <bib:date>?</bib:date>\r
+            <bib:imageb>cid:738396968680</bib:imageb>\r
+            <bib:ImageBase64DataString>?</bib:ImageBase64DataString>\r
+            <!--Optional:-->\r
+            <bib:nbDispo>?</bib:nbDispo>\r
+         </bib:book>\r
+      </bib:getExemplaireByBookRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getExemplaireByBookRequest"/></con:call></con:operation><con:operation id="9ea4155e-e703-48ef-9739-b845adb0e22b" isOneWay="false" action="" name="getExemplaireById" bindingOperationName="getExemplaireById" type="Request-Response" outputName="getExemplaireByIdResponse" inputName="getExemplaireByIdRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e2854354-93a4-46a1-8302-9c3471ace17b" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getExemplaireByIdRequest>\r
+         <bib:id>?</bib:id>\r
+      </bib:getExemplaireByIdRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getExemplaireByIdRequest"/></con:call></con:operation><con:operation id="f4ac56f1-b035-414e-9def-c2b4baba12f5" isOneWay="false" action="" name="getExemplaireByPret" bindingOperationName="getExemplaireByPret" type="Request-Response" outputName="getExemplaireByPretResponse" inputName="getExemplaireByPretRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="0813ed9f-d10f-4814-91e1-10a5ad5ec434" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getExemplaireByPretRequest>\r
+         <bib:pret>\r
+            <bib:id>?</bib:id>\r
+            <bib:exemplaire>\r
+               <bib:id>?</bib:id>\r
+               <bib:ouvrage>\r
+                  <bib:id>?</bib:id>\r
+                  <bib:titre>?</bib:titre>\r
+                  <bib:auteur>?</bib:auteur>\r
+                  <bib:resume>?</bib:resume>\r
+                  <bib:date>?</bib:date>\r
+                  <bib:imageb>cid:111669727350</bib:imageb>\r
+                  <bib:ImageBase64DataString>?</bib:ImageBase64DataString>\r
+                  <!--Optional:-->\r
+                  <bib:nbDispo>?</bib:nbDispo>\r
+               </bib:ouvrage>\r
+            </bib:exemplaire>\r
+            <bib:ouvrage>\r
+               <bib:id>?</bib:id>\r
+               <bib:titre>?</bib:titre>\r
+               <bib:auteur>?</bib:auteur>\r
+               <bib:resume>?</bib:resume>\r
+               <bib:date>?</bib:date>\r
+               <bib:imageb>cid:595042196007</bib:imageb>\r
+               <bib:ImageBase64DataString>?</bib:ImageBase64DataString>\r
+               <!--Optional:-->\r
+               <bib:nbDispo>?</bib:nbDispo>\r
+            </bib:ouvrage>\r
+            <bib:relance>\r
+               <bib:id>?</bib:id>\r
+               <bib:pret/>\r
+               <bib:dateFin>?</bib:dateFin>\r
+            </bib:relance>\r
+            <bib:datePret>?</bib:datePret>\r
+            <bib:dateFin>?</bib:dateFin>\r
+         </bib:pret>\r
+      </bib:getExemplaireByPretRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getExemplaireByPretRequest"/></con:call></con:operation><con:operation id="f7dbf0dc-c5b7-4ed4-b942-1b32079c4e88" isOneWay="false" action="" name="getExemplaireByUsager" bindingOperationName="getExemplaireByUsager" type="Request-Response" outputName="getExemplaireByUsagerResponse" inputName="getExemplaireByUsagerRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="10dde164-8444-4570-940e-76ce63c48c47" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getExemplaireByUsagerRequest>\r
+         <bib:usager>\r
+            <bib:id>?</bib:id>\r
+            <bib:email>?</bib:email>\r
+         </bib:usager>\r
+      </bib:getExemplaireByUsagerRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getExemplaireByUsagerRequest"/></con:call></con:operation><con:operation id="73930ddb-64c5-4bf3-906f-e9511c61a5e5" isOneWay="false" action="" name="getExemplaireCreate" bindingOperationName="getExemplaireCreate" type="Request-Response" outputName="getExemplaireCreateResponse" inputName="getExemplaireCreateRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="92b07746-b1b5-4440-9b01-7114526e0484" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getExemplaireCreateRequest>\r
+         <bib:ouvrage>\r
+            <bib:id>?</bib:id>\r
+            <bib:titre>?</bib:titre>\r
+            <bib:auteur>?</bib:auteur>\r
+            <bib:resume>?</bib:resume>\r
+            <bib:date>?</bib:date>\r
+            <bib:imageb>cid:1225112702574</bib:imageb>\r
+            <bib:ImageBase64DataString>?</bib:ImageBase64DataString>\r
+            <!--Optional:-->\r
+            <bib:nbDispo>?</bib:nbDispo>\r
+         </bib:ouvrage>\r
+      </bib:getExemplaireCreateRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getExemplaireCreateRequest"/></con:call></con:operation><con:operation id="cd4415a2-ae23-4bb8-83dc-15d442f4a0e0" isOneWay="false" action="" name="getOuvrage" bindingOperationName="getOuvrage" type="Request-Response" outputName="getOuvrageResponse" inputName="getOuvrageRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="89182a18-9861-47dd-9c37-a7aef664fa17" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getOuvrageRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getOuvrageRequest"/></con:call></con:operation><con:operation id="235781ce-1d60-47c9-8d3d-bd88575e0ebd" isOneWay="false" action="" name="getOuvrageByDispo" bindingOperationName="getOuvrageByDispo" type="Request-Response" outputName="getOuvrageByDispoResponse" inputName="getOuvrageByDispoRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="173d0f0d-75a3-4ab7-b4dc-d06972f3d041" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getOuvrageByDispoRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getOuvrageByDispoRequest"/></con:call></con:operation><con:operation id="6ed05a89-825f-4091-80db-20c2f0c78de1" isOneWay="false" action="" name="getOuvrageById" bindingOperationName="getOuvrageById" type="Request-Response" outputName="getOuvrageByIdResponse" inputName="getOuvrageByIdRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a2a6c67b-0bea-4b89-bf36-f60a596703c5" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getOuvrageByIdRequest>\r
+         <bib:id>?</bib:id>\r
+      </bib:getOuvrageByIdRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getOuvrageByIdRequest"/></con:call></con:operation><con:operation id="c6a90999-f62d-4f5b-a336-260d9e694f0c" isOneWay="false" action="" name="getOuvrageByNoDispo" bindingOperationName="getOuvrageByNoDispo" type="Request-Response" outputName="getOuvrageByNoDispoResponse" inputName="getOuvrageByNoDispoRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="9231b157-1795-4459-b14a-fa45284cd97c" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getOuvrageByNoDispoRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getOuvrageByNoDispoRequest"/></con:call></con:operation><con:operation id="49d9d0c8-2cc3-43dd-a975-afcb573198b7" isOneWay="false" action="" name="getOuvrageByTitre" bindingOperationName="getOuvrageByTitre" type="Request-Response" outputName="getOuvrageByTitreResponse" inputName="getOuvrageByTitreRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b7766bdc-dc06-46c7-b076-2ce7c141333a" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getOuvrageByTitreRequest>\r
+         <bib:titre>?</bib:titre>\r
+      </bib:getOuvrageByTitreRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getOuvrageByTitreRequest"/></con:call></con:operation><con:operation id="c674de6e-51e7-4391-b941-e2edc4488f38" isOneWay="false" action="" name="getOuvrageCreate" bindingOperationName="getOuvrageCreate" type="Request-Response" outputName="getOuvrageCreateResponse" inputName="getOuvrageCreateRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="89bc1fa5-de8c-43bd-910c-45bed0bbce5e" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getOuvrageCreateRequest>\r
+         <bib:titre>?</bib:titre>\r
+         <bib:auteur>?</bib:auteur>\r
+         <bib:resume>?</bib:resume>\r
+         <bib:date>?</bib:date>\r
+         <bib:ImageName>?</bib:ImageName>\r
+      </bib:getOuvrageCreateRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getOuvrageCreateRequest"/></con:call></con:operation><con:operation id="6fb81d2c-96ac-436b-b1b4-4471b65cbcb2" isOneWay="false" action="" name="getPretByExemplaire" bindingOperationName="getPretByExemplaire" type="Request-Response" outputName="getPretByExemplaireResponse" inputName="getPretByExemplaireRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b6d59be8-2a44-4f2e-bae2-fa22bd02a87a" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getPretByExemplaireRequest>\r
+         <bib:exemplaire>\r
+            <bib:id>?</bib:id>\r
+            <bib:ouvrage>\r
+               <bib:id>?</bib:id>\r
+               <bib:titre>?</bib:titre>\r
+               <bib:auteur>?</bib:auteur>\r
+               <bib:resume>?</bib:resume>\r
+               <bib:date>?</bib:date>\r
+               <bib:imageb>cid:770299282232</bib:imageb>\r
+               <bib:ImageBase64DataString>?</bib:ImageBase64DataString>\r
+               <!--Optional:-->\r
+               <bib:nbDispo>?</bib:nbDispo>\r
+            </bib:ouvrage>\r
+         </bib:exemplaire>\r
+      </bib:getPretByExemplaireRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getPretByExemplaireRequest"/></con:call></con:operation><con:operation id="35f827e7-d9f4-4e17-8b29-4b03d5ee5082" isOneWay="false" action="" name="getPretById" bindingOperationName="getPretById" type="Request-Response" outputName="getPretByIdResponse" inputName="getPretByIdRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ac78edd3-e8c8-4870-a37e-54e6c29641b0" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getPretByIdRequest>\r
+         <bib:id>?</bib:id>\r
+      </bib:getPretByIdRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getPretByIdRequest"/></con:call></con:operation><con:operation id="fce9b6af-ad5e-4b43-a28e-1086dd386ea1" isOneWay="false" action="" name="getPretByUsager" bindingOperationName="getPretByUsager" type="Request-Response" outputName="getPretByUsagerResponse" inputName="getPretByUsagerRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ad082755-bcb3-4165-9d73-1254bbf391bd" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getPretByUsagerRequest>\r
+         <bib:usager>\r
+            <bib:id>?</bib:id>\r
+            <bib:email>?</bib:email>\r
+         </bib:usager>\r
+      </bib:getPretByUsagerRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getPretByUsagerRequest"/></con:call></con:operation><con:operation id="bd723cf5-01dc-4cb2-bfe7-1aa7b7921e2a" isOneWay="false" action="" name="getPretCreate" bindingOperationName="getPretCreate" type="Request-Response" outputName="getPretCreateResponse" inputName="getPretCreateRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f4a8a002-34cd-4125-8c32-e8bac159d90a" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getPretCreateRequest>\r
+         <bib:usager>\r
+            <bib:id>?</bib:id>\r
+            <bib:email>?</bib:email>\r
+         </bib:usager>\r
+         <bib:exemplaire>\r
+            <bib:id>?</bib:id>\r
+            <bib:ouvrage>\r
+               <bib:id>?</bib:id>\r
+               <bib:titre>?</bib:titre>\r
+               <bib:auteur>?</bib:auteur>\r
+               <bib:resume>?</bib:resume>\r
+               <bib:date>?</bib:date>\r
+               <bib:imageb>cid:862361061969</bib:imageb>\r
+               <bib:ImageBase64DataString>?</bib:ImageBase64DataString>\r
+               <!--Optional:-->\r
+               <bib:nbDispo>?</bib:nbDispo>\r
+            </bib:ouvrage>\r
+         </bib:exemplaire>\r
+         <bib:datePret>?</bib:datePret>\r
+         <bib:dateFin>?</bib:dateFin>\r
+      </bib:getPretCreateRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getPretCreateRequest"/></con:call></con:operation><con:operation id="517eda7b-22e2-4aa0-a2ec-fe9b0f3d1716" isOneWay="false" action="" name="getPrets" bindingOperationName="getPrets" type="Request-Response" outputName="getPretsResponse" inputName="getPretsRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="3a30c9b6-9826-4853-9ba7-eebb3208d071" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getPretsRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getPretsRequest"/></con:call></con:operation><con:operation id="e66243bf-7c85-4f43-8673-8adb8eb4262b" isOneWay="false" action="" name="getRelance" bindingOperationName="getRelance" type="Request-Response" outputName="getRelanceResponse" inputName="getRelanceRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b04cebbc-2c1c-4b38-8d7c-e25fc6139b75" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getRelanceRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getRelanceRequest"/></con:call></con:operation><con:operation id="89d45077-f6e9-4804-a518-858815e4e4be" isOneWay="false" action="" name="getRelanceById" bindingOperationName="getRelanceById" type="Request-Response" outputName="getRelanceByIdResponse" inputName="getRelanceByIdRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e8b61a6e-50ce-4f6b-b176-b63a1a02c6bc" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getRelanceByIdRequest>\r
+         <bib:id>?</bib:id>\r
+      </bib:getRelanceByIdRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getRelanceByIdRequest"/></con:call></con:operation><con:operation id="6c823b2f-f0ec-41cc-849a-c34f2b03ee51" isOneWay="false" action="" name="getRelanceByPret" bindingOperationName="getRelanceByPret" type="Request-Response" outputName="getRelanceByPretResponse" inputName="getRelanceByPretRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="5c5911a9-f8ea-47f6-9569-c5b1a9c921b2" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getRelanceByPretRequest>\r
+         <bib:pret>\r
+            <bib:id>?</bib:id>\r
+            <bib:exemplaire>\r
+               <bib:id>?</bib:id>\r
+               <bib:ouvrage>\r
+                  <bib:id>?</bib:id>\r
+                  <bib:titre>?</bib:titre>\r
+                  <bib:auteur>?</bib:auteur>\r
+                  <bib:resume>?</bib:resume>\r
+                  <bib:date>?</bib:date>\r
+                  <bib:imageb>cid:816654298241</bib:imageb>\r
+                  <bib:ImageBase64DataString>?</bib:ImageBase64DataString>\r
+                  <!--Optional:-->\r
+                  <bib:nbDispo>?</bib:nbDispo>\r
+               </bib:ouvrage>\r
+            </bib:exemplaire>\r
+            <bib:ouvrage>\r
+               <bib:id>?</bib:id>\r
+               <bib:titre>?</bib:titre>\r
+               <bib:auteur>?</bib:auteur>\r
+               <bib:resume>?</bib:resume>\r
+               <bib:date>?</bib:date>\r
+               <bib:imageb>cid:986094039822</bib:imageb>\r
+               <bib:ImageBase64DataString>?</bib:ImageBase64DataString>\r
+               <!--Optional:-->\r
+               <bib:nbDispo>?</bib:nbDispo>\r
+            </bib:ouvrage>\r
+            <bib:relance>\r
+               <bib:id>?</bib:id>\r
+               <bib:pret/>\r
+               <bib:dateFin>?</bib:dateFin>\r
+            </bib:relance>\r
+            <bib:datePret>?</bib:datePret>\r
+            <bib:dateFin>?</bib:dateFin>\r
+         </bib:pret>\r
+      </bib:getRelanceByPretRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getRelanceByPretRequest"/></con:call></con:operation><con:operation id="8beb2edd-e9b5-427a-a340-e1a039b699f5" isOneWay="false" action="" name="getRelanceByUsager" bindingOperationName="getRelanceByUsager" type="Request-Response" outputName="getRelanceByUsagerResponse" inputName="getRelanceByUsagerRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d8121f95-ff73-4873-91a1-bf632cb1a9cb" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getRelanceByUsagerRequest>\r
+         <bib:usager>\r
+            <bib:id>?</bib:id>\r
+            <bib:email>?</bib:email>\r
+         </bib:usager>\r
+      </bib:getRelanceByUsagerRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getRelanceByUsagerRequest"/></con:call></con:operation><con:operation id="63b7abc5-14e8-4639-98a4-c1128a634c03" isOneWay="false" action="" name="getRelanceCreate" bindingOperationName="getRelanceCreate" type="Request-Response" outputName="getRelanceCreateResponse" inputName="getRelanceCreateRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="9d7510cb-97f8-4d68-a0af-b505d34c87ee" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getRelanceCreateRequest>\r
+         <bib:pret>\r
+            <bib:id>?</bib:id>\r
+            <bib:exemplaire>\r
+               <bib:id>?</bib:id>\r
+               <bib:ouvrage>\r
+                  <bib:id>?</bib:id>\r
+                  <bib:titre>?</bib:titre>\r
+                  <bib:auteur>?</bib:auteur>\r
+                  <bib:resume>?</bib:resume>\r
+                  <bib:date>?</bib:date>\r
+                  <bib:imageb>cid:1038512715463</bib:imageb>\r
+                  <bib:ImageBase64DataString>?</bib:ImageBase64DataString>\r
+                  <!--Optional:-->\r
+                  <bib:nbDispo>?</bib:nbDispo>\r
+               </bib:ouvrage>\r
+            </bib:exemplaire>\r
+            <bib:ouvrage>\r
+               <bib:id>?</bib:id>\r
+               <bib:titre>?</bib:titre>\r
+               <bib:auteur>?</bib:auteur>\r
+               <bib:resume>?</bib:resume>\r
+               <bib:date>?</bib:date>\r
+               <bib:imageb>cid:941749587297</bib:imageb>\r
+               <bib:ImageBase64DataString>?</bib:ImageBase64DataString>\r
+               <!--Optional:-->\r
+               <bib:nbDispo>?</bib:nbDispo>\r
+            </bib:ouvrage>\r
+            <bib:relance>\r
+               <bib:id>?</bib:id>\r
+               <bib:pret/>\r
+               <bib:dateFin>?</bib:dateFin>\r
+            </bib:relance>\r
+            <bib:datePret>?</bib:datePret>\r
+            <bib:dateFin>?</bib:dateFin>\r
+         </bib:pret>\r
+         <bib:dateFin>?</bib:dateFin>\r
+      </bib:getRelanceCreateRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getRelanceCreateRequest"/></con:call></con:operation><con:operation id="5923dbfd-c6b4-4df5-8d5c-56418d6544b9" isOneWay="false" action="" name="getUsager" bindingOperationName="getUsager" type="Request-Response" outputName="getUsagerResponse" inputName="getUsagerRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a0656146-2d6a-42e2-a79d-d2a55f8255f8" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getUsagerRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getUsagerRequest"/></con:call></con:operation><con:operation id="c7055304-ffcb-474b-8ff4-c812308f26f8" isOneWay="false" action="" name="getUsagerByEmail" bindingOperationName="getUsagerByEmail" type="Request-Response" outputName="getUsagerByEmailResponse" inputName="getUsagerByEmailRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="0547958c-ab8e-4383-806e-e5d318ef7895" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getUsagerByEmailRequest>\r
+         <bib:email>?</bib:email>\r
+      </bib:getUsagerByEmailRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getUsagerByEmailRequest"/></con:call></con:operation><con:operation id="76d7cf68-10b9-4252-aa82-16699e2addb9" isOneWay="false" action="" name="getUsagerById" bindingOperationName="getUsagerById" type="Request-Response" outputName="getUsagerByIdResponse" inputName="getUsagerByIdRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="9fa5c278-ee04-49f4-83df-23fbaa48f163" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getUsagerByIdRequest>\r
+         <bib:id>?</bib:id>\r
+      </bib:getUsagerByIdRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getUsagerByIdRequest"/></con:call></con:operation><con:operation id="0fdc1ffd-b51a-49f6-bc24-8a0c6fe0b6d2" isOneWay="false" action="" name="getUsagerByPretDate" bindingOperationName="getUsagerByPretDate" type="Request-Response" outputName="getUsagerByPretDateResponse" inputName="getUsagerByPretDateRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8cb5940b-9c16-4ebb-b743-6743bc80696d" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getUsagerByPretDateRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getUsagerByPretDateRequest"/></con:call></con:operation><con:operation id="98f8f9e4-ba7f-430f-84be-97a3a923270e" isOneWay="false" action="" name="getUsagerByRelanceDate" bindingOperationName="getUsagerByRelanceDate" type="Request-Response" outputName="getUsagerByRelanceDateResponse" inputName="getUsagerByRelanceDateRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a9efce41-1046-44d8-b695-ffeacc4c5538" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getUsagerByRelanceDateRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getUsagerByRelanceDateRequest"/></con:call></con:operation><con:operation id="dbb6603d-7e5d-4092-b221-fcf518d05dc2" isOneWay="false" action="" name="getUsagerCreate" bindingOperationName="getUsagerCreate" type="Request-Response" outputName="getUsagerCreateResponse" inputName="getUsagerCreateRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ab0fcdbc-0494-4383-9c3c-b374d3cb899e" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getUsagerCreateRequest>\r
+         <bib:email>?</bib:email>\r
+      </bib:getUsagerCreateRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getUsagerCreateRequest"/></con:call></con:operation></con:interface><con:testSuite id="6340b308-afca-4a6f-881b-e4e45a0580ea" name="BibliosoapPortSoap11 TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="ed7ff4d3-a72e-42f4-9c3a-9c6105cd6028" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getExemplaire TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="6a2d531b-e3f6-40e7-a78b-f91d2411af6a" name="getExemplaire"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getExemplaire</con:operation><con:request name="getExemplaire" id="508dab79-a2b6-42b2-be68-047540812ec5" outgoingWss="biblio"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getExemplaireRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="1b8050a7-ee3e-4ad1-ad69-d8d3e2b95cff" name="Contains"><con:configuration><token>Spring Framework</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getExemplaireRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="85403dc6-4d75-465d-82b3-b48ecea955ee" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getExemplaireByBook TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="7537c876-0d38-451f-9f6a-20756899063a" name="getExemplaireByBook"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getExemplaireByBook</con:operation><con:request name="getExemplaireByBook" id="c9c30d78-48d0-43c4-92af-44f2d546ac6d"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getExemplaireByBookRequest>\r
+         <bib:book>\r
+            <bib:id>?</bib:id>\r
+            <bib:titre>?</bib:titre>\r
+            <bib:auteur>?</bib:auteur>\r
+            <bib:resume>?</bib:resume>\r
+            <bib:date>?</bib:date>\r
+            <bib:imageb>cid:1311299054332</bib:imageb>\r
+            <bib:ImageBase64DataString>?</bib:ImageBase64DataString>\r
+            <!--Optional:-->\r
+            <bib:nbDispo>?</bib:nbDispo>\r
+         </bib:book>\r
+      </bib:getExemplaireByBookRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getExemplaireByBookRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="2388dcff-b715-4dbd-80e0-f046493a16bf" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getExemplaireById TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="e421152e-02dc-4d7b-9a5f-09e277a7518f" name="getExemplaireById"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getExemplaireById</con:operation><con:request name="getExemplaireById" id="9aacb0c7-09c6-4902-bb7f-189627bd2d6a"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getExemplaireByIdRequest>\r
+         <bib:id>?</bib:id>\r
+      </bib:getExemplaireByIdRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getExemplaireByIdRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="16881d7d-1d6b-435e-a2f8-78a705111cfa" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getExemplaireByPret TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="6774d274-91f5-40ed-b761-96a4d25ae94c" name="getExemplaireByPret"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getExemplaireByPret</con:operation><con:request name="getExemplaireByPret" id="e217c5cd-ae45-4db1-bfe4-32653cd770b8"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getExemplaireByPretRequest>\r
+         <bib:pret>\r
+            <bib:id>?</bib:id>\r
+            <bib:exemplaire>\r
+               <bib:id>?</bib:id>\r
+               <bib:ouvrage>\r
+                  <bib:id>?</bib:id>\r
+                  <bib:titre>?</bib:titre>\r
+                  <bib:auteur>?</bib:auteur>\r
+                  <bib:resume>?</bib:resume>\r
+                  <bib:date>?</bib:date>\r
+                  <bib:imageb>cid:587613785236</bib:imageb>\r
+                  <bib:ImageBase64DataString>?</bib:ImageBase64DataString>\r
+                  <!--Optional:-->\r
+                  <bib:nbDispo>?</bib:nbDispo>\r
+               </bib:ouvrage>\r
+            </bib:exemplaire>\r
+            <bib:ouvrage>\r
+               <bib:id>?</bib:id>\r
+               <bib:titre>?</bib:titre>\r
+               <bib:auteur>?</bib:auteur>\r
+               <bib:resume>?</bib:resume>\r
+               <bib:date>?</bib:date>\r
+               <bib:imageb>cid:695409421817</bib:imageb>\r
+               <bib:ImageBase64DataString>?</bib:ImageBase64DataString>\r
+               <!--Optional:-->\r
+               <bib:nbDispo>?</bib:nbDispo>\r
+            </bib:ouvrage>\r
+            <bib:relance>\r
+               <bib:id>?</bib:id>\r
+               <bib:pret/>\r
+               <bib:dateFin>?</bib:dateFin>\r
+            </bib:relance>\r
+            <bib:datePret>?</bib:datePret>\r
+            <bib:dateFin>?</bib:dateFin>\r
+         </bib:pret>\r
+      </bib:getExemplaireByPretRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getExemplaireByPretRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="debe8238-f680-46bc-8e7f-36a8c6ce45ab" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getExemplaireByUsager TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="35398ce5-ad70-4411-8231-9d2e6f5fafbc" name="getExemplaireByUsager"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getExemplaireByUsager</con:operation><con:request name="getExemplaireByUsager" id="5101e648-18a2-4aa1-a62a-a4a712bf4fc8"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getExemplaireByUsagerRequest>\r
+         <bib:usager>\r
+            <bib:id>?</bib:id>\r
+            <bib:email>?</bib:email>\r
+         </bib:usager>\r
+      </bib:getExemplaireByUsagerRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getExemplaireByUsagerRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="de102770-cdb6-48d0-a09f-066c67d34cd9" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getExemplaireCreate TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="19dc09ca-9510-4645-a0eb-0803b240cc0a" name="getExemplaireCreate"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getExemplaireCreate</con:operation><con:request name="getExemplaireCreate" id="a0f998a2-91f4-40bc-897e-1191cc31b804"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getExemplaireCreateRequest>\r
+         <bib:ouvrage>\r
+            <bib:id>?</bib:id>\r
+            <bib:titre>?</bib:titre>\r
+            <bib:auteur>?</bib:auteur>\r
+            <bib:resume>?</bib:resume>\r
+            <bib:date>?</bib:date>\r
+            <bib:imageb>cid:174939082542</bib:imageb>\r
+            <bib:ImageBase64DataString>?</bib:ImageBase64DataString>\r
+            <!--Optional:-->\r
+            <bib:nbDispo>?</bib:nbDispo>\r
+         </bib:ouvrage>\r
+      </bib:getExemplaireCreateRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getExemplaireCreateRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="4398d637-c692-4c5b-803d-676a000f27e5" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getOuvrage TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="24e785d7-f4f9-42fd-a922-faf3812d0e2c" name="getOuvrage"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getOuvrage</con:operation><con:request name="getOuvrage" id="7487d346-5b02-4900-94e9-fbcc279cf008"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getOuvrageRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getOuvrageRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="e8d1c37a-889f-4773-84e2-d02adb920597" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getOuvrageByDispo TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="b65f0938-da91-4cea-a471-3c29e0c9eb0d" name="getOuvrageByDispo"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getOuvrageByDispo</con:operation><con:request name="getOuvrageByDispo" id="7a92f5ae-805e-4cd0-9742-98e94e2f7ac6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getOuvrageByDispoRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getOuvrageByDispoRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="5d5d294d-07eb-4c29-abb0-c395d7886245" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getOuvrageById TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="fff59dad-b32b-4e34-8aa1-149c7fa54e66" name="getOuvrageById"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getOuvrageById</con:operation><con:request name="getOuvrageById" id="a9110b85-215d-4846-bb11-56bebea6e4a2" outgoingWss="biblio"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getOuvrageByIdRequest>\r
+         <bib:id>${#Project#book_id}</bib:id>\r
+      </bib:getOuvrageByIdRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getOuvrageByIdRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="afb516cb-83a0-4d45-b364-06b856f8f980" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getOuvrageByNoDispo TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="298a3b65-f856-45e5-b6c4-7fa673ae0d89" name="getOuvrageByNoDispo"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getOuvrageByNoDispo</con:operation><con:request name="getOuvrageByNoDispo" id="0d72a13f-257e-441d-86ec-f3a3cb933b93"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getOuvrageByNoDispoRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getOuvrageByNoDispoRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="ccba2cfa-49e0-4c56-951f-b67569b80db8" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getOuvrageByTitre TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="616bbfdd-3bae-47f2-93e5-812998cf77e9" name="getOuvrageByTitre"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getOuvrageByTitre</con:operation><con:request name="getOuvrageByTitre" id="68b7d55c-1be0-4bfc-93d2-df9317b2ed2e"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getOuvrageByTitreRequest>\r
+         <bib:titre>?</bib:titre>\r
+      </bib:getOuvrageByTitreRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getOuvrageByTitreRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="efa2b588-6859-40a2-8102-bd217251d695" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getOuvrageCreate TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="4c6b046a-b433-440a-a085-5145fcc6db0f" name="getOuvrageCreate"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getOuvrageCreate</con:operation><con:request name="getOuvrageCreate" id="a1e61df5-3d8a-46a3-8be0-f535dcf4a44e"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getOuvrageCreateRequest>\r
+         <bib:titre>?</bib:titre>\r
+         <bib:auteur>?</bib:auteur>\r
+         <bib:resume>?</bib:resume>\r
+         <bib:date>?</bib:date>\r
+         <bib:ImageName>?</bib:ImageName>\r
+      </bib:getOuvrageCreateRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getOuvrageCreateRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="685039a1-c50e-42b8-8591-bb4d904be082" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getPretByExemplaire TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="693dcf0e-e238-4f67-94a8-6cc1b0ea3898" name="getPretByExemplaire"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getPretByExemplaire</con:operation><con:request name="getPretByExemplaire" id="0c6a4c2a-b624-4753-8c18-a1b7188f91b9"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getPretByExemplaireRequest>\r
+         <bib:exemplaire>\r
+            <bib:id>?</bib:id>\r
+            <bib:ouvrage>\r
+               <bib:id>?</bib:id>\r
+               <bib:titre>?</bib:titre>\r
+               <bib:auteur>?</bib:auteur>\r
+               <bib:resume>?</bib:resume>\r
+               <bib:date>?</bib:date>\r
+               <bib:imageb>cid:1038744490738</bib:imageb>\r
+               <bib:ImageBase64DataString>?</bib:ImageBase64DataString>\r
+               <!--Optional:-->\r
+               <bib:nbDispo>?</bib:nbDispo>\r
+            </bib:ouvrage>\r
+         </bib:exemplaire>\r
+      </bib:getPretByExemplaireRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getPretByExemplaireRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="6142cada-9681-4ac7-891c-ed14e6d47b16" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getPretById TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="3c95ad0d-2e4f-4eca-be3e-0e85589b4382" name="getPretById"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getPretById</con:operation><con:request name="getPretById" id="93d3a605-5d21-400a-b1ad-e78df93741cd"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getPretByIdRequest>\r
+         <bib:id>?</bib:id>\r
+      </bib:getPretByIdRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getPretByIdRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="91187d2b-3044-4f7e-9182-b268c185290e" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getPretByUsager TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="da559f56-55e6-416d-9d27-f99a5e8087ae" name="getPretByUsager"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getPretByUsager</con:operation><con:request name="getPretByUsager" id="29bb1ae9-42e9-4519-a3a4-7e2bc0a58eaa"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getPretByUsagerRequest>\r
+         <bib:usager>\r
+            <bib:id>?</bib:id>\r
+            <bib:email>?</bib:email>\r
+         </bib:usager>\r
+      </bib:getPretByUsagerRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getPretByUsagerRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="6ee7abaf-8435-4883-9ce6-555de72631fd" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getPretCreate TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="76cd0e11-8b9d-4ac2-9595-836953a2a76a" name="getPretCreate"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getPretCreate</con:operation><con:request name="getPretCreate" id="8014d2d6-071a-4d32-af07-f55e257a606b"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getPretCreateRequest>\r
+         <bib:usager>\r
+            <bib:id>?</bib:id>\r
+            <bib:email>?</bib:email>\r
+         </bib:usager>\r
+         <bib:exemplaire>\r
+            <bib:id>?</bib:id>\r
+            <bib:ouvrage>\r
+               <bib:id>?</bib:id>\r
+               <bib:titre>?</bib:titre>\r
+               <bib:auteur>?</bib:auteur>\r
+               <bib:resume>?</bib:resume>\r
+               <bib:date>?</bib:date>\r
+               <bib:imageb>cid:1456320305860</bib:imageb>\r
+               <bib:ImageBase64DataString>?</bib:ImageBase64DataString>\r
+               <!--Optional:-->\r
+               <bib:nbDispo>?</bib:nbDispo>\r
+            </bib:ouvrage>\r
+         </bib:exemplaire>\r
+         <bib:datePret>?</bib:datePret>\r
+         <bib:dateFin>?</bib:dateFin>\r
+      </bib:getPretCreateRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getPretCreateRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="47102c5e-cffb-43c9-9c43-4423f9f47de5" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getPrets TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="17efb486-545b-467f-8dc4-34c27f30a6ff" name="getPrets"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getPrets</con:operation><con:request name="getPrets" id="551f5d19-9bf4-4fd1-9f57-6557f3947786"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getPretsRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getPretsRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="8bd9ef2f-9c33-4473-bc2c-9953c5cf4248" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getRelance TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="7b6ed516-868a-4929-b09f-c28e51d0be11" name="getRelance"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getRelance</con:operation><con:request name="getRelance" id="459f92c8-bd83-4ab0-886e-357e50321615"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getRelanceRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getRelanceRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="c12c45b1-902c-4633-961f-bb757d3769e2" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getRelanceById TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="39265176-4584-4fa4-8b87-59a04c76d333" name="getRelanceById"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getRelanceById</con:operation><con:request name="getRelanceById" id="aa70e5bd-9645-44d9-af5b-92228c031e25"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getRelanceByIdRequest>\r
+         <bib:id>?</bib:id>\r
+      </bib:getRelanceByIdRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getRelanceByIdRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="0ca30147-de96-460f-8363-f672ac50d51f" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getRelanceByPret TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="77057541-7712-41f8-9e32-343e8a7ab3d0" name="getRelanceByPret"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getRelanceByPret</con:operation><con:request name="getRelanceByPret" id="abb1705e-7e47-46fd-b2bd-e6aa86bac37c"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getRelanceByPretRequest>\r
+         <bib:pret>\r
+            <bib:id>?</bib:id>\r
+            <bib:exemplaire>\r
+               <bib:id>?</bib:id>\r
+               <bib:ouvrage>\r
+                  <bib:id>?</bib:id>\r
+                  <bib:titre>?</bib:titre>\r
+                  <bib:auteur>?</bib:auteur>\r
+                  <bib:resume>?</bib:resume>\r
+                  <bib:date>?</bib:date>\r
+                  <bib:imageb>cid:578935241767</bib:imageb>\r
+                  <bib:ImageBase64DataString>?</bib:ImageBase64DataString>\r
+                  <!--Optional:-->\r
+                  <bib:nbDispo>?</bib:nbDispo>\r
+               </bib:ouvrage>\r
+            </bib:exemplaire>\r
+            <bib:ouvrage>\r
+               <bib:id>?</bib:id>\r
+               <bib:titre>?</bib:titre>\r
+               <bib:auteur>?</bib:auteur>\r
+               <bib:resume>?</bib:resume>\r
+               <bib:date>?</bib:date>\r
+               <bib:imageb>cid:1479250955171</bib:imageb>\r
+               <bib:ImageBase64DataString>?</bib:ImageBase64DataString>\r
+               <!--Optional:-->\r
+               <bib:nbDispo>?</bib:nbDispo>\r
+            </bib:ouvrage>\r
+            <bib:relance>\r
+               <bib:id>?</bib:id>\r
+               <bib:pret/>\r
+               <bib:dateFin>?</bib:dateFin>\r
+            </bib:relance>\r
+            <bib:datePret>?</bib:datePret>\r
+            <bib:dateFin>?</bib:dateFin>\r
+         </bib:pret>\r
+      </bib:getRelanceByPretRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getRelanceByPretRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="37080907-715f-4f42-9a03-52c754cc6bb2" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getRelanceByUsager TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="79f7f1cc-3aed-4c50-bba7-1d309b75cc81" name="getRelanceByUsager"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getRelanceByUsager</con:operation><con:request name="getRelanceByUsager" id="0c6d1884-443b-464c-878c-b29668c43b3a"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getRelanceByUsagerRequest>\r
+         <bib:usager>\r
+            <bib:id>?</bib:id>\r
+            <bib:email>?</bib:email>\r
+         </bib:usager>\r
+      </bib:getRelanceByUsagerRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getRelanceByUsagerRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="bfcadd69-dd64-416e-9955-0183ac0ca17b" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getRelanceCreate TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="2ce02f0d-8726-4c34-82da-1b885ef34860" name="getRelanceCreate"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getRelanceCreate</con:operation><con:request name="getRelanceCreate" id="3a5f93a3-0555-4f4a-85b9-0fd88623ecc7"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getRelanceCreateRequest>\r
+         <bib:pret>\r
+            <bib:id>?</bib:id>\r
+            <bib:exemplaire>\r
+               <bib:id>?</bib:id>\r
+               <bib:ouvrage>\r
+                  <bib:id>?</bib:id>\r
+                  <bib:titre>?</bib:titre>\r
+                  <bib:auteur>?</bib:auteur>\r
+                  <bib:resume>?</bib:resume>\r
+                  <bib:date>?</bib:date>\r
+                  <bib:imageb>cid:1429322350049</bib:imageb>\r
+                  <bib:ImageBase64DataString>?</bib:ImageBase64DataString>\r
+                  <!--Optional:-->\r
+                  <bib:nbDispo>?</bib:nbDispo>\r
+               </bib:ouvrage>\r
+            </bib:exemplaire>\r
+            <bib:ouvrage>\r
+               <bib:id>?</bib:id>\r
+               <bib:titre>?</bib:titre>\r
+               <bib:auteur>?</bib:auteur>\r
+               <bib:resume>?</bib:resume>\r
+               <bib:date>?</bib:date>\r
+               <bib:imageb>cid:984195540590</bib:imageb>\r
+               <bib:ImageBase64DataString>?</bib:ImageBase64DataString>\r
+               <!--Optional:-->\r
+               <bib:nbDispo>?</bib:nbDispo>\r
+            </bib:ouvrage>\r
+            <bib:relance>\r
+               <bib:id>?</bib:id>\r
+               <bib:pret/>\r
+               <bib:dateFin>?</bib:dateFin>\r
+            </bib:relance>\r
+            <bib:datePret>?</bib:datePret>\r
+            <bib:dateFin>?</bib:dateFin>\r
+         </bib:pret>\r
+         <bib:dateFin>?</bib:dateFin>\r
+      </bib:getRelanceCreateRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getRelanceCreateRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="1d795958-7310-4bb9-9cf8-d0cd1946e34a" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getUsager TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="fec6ea10-4aea-4a84-8587-ef401e306fe9" name="getUsager"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getUsager</con:operation><con:request name="getUsager" id="1d44dd84-7f3a-4eb6-9eb7-17998a833dfe"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getUsagerRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getUsagerRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="84c6b56b-44c5-4cca-846a-72d468e15466" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getUsagerByEmail TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="bffc151f-f7db-4506-ab77-cd5b7192be94" name="getUsagerByEmail"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getUsagerByEmail</con:operation><con:request name="getUsagerByEmail" id="51734881-8cac-468b-bf95-6e2d2ca3f2df"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getUsagerByEmailRequest>\r
+         <bib:email>?</bib:email>\r
+      </bib:getUsagerByEmailRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getUsagerByEmailRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="73824741-d77d-45e4-82d1-f3dcb4c128d0" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getUsagerById TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="15d6ec01-9a75-4db7-bccd-de12fba4ba48" name="getUsagerById"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getUsagerById</con:operation><con:request name="getUsagerById" id="4f4cc706-95da-4712-a778-b9ac56d4daf1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getUsagerByIdRequest>\r
+         <bib:id>?</bib:id>\r
+      </bib:getUsagerByIdRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getUsagerByIdRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="d2538d63-d370-4018-b9f3-67267ca4f5de" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getUsagerByPretDate TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="ecb5bf1c-d074-4d40-b900-baa3579f0d93" name="getUsagerByPretDate"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getUsagerByPretDate</con:operation><con:request name="getUsagerByPretDate" id="4de9bbb4-affa-4142-86b3-32de1430aaae"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getUsagerByPretDateRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getUsagerByPretDateRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="45790723-d706-4d13-a46c-6b5f016146dd" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getUsagerByRelanceDate TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="3097f9f1-2e71-4c58-b1af-e0af9e5ba1a6" name="getUsagerByRelanceDate"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getUsagerByRelanceDate</con:operation><con:request name="getUsagerByRelanceDate" id="1c47c891-950d-4afd-aa65-3e05d2cd8bc3"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getUsagerByRelanceDateRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getUsagerByRelanceDateRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="5cf0453a-41fe-427c-a215-32ff0fdf3bb3" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getUsagerCreate TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="a37095c3-73c5-417c-89d1-fb27828c4612" name="getUsagerCreate"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BibliosoapPortSoap11</con:interface><con:operation>getUsagerCreate</con:operation><con:request name="getUsagerCreate" id="c8419c0e-f664-4dc8-8af7-21fbc2902e27"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/soapws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bib="http://biblio.io/api/biblio-web-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <bib:getUsagerCreateRequest>\r
+         <bib:email>?</bib:email>\r
+      </bib:getUsagerCreateRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig action="http://biblio.io/api/biblio-web-service/BibliosoapPort/getUsagerCreateRequest" mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties><con:property><con:name>book_id</con:name><con:value>1219</con:value></con:property></con:properties><con:wssContainer><con:outgoing><con:name>biblio</con:name><con:username>admin</con:username><con:entry type="Username" password="secret"><con:configuration/></con:entry><con:entry type="Timestamp"><con:configuration><timeToLive>100000</timeToLive><strictTimestamp>true</strictTimestamp></con:configuration></con:entry></con:outgoing></con:wssContainer><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

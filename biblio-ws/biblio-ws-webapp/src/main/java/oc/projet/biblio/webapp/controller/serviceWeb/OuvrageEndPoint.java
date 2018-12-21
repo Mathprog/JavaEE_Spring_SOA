@@ -45,6 +45,7 @@ public class OuvrageEndPoint {
         if( ouvrage != null){
             ouvrageWS  = new OuvrageWS();
             BeanUtils.copyProperties(ouvrage, ouvrageWS);
+            ouvrageWS.setNbDispo(Math.toIntExact(ouvrage.getNbDispo()));
         }
         ouvrageResponseWS.setOuvrageWS(ouvrageWS);
         return ouvrageResponseWS;
@@ -59,6 +60,7 @@ public class OuvrageEndPoint {
         if( ouvrage != null ){
             ouvrageWS = new OuvrageWS();
             BeanUtils.copyProperties(ouvrage, ouvrageWS);
+            ouvrageWS.setNbDispo(Math.toIntExact(ouvrage.getNbDispo()));
         }
         ouvrageResponse.setOuvrageWS(ouvrageWS);
         return ouvrageResponse;
@@ -99,6 +101,7 @@ public class OuvrageEndPoint {
         for (Ouvrage ouvrage : ouvrageList){
             OuvrageWS ouvrageWS = new OuvrageWS();
             BeanUtils.copyProperties(ouvrage, ouvrageWS);
+            ouvrageWS.setNbDispo(Math.toIntExact(ouvrage.getNbDispo()));
             ouvrageWSList.add(ouvrageWS);
         }
         return ouvrageWSList;

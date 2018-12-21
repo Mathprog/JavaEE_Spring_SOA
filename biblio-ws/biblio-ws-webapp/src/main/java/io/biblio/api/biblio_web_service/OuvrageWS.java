@@ -2,18 +2,16 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2018.12.14 à 04:52:31 PM CET 
+// Généré le : 2018.12.21 à 09:15:54 PM CET 
 //
 
 
 package io.biblio.api.biblio_web_service;
 
 import java.time.LocalDate;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -37,7 +35,7 @@ import org.w3._2001.xmlschema.Adapter1;
  *         &lt;element name="date" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="imageb" type="{http://www.w3.org/2001/XMLSchema}base64Binary"/>
  *         &lt;element name="ImageBase64DataString" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="nbDispo" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="nbDispo" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -74,8 +72,7 @@ public class OuvrageWS {
     protected byte[] imageb;
     @XmlElement(name = "ImageBase64DataString", required = true, nillable = true)
     protected String imageBase64DataString;
-    @XmlElementRef(name = "nbDispo", namespace = "http://biblio.io/api/biblio-web-service", type = JAXBElement.class, required = false)
-    protected JAXBElement<Long> nbDispo;
+    protected Integer nbDispo;
 
     /**
      * Obtient la valeur de la propriété id.
@@ -240,10 +237,10 @@ public class OuvrageWS {
      * 
      * @return
      *     possible object is
-     *     {@link JAXBElement }{@code <}{@link Long }{@code >}
+     *     {@link Integer }
      *     
      */
-    public JAXBElement<Long> getNbDispo() {
+    public Integer getNbDispo() {
         return nbDispo;
     }
 
@@ -252,10 +249,10 @@ public class OuvrageWS {
      * 
      * @param value
      *     allowed object is
-     *     {@link JAXBElement }{@code <}{@link Long }{@code >}
+     *     {@link Integer }
      *     
      */
-    public void setNbDispo(JAXBElement<Long> value) {
+    public void setNbDispo(Integer value) {
         this.nbDispo = value;
     }
 
